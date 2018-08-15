@@ -1,9 +1,9 @@
-package convert
+package test_config
 
 import (
 	"testing"
 
-	pconfig "github.com/pip-services-do/pip-services-commons-go/config"
+	pconfig "github.com/pip-services-go/pip-services-commons-go/config"
 	"github.com/stretchr/testify/assert"
 )
 

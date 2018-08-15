@@ -3,15 +3,15 @@ package build
 import (
 	"fmt"
 
-	"github.com/pip-services/pip-services-commons-go/errors"
+	"github.com/pip-services-go/pip-services-commons-go/errors"
 )
 
-func NewCreateError(correlationId string, locator interface{}) *ApplicationError {
+func NewCreateError(correlationId string, message string) *errors.ApplicationError {
 	e := errors.NewInternalError(correlationId, "CANNOT_CREATE", message)
 	return e
 }
 
-func NewCreateErrorByLocator(correlationId string, locator interface{}) *ApplicationError {
+func NewCreateErrorByLocator(correlationId string, locator interface{}) *errors.ApplicationError {
 	message := fmt.Sprintf("Requested component %v cannot be created", locator)
 	e := errors.NewInternalError(correlationId, "CANNOT_CREATE", message)
 	e.WithDetails("locator", locator)
