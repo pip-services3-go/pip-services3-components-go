@@ -1,6 +1,8 @@
 package build
 
 import (
+	refl "reflect"
+
 	"github.com/pip-services-go/pip-services-commons-go/convert"
 	"github.com/pip-services-go/pip-services-commons-go/data"
 )
@@ -31,6 +33,24 @@ func (c *Factory) Register(locator interface{}, factory func() interface{}) {
 	c.registrations = append(c.registrations, &registration{
 		locator: locator,
 		factory: factory,
+	})
+}
+
+func (c *Factory) RegisterType(locator interface{}, factory interface{}) {
+	if locator == nil {
+		panic("Locator cannot be nil")
+	}
+	if factory == nil {
+		panic("Factory cannot be nil")
+	}
+
+	val := refl.ValueOf(factory)
+	if val.Kind() != refl.Func {
+		panic("Factory must be parameterless function")
+	}
+
+	c.Register(locator, func() interface{} {
+		return val.Call([]refl.Value{})[0].Interface()
 	})
 }
 
