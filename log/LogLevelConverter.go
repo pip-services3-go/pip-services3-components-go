@@ -2,41 +2,42 @@ package log
 
 import (
 	"strings"
-	"github.com/pip-services/pip-services-commons-go/convert"
+
+	"github.com/pip-services-go/pip-services-commons-go/convert"
 )
 
 type TLogLevelConverter struct{}
 
 var LogLevelConverter *TLogLevelConverter = &TLogLevelConverter{}
 
-func (c *TLogLevelConverter) ToLogLevel(value interface) int {
-	return ToLogLevel(value)
+func (c *TLogLevelConverter) ToLogLevel(value interface{}) int {
+	return LogLevelFromString(value)
 }
 
-func (c *TLogLevelConverter) LogLevelToString(level int) string {
+func (c *TLogLevelConverter) ToString(level int) string {
 	return LogLevelToString(level)
 }
 
-func ToLogLevel(value interface): int {
+func LogLevelFromString(value interface{}) int {
 	if value == nil {
 		return Info
 	}
 
-	value = convert.StringConverter.ToString(value)
-	value = strings.ToUpper(value)
-	if "0" == value || "NOTHING" == value || "NONE" == value {
+	str := convert.StringConverter.ToString(value)
+	str = strings.ToUpper(str)
+	if "0" == str || "NOTHING" == str || "NONE" == str {
 		return None
-	} else if "1" == value || "FATAL" == value {
+	} else if "1" == str || "FATAL" == str {
 		return Fatal
-	} else if "2" == value || "ERROR" == value {
+	} else if "2" == str || "ERROR" == str {
 		return Error
-	} else if "3" == value || "WARN" == value || "WARNING" == value {
+	} else if "3" == str || "WARN" == str || "WARNING" == str {
 		return Warn
-	} else if "4" == value || "INFO" == value {
+	} else if "4" == str || "INFO" == str {
 		return Info
-	} else if "5" == value || "DEBUG" == value {
+	} else if "5" == str || "DEBUG" == str {
 		return Debug
-	} else if "6" == value || "TRACE" == value {
+	} else if "6" == str || "TRACE" == str {
 		return Trace
 	} else {
 		return Info
@@ -44,7 +45,7 @@ func ToLogLevel(value interface): int {
 }
 
 func LogLevelToString(level int) string {
-	switch (level) {
+	switch level {
 	case Fatal:
 		return "FATAL"
 	case Error:
@@ -55,7 +56,7 @@ func LogLevelToString(level int) string {
 		return "INFO"
 	case Debug:
 		return "DEBUG"
-	case Trace
+	case Trace:
 		return "TRACE"
 	default:
 		return "UNDEF"

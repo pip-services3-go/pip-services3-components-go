@@ -14,23 +14,23 @@ func (c *NullLogger) Level() int {
 func (c *NullLogger) SetLevel(value int) {
 }
 
-func (c *NullLogger) Log(level int, correlationId string, err error, message ...interface{}) {
+func (c *NullLogger) Log(level int, correlationId string, err error, message string, args ...interface{}) {
 }
 
-func (c *NullLogger) Fatal(correlationId string, err error, message ...interface{}) {
+func (c *NullLogger) Fatal(correlationId string, err error, message string, args ...interface{}) {
 }
 
-func (c *NullLogger) Error(correlationId string, err error, message ...interface{}) {
+func (c *NullLogger) Error(correlationId string, err error, message string, args ...interface{}) {
 }
 
-func (c *NullLogger) Warn(correlationId string, err error, message ...interface{}) {
+func (c *NullLogger) Warn(correlationId string, message string, args ...interface{}) {
 }
 
-func (c *NullLogger) Info(correlationId string, err error, message ...interface{}) {
+func (c *NullLogger) Info(correlationId string, message string, args ...interface{}) {
 }
 
-func (c *NullLogger) Debug(correlationId string, err error, message ...interface{}) {
+func (c *NullLogger) Debug(correlationId string, message string, args ...interface{}) {
 }
 
-func (c *NullLogger) Trace(correlationId string, err error, message ...interface{}) {
+func (c *NullLogger) Trace(correlationId string, message string, args ...interface{}) {
 }
