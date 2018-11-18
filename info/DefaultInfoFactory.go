@@ -1,8 +1,8 @@
 package info
 
 import (
-	"github.com/pip-services-go/pip-services-commons-go/refer"
-	"github.com/pip-services-go/pip-services-components-go/build"
+	"github.com/pip-services3-go/pip-services3-commons-go/refer"
+	"github.com/pip-services3-go/pip-services3-components-go/build"
 )
 
 var ContextInfoDescriptor = refer.NewDescriptor("pip-services", "context-info", "default", "*", "1.0")

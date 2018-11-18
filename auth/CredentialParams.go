@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"github.com/pip-services/pip-services-commons-go/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/config"
 )
 
 type CredentialParams config.ConfigParams;

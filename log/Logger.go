@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/pip-services-go/pip-services-commons-go/config"
-	"github.com/pip-services-go/pip-services-commons-go/errors"
-	"github.com/pip-services-go/pip-services-commons-go/refer"
-	"github.com/pip-services-go/pip-services-components-go/info"
+	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/errors"
+	"github.com/pip-services3-go/pip-services3-commons-go/refer"
+	"github.com/pip-services3-go/pip-services3-components-go/info"
 )
 
 type ILogWriter interface {

@@ -3,7 +3,7 @@ package test_log
 import (
 	"testing"
 
-	"github.com/pip-services-go/pip-services-components-go/log"
+	"github.com/pip-services3-go/pip-services3-components-go/log"
 )
 
 func newConsoleLoggerFixture() *LoggerFixture {

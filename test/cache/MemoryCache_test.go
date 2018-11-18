@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/pip-services-go/pip-services-components-go/cache"
+	"github.com/pip-services3-go/pip-services3-components-go/cache"
 )
 
 func TestMemoryCache(t *testing.T) {

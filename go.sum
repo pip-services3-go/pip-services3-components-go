@@ -9,8 +9,6 @@ github.com/pip-services-go/pip-services-commons-go v0.0.0-20180817070129-8734c5f
 github.com/pip-services-go/pip-services-commons-go v0.0.0-20180817070129-8734c5fae18f/go.mod h1:3K+T8KV64GuDZpac3mQfszJy0rDXGjXdvtHYY7/f0Xw=
 github.com/pip-services-go/pip-services-components-go v0.0.0-20181116205905-05c82d05e3c5 h1:y9nHlUBt7Uf87CpRce7Wj5wNgRNIjvg1LOD7UKO/iNI=
 github.com/pip-services-go/pip-services-components-go v0.0.0-20181116205905-05c82d05e3c5/go.mod h1:ELXjGYWMrYQsf08DsJ9xuvsGLspRkG9Lu/lbIlajrrk=
-github.com/pip-services/pip-services-commons-go v0.0.0-20180413064915-8a044efc7625 h1:azf6XQYRKf+uec0Ji2zHvwfpgGJRINf4BCCxydLlVCA=
-github.com/pip-services/pip-services-commons-go v0.0.0-20180413064915-8a044efc7625/go.mod h1:EHGuHij6m+ENVgx6m111XnDHaxir9LdpJ0DWvuf3cg0=
 github.com/pip-services3-go/pip-services3-commons-go v0.0.0-20180817070129-8734c5fae18f h1:VKX7AJAZ+ujFhwZDWnPvypCSMjcHZ5pdkvrE2cu9dLI=
 github.com/pip-services3-go/pip-services3-commons-go v0.0.0-20180817070129-8734c5fae18f/go.mod h1:sguCh7/VyINm9Z8xWOplyGWUdOMUTzCvXdSp3MaMcJo=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

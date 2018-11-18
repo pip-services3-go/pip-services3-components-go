@@ -3,7 +3,7 @@ package test_config
 import (
 	"testing"
 
-	pconfig "github.com/pip-services-go/pip-services-commons-go/config"
+	pconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
 	"github.com/stretchr/testify/assert"
 )
 

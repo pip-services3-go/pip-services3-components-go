@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/pip-services-go/pip-services-commons-go/config"
-	"github.com/pip-services-go/pip-services-commons-go/errors"
+	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/errors"
 )
 
 type ICachedLogSaver interface {

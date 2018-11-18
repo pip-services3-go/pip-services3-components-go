@@ -1,6 +1,6 @@
 package log
 
-import "github.com/pip-services-go/pip-services-commons-go/refer"
+import "github.com/pip-services3-go/pip-services3-commons-go/refer"
 
 type CompositeLogger struct {
 	Logger
