@@ -4,6 +4,7 @@ import (
 	"github.com/pip-services3-go/pip-services3-commons-go/config"
 )
 
+//TODO::Need to resolve names of package
 type CredentialParams config.ConfigParams;
 
 func NewEmptyCredentialParams() *ConfigParams {

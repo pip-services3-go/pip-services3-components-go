@@ -6,7 +6,6 @@ import (
 
 type ConnectionParams struct {
 	config.ConfigParams
-	
 }
 
 func NewEmptyConnectionParams() *ConnectionParams {
@@ -51,58 +50,76 @@ func NewConnectionParamsFromMaps(maps ...map[string]string) *ConnectionParams {
 	}
 }
 
-func (con_p ConnectionParams) UseDiscovery() bool {
-	return con_p.GetAsNullableString("discovery_key") != nil
+func NewManyConnectionParamsFromConfig(conf *config.ConfigParams) []*ConnectionParams {
+	result := make([]*ConnectionParams, 0)
+	connections := conf.GetSection("connection")
+	if connections.Len() > 0 {
+		connectionSections := connections.GetSectionNames()
+		for _, conName := range connectionSections {
+			//TODO::Need to discuss with Sergey!
+			result = append(result, NewConnectionParamsFromValue(connections.GetSection(conName)))
+		}
+	} else {
+		conn := conf.GetSection("connection")
+		//TODO::Need to discuss with Sergey!
+		result = append(result, NewConnectionParamsFromValue(conn))
+	}
+	return result
 }
 
-func (con_p ConnectionParams) GetDiscoveryKey() string {
-	return con_p.GetAsString("discovery_key")
+func NewConnectionParamsFromConfig(conf *config.ConfigParams) *ConnectionParams {
+	connections := NewManyConnectionParamsFromConfig(conf)
+	if len(connections) > 0 {
+		return connections[0]
+	}
+
+	return nil
 }
 
-func (con_p *ConnectionParams) SetDiscoveryKey(value string) {
-	con_p.Put("discovery_key", value)
+func (conP ConnectionParams) UseDiscovery() bool {
+	return conP.GetAsNullableString("discovery_key") != nil
 }
 
-func (con_p ConnectionParams) GetProtocol(defaultValue string) string {
-	return con_p.GetAsStringWithDefault("protocol", defaultValue)
+func (conP ConnectionParams) GetDiscoveryKey() string {
+	return conP.GetAsString("discovery_key")
 }
 
-func (con_p *ConnectionParams) SetProtocol(value string) {
-	con_p.Put("protocol", value)
+func (conP *ConnectionParams) SetDiscoveryKey(value string) {
+	conP.Put("discovery_key", value)
 }
 
-func (con_p ConnectionParams) GetHost() string {
-	host := con_p.GetAsNullableString("host")
+func (conP ConnectionParams) GetProtocol(defaultValue string) string {
+	return conP.GetAsStringWithDefault("protocol", defaultValue)
+}
+
+func (conP *ConnectionParams) SetProtocol(value string) {
+	conP.Put("protocol", value)
+}
+
+func (conP ConnectionParams) GetHost() string {
+	host := conP.GetAsNullableString("host")
 	if host != nil {
 		return *host
 	}
-	return *con_p.GetAsNullableString("ip")
+	return *conP.GetAsNullableString("ip")
 }
 
-func (con_p *ConnectionParams) SetHost(value string) {
-	con_p.Put("host", value)
+func (conP *ConnectionParams) SetHost(value string) {
+	conP.Put("host", value)
 }
 
-func (con_p ConnectionParams) GetPort() int {
-	return con_p.GetAsInteger("port")
+func (conP ConnectionParams) GetPort() int {
+	return conP.GetAsInteger("port")
 }
 
-func (con_p *ConnectionParams) SetPort(value int) {
-	con_p.Put("port", value)
+func (conP *ConnectionParams) SetPort(value int) {
+	conP.Put("port", value)
 }
 
-func (con_p ConnectionParams) GetUri() string {
-	return con_p.GetAsString("uri")
+func (conP ConnectionParams) GetUri() string {
+	return conP.GetAsString("uri")
 }
 
-func (con_p *ConnectionParams) SetUri(value string) {
-	con_p.Put("uri", value)
+func (conP *ConnectionParams) SetUri(value string) {
+	conP.Put("uri", value)
 }
-
-
-
-
-
-
-
-
