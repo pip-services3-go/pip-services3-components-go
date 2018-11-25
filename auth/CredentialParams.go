@@ -6,7 +6,7 @@ import (
 )
 
 //TODO::Need to resolve names of package
-type CredentialParams config.ConfigParams;
+type CredentialParams config.ConfigParams
 
 func NewEmptyCredentialParams() *CredentialParams {
 	return &CredentialParams{
