@@ -33,13 +33,13 @@ func (conR *ConnectionResolver) SetReferences(references refer.IReferences) {
 func (conR ConnectionResolver) GetAll() []*ConnectionParams {
 	conns := make([]*ConnectionParams, len(conR._connections))
 	for i := range conR._connections {
-		conns[i] = NewConnectionParamsFromMaps(conR._connections[i].Value())
+		conns[i] = NewConnectionParams(conR._connections[i].Value())
 	}
 	return conns
 }
 
 func (conR *ConnectionResolver) Add(conn *ConnectionParams) {
-	conR._connections = append(conR._connections, NewConnectionParamsFromMaps(conn.Value()))
+	conR._connections = append(conR._connections, NewConnectionParams(conn.Value()))
 }
 
 func (conR *ConnectionResolver) resolveInDiscovery(correlationId string, connection *ConnectionParams) (resolvedConnectionParams *ConnectionParams, err error) {
@@ -69,7 +69,7 @@ func (conR *ConnectionResolver) resolveInDiscovery(correlationId string, connect
 		var res *ConnectionParams = nil
 		res, err = discoveries[i].(IDiscovery).ResolveOne(correlationId, key)
 		if err == nil || res != nil {
-			resolvedConnectionParams = NewConnectionParamsFromMaps(res.Value())
+			resolvedConnectionParams = NewConnectionParams(res.Value())
 			break
 		}
 	}
@@ -94,7 +94,7 @@ func (conR *ConnectionResolver) Resolve(correlationId string) (resolvedConnectio
 		if !conR._connections[i].UseDiscovery() {
 			return conR._connections[i], nil
 		} else {
-			connections = append(connections, NewConnectionParamsFromMaps(conR._connections[i].Value()))
+			connections = append(connections, NewConnectionParams(conR._connections[i].Value()))
 		}
 	}
 	if len(connections) == 0 {
@@ -105,7 +105,7 @@ func (conR *ConnectionResolver) Resolve(correlationId string) (resolvedConnectio
 		res, err = conR.resolveInDiscovery(correlationId, connections[i])
 		if err == nil || res != nil {
 			//TODO::Need to discuss with Sergey! [ConfigParams.mergeConfigs(connection, result)]
-			resolvedConnectionParams = NewConnectionParamsFromMaps(res.Value())
+			resolvedConnectionParams = NewConnectionParams(res.Value())
 			break
 		}
 	}
@@ -164,9 +164,9 @@ func (conR *ConnectionResolver) ResolveAll(correlationId string) (resolvedConnec
 
 	for i := range conR._connections {
 		if conR._connections[i].UseDiscovery() {
-			toResolve = append(toResolve, NewConnectionParamsFromMaps(conR._connections[i].Value()))
+			toResolve = append(toResolve, NewConnectionParams(conR._connections[i].Value()))
 		} else {
-			resolvedConnectionsParams = append(resolvedConnectionsParams, NewConnectionParamsFromMaps(conR._connections[i].Value()))
+			resolvedConnectionsParams = append(resolvedConnectionsParams, NewConnectionParams(conR._connections[i].Value()))
 		}
 	}
 
@@ -181,7 +181,7 @@ func (conR *ConnectionResolver) ResolveAll(correlationId string) (resolvedConnec
 			break
 		}
 		for j := range res {
-			resolvedConnectionsParams = append(resolvedConnectionsParams, NewConnectionParamsFromMaps(res[j].Value()))
+			resolvedConnectionsParams = append(resolvedConnectionsParams, NewConnectionParams(res[j].Value()))
 		}
 	}
 	return
@@ -228,7 +228,7 @@ func (conR *ConnectionResolver) Register(correlationId string, key string, conne
 	}()
 	var ok bool
 	if ok, err = conR.registerInDiscovery(correlationId, connection); ok {
-		conR._connections = append(conR._connections, NewConnectionParamsFromMaps(connection.Value()))
+		conR._connections = append(conR._connections, NewConnectionParams(connection.Value()))
 	}
 	return
 }
