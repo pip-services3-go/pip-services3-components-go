@@ -1,9 +1,11 @@
 package count
 
+type CounterType int
+
 const (
-    Interval = 0
-    LastValue = 1
-    Statistics = 2
-    Timestamp = 3
-    Increment = 4
+	Interval CounterType = iota
+	LastValue
+	Statistics
+	Timestamp
+	Increment
 )

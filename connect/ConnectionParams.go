@@ -52,16 +52,14 @@ func NewConnectionParamsFromMaps(maps ...map[string]string) *ConnectionParams {
 
 func NewManyConnectionParamsFromConfig(conf *config.ConfigParams) []*ConnectionParams {
 	result := make([]*ConnectionParams, 0)
-	connections := conf.GetSection("connection")
+	connections := conf.GetSection("connections")
 	if connections.Len() > 0 {
 		connectionSections := connections.GetSectionNames()
 		for _, conName := range connectionSections {
-			//TODO::Need to discuss with Sergey!
 			result = append(result, NewConnectionParamsFromValue(connections.GetSection(conName)))
 		}
 	} else {
 		conn := conf.GetSection("connection")
-		//TODO::Need to discuss with Sergey!
 		result = append(result, NewConnectionParamsFromValue(conn))
 	}
 	return result

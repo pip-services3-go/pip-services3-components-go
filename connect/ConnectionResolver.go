@@ -26,7 +26,6 @@ func (conR *ConnectionResolver) Configure(conf *config.ConfigParams) {
 }
 
 func (conR *ConnectionResolver) SetReferences(references refer.IReferences) {
-	//TODO::Need to discuss with Sergey!
 	conR._references = references
 }
 
@@ -104,8 +103,7 @@ func (conR *ConnectionResolver) Resolve(correlationId string) (resolvedConnectio
 		var res *ConnectionParams = nil
 		res, err = conR.resolveInDiscovery(correlationId, connections[i])
 		if err == nil || res != nil {
-			//TODO::Need to discuss with Sergey! [ConfigParams.mergeConfigs(connection, result)]
-			resolvedConnectionParams = NewConnectionParams(res.Value())
+			resolvedConnectionParams = NewConnectionParams(config.NewConfigParamsFromMaps(connections[i].Value(), res.Value()).Value())
 			break
 		}
 	}
@@ -116,8 +114,7 @@ func (conR *ConnectionResolver) resolveAllInDiscovery(correlationId string, conn
 	defer func() {
 		if r := recover(); r != nil {
 			err = r.(error)
-			//TODO::Need to discuss with Sergey! Returned value resolvedConnectionsParams should be empty slice or nil
-			resolvedConnectionsParams = make([]*ConnectionParams, 0)
+			resolvedConnectionsParams = nil
 		}
 	}()
 
@@ -135,7 +132,6 @@ func (conR *ConnectionResolver) resolveAllInDiscovery(correlationId string, conn
 	discoveries := conR._references.GetOptional(discoveryDescriptor)
 	if len(discoveries) == 0 {
 		err = refer.NewReferenceError(correlationId, discoveryDescriptor)
-		//TODO::Need to discuss with Sergey! Returned value resolvedConnectionsParams should be empty slice or nil
 		return
 	}
 
