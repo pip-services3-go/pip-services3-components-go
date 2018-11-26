@@ -2,32 +2,33 @@ package auth
 
 import (
 	"github.com/pip-services3-go/pip-services3-commons-go/config"
-	"github.com/pip-services3-go/pip-services3-commons-go/data"
 )
 
 //TODO::Need to resolve names of package
-type CredentialParams config.ConfigParams
+type CredentialParams struct {
+	config.ConfigParams
+}
 
 func NewEmptyCredentialParams() *CredentialParams {
 	return &CredentialParams{
-		StringValueMap: *data.NewEmptyStringValueMap(),
+		ConfigParams: *config.NewEmptyConfigParams(),
 	}
 }
 
 func NewCredentialParams(values map[string]string) *CredentialParams {
 	return &CredentialParams{
-		StringValueMap: *data.NewStringValueMap(values),
+		ConfigParams: *config.NewConfigParams(values),
 	}
 }
 
 func NewCredentialParamsFromValue(value interface{}) *CredentialParams {
 	return &CredentialParams{
-		StringValueMap: *data.NewStringValueMapFromValue(value),
+		ConfigParams: *config.NewConfigParamsFromValue(value),
 	}
 }
 
-func NewCredentialParamsManyFromConfig(config config.ConfigParams) *[]CredentialParams {
-	result := []CredentialParams{}
+func NewCredentialParamsManyFromConfig(config config.ConfigParams) []*CredentialParams {
+	result := make([]*CredentialParams, 0)
 
 	credentials := config.GetSection("credentials")
 
@@ -35,14 +36,14 @@ func NewCredentialParamsManyFromConfig(config config.ConfigParams) *[]Credential
 		for _, section := range credentials.GetSectionNames() {
 			credential := credentials.GetSection(section)
 
-			result = append(result, *NewCredentialParamsFromValue(credential))
+			result = append(result, NewCredentialParamsFromValue(credential))
 		}
 	} else {
 		credential := credentials.GetSection("credential")
-		result = append(result, *NewCredentialParamsFromValue(credential))
+		result = append(result, NewCredentialParamsFromValue(credential))
 	}
 
-	return &result
+	return result
 }
 
 func (c *CredentialParams) UseCredentialStore() bool {
@@ -107,12 +108,12 @@ func (c *CredentialParams) SetAccessKey(value string) {
 
 func NewCredentialParamsFromString(line string) *CredentialParams {
 	return &CredentialParams{
-		StringValueMap: *data.NewStringValueMapFromString(line),
+		ConfigParams: *config.NewConfigParamsFromString(line),
 	}
 }
 
 func NewManyCredentialParamsFromConfig(config *config.ConfigParams) []*CredentialParams {
-	result := []*CredentialParams{}
+	result := make([]*CredentialParams, 0)
 
 	credentials := config.GetSection("credentials")
 
