@@ -14,7 +14,7 @@ func TestConfigSections(t *testing.T) {
 		"Section1.Key3", "Value3",
 	)
 
-	assert.Equal(t, config.Length(), 3)
+	assert.Equal(t, config.Len(), 3)
 	assert.Equal(t, config.Get("Section1.Key1"), "Value1")
 	assert.Equal(t, config.Get("Section1.Key2"), "Value2")
 	assert.Equal(t, config.Get("Section1.Key3"), "Value3")
@@ -26,12 +26,12 @@ func TestConfigSections(t *testing.T) {
 	)
 
 	config.AddSection("Section2", section2)
-	assert.Equal(t, config.Length(), 5)
+	assert.Equal(t, config.Len(), 5)
 	assert.Equal(t, config.Get("Section2.Key1"), "ValueA")
 	assert.Equal(t, config.Get("Section2.Key2"), "ValueB")
 
 	section1 := config.GetSection("Section1")
-	assert.Equal(t, section1.Length(), 3)
+	assert.Equal(t, section1.Len(), 3)
 	assert.Equal(t, section1.Get("Key1"), "Value1")
 	assert.Equal(t, section1.Get("Key2"), "Value2")
 	assert.Equal(t, section1.Get("Key3"), "Value3")
@@ -40,7 +40,7 @@ func TestConfigSections(t *testing.T) {
 
 func TestConfigFromString(t *testing.T) {
 	config := pconfig.NewConfigParamsFromString("Queue=TestQueue;Endpoint=sb://cvctestbus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=K70UpCUXN1Q5RFykll6/gz4Et14iJrYFnGPlwiFBlow=")
-	assert.Equal(t, config.Length(), 4)
+	assert.Equal(t, config.Len(), 4)
 	assert.Equal(t, config.Get("Queue"), "TestQueue")
 }
 

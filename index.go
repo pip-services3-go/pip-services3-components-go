@@ -1,20 +1,12 @@
 package commons
 
 import (
-	. "auth"
-	. "build"
-	. "cache"
-	. "commands"
-	. "config"
-	. "connect"
-	. "convert"
-	. "count"
-	. "data"
-	. "errors"
-	. "log"
-	. "random"
-	. "refer"
-	. "reflect"
-	. "run"
-	. "validate"
+	_ "github.com/pip-services3-go/pip-services3-components-go/auth"
+	_ "github.com/pip-services3-go/pip-services3-components-go/build"
+	_ "github.com/pip-services3-go/pip-services3-components-go/cache"
+	_ "github.com/pip-services3-go/pip-services3-components-go/config"
+	_ "github.com/pip-services3-go/pip-services3-components-go/connect"
+	_ "github.com/pip-services3-go/pip-services3-components-go/count"
+	_ "github.com/pip-services3-go/pip-services3-components-go/info"
+	_ "github.com/pip-services3-go/pip-services3-components-go/log"
 )
