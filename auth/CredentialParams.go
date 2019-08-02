@@ -4,36 +4,96 @@ import (
 	"github.com/pip-services3-go/pip-services3-commons-go/config"
 )
 
-type CredentialParams config.ConfigParams;
+type CredentialParams struct {
+	config.ConfigParams
+}
 
-func NewEmptyCredentialParams() *ConfigParams {
-	return data.NewEmptyStringValueMap()
+func NewEmptyCredentialParams() *CredentialParams {
+	return &CredentialParams{
+		ConfigParams: *config.NewEmptyConfigParams(),
+	}
 }
 
 func NewCredentialParams(values map[string]string) *CredentialParams {
-	return data.NewStringValueMap(values)
+	return &CredentialParams{
+		ConfigParams: *config.NewConfigParams(values),
+	}
 }
 
 func NewCredentialParamsFromValue(value interface{}) *CredentialParams {
-	return data.NewStringValueMapFromValue(value)
+	return &CredentialParams{
+		ConfigParams: *config.NewConfigParamsFromValue(value),
+	}
+}
+
+func NewCredentialParamsFromTuples(tuples ...interface{}) *CredentialParams {
+	return &CredentialParams{
+		ConfigParams: *config.NewConfigParamsFromTuplesArray(tuples),
+	}
+}
+
+func NewCredentialParamsFromTuplesArray(tuples []interface{}) *CredentialParams {
+	return &CredentialParams{
+		ConfigParams: *config.NewConfigParamsFromTuplesArray(tuples),
+	}
+}
+
+func NewCredentialParamsFromString(line string) *CredentialParams {
+	return &CredentialParams{
+		ConfigParams: *config.NewConfigParamsFromString(line),
+	}
+}
+
+func NewCredentialParamsFromMaps(maps ...map[string]string) *CredentialParams {
+	return &CredentialParams{
+		ConfigParams: *config.NewConfigParamsFromMaps(maps...),
+	}
+}
+
+func NewManyCredentialParamsFromConfig(config *config.ConfigParams) []*CredentialParams {
+	result := []*CredentialParams{}
+
+	credentials := config.GetSection("credentials")
+
+	if credentials.Len() > 0 {
+		for _, section := range credentials.GetSectionNames() {
+			credential := credentials.GetSection(section)
+			result = append(result, NewCredentialParams(credential.Value()))
+		}
+	} else {
+		credential := config.GetSection("credential")
+		if credential.Len() > 0 {
+			result = append(result, NewCredentialParams(credential.Value()))
+		}
+	}
+
+	return result
+}
+
+func NewCredentialParamsFromConfig(config *config.ConfigParams) *CredentialParams {
+	credentials := NewManyCredentialParamsFromConfig(config)
+	if len(credentials) > 0 {
+		return credentials[0]
+	}
+	return nil
 }
 
 func (c *CredentialParams) UseCredentialStore() bool {
-	return c.GetAsNullableString("store_key") != nil
+	return c.GetAsString("store_key") != ""
 }
 
 func (c *CredentialParams) StoreKey() string {
-	return c.GetAsNullableString("store_key")
+	return c.GetAsString("store_key")
 }
 
-(c *CredentialParams) SetStoreKey(value string) {
+func (c *CredentialParams) SetStoreKey(value string) {
 	c.Put("store_key", value)
 }
 
 func (c *CredentialParams) Username() string {
-	username := c.GetAsNullableString("username")
+	username := c.GetAsString("username")
 	if username == "" {
-		username = c.GetAsNullableString("user")
+		username = c.GetAsString("user")
 	}
 	return username
 }
@@ -43,9 +103,9 @@ func (c *CredentialParams) SetUsername(value string) {
 }
 
 func (c *CredentialParams) Password() string {
-	password := c.GetAsNullableString("password")
+	password := c.GetAsString("password")
 	if password == "" {
-		password = c.GetAsNullableString("pass")
+		password = c.GetAsString("pass")
 	}
 	return password
 }
@@ -55,9 +115,9 @@ func (c *CredentialParams) SetPassword(value string) {
 }
 
 func (c *CredentialParams) AccessId() string {
-	accessId := c.GetAsNullableString("access_id")
-	if accessId == "" { 
-		accessId = c.GetAsNullableString("client_id")
+	accessId := c.GetAsString("access_id")
+	if accessId == "" {
+		accessId = c.GetAsString("client_id")
 	}
 	return accessId
 }
@@ -67,46 +127,13 @@ func (c *CredentialParams) SetAccessId(value string) {
 }
 
 func (c *CredentialParams) AccessKey() string {
-	accessKey := c.GetAsNullableString("access_key")
+	accessKey := c.GetAsString("access_key")
 	if accessKey == "" {
-		accessKey = c.GetAsNullableString("client_key")
+		accessKey = c.GetAsString("client_key")
 	}
 	return accessKey
 }
 
 func (c *CredentialParams) SetAccessKey(value string) {
 	c.Put("access_key", value)
-}
-
-func NewCredentialParamsFromString(line string) *CredentialParams {
-	return NewStringValueMapFromString(line)
-}
-
-func NewManyCredentialParamsFromConfig(config *ConfigParams) []*CredentialParams {
-	result := []CredentialParams {}
-
-	credentials := config.GetSection("credentials")
-
-	if len(credentials) > 0 {
-		for _, section := range credentials.GetSectionNames() {
-			credential := credentials.GetSection(section)
-			result = append(result, NewCredentialParams(credential))
-		}
-	} else {
-		credential := config.GetSection("credential")
-		if len(credential) > 0 {
-			result = append(result, NewCredentialParams(credential))
-		}
-	}
-
-	return result
-}
-
-func NewCredentialParamsFromConfig(config ConfigParams) *CredentialParams {
-	credentials := NewManyCredentialParamsFromConfig(config)
-	if len(credentials) > 0 {
-		return credentials[0]
-	 } else {
-		 return nil
-	 }
 }

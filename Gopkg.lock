@@ -11,7 +11,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7035d0b20892200ca96d87daf712134cc4bb7b3f46f6809d95a8478e1275ca02"
+  digest = "1:5bb5adc15f9c7eb6a1e277196f284db80582929b2fdb3ec2c6068b4abbbf6849"
   name = "github.com/pip-services3-go/pip-services3-commons-go"
   packages = [
     "config",
@@ -21,7 +21,7 @@
     "refer",
   ]
   pruneopts = "UT"
-  revision = "7c7e5c13433dff78b2ec598f31fb4c758d0d983d"
+  revision = "40750631294c6533d64bdc3efd61ba48db887109"
 
 [[projects]]
   digest = "1:0028cb19b2e4c3112225cd871870f2d9cf49b9b4276531f03438a88e94be86fe"
