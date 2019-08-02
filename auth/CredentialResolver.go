@@ -74,7 +74,7 @@ func (c *CredentialResolver) lookupInStores(correlationId string,
 		store, _ := component.(ICredentialStore)
 		if store != nil {
 			credential, err = store.Lookup(correlationId, key)
-			if credential != nil && err != nil {
+			if credential != nil || err != nil {
 				return credential, err
 			}
 		}
