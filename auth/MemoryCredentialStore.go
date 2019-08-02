@@ -19,7 +19,9 @@ func NewMemoryCredentialStore(config *config.ConfigParams) *MemoryCredentialStor
 		items: map[string]*CredentialParams{},
 	}
 
-	c.Configure(config)
+	if config != nil {
+		c.Configure(config)
+	}
 
 	return c
 }
