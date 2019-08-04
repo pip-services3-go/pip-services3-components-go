@@ -1,3 +1,5 @@
 package count
 
-// Todo: Complete implementation
+type Timing struct {
+	
+}
