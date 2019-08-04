@@ -5,6 +5,7 @@ import (
 
 	pconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
 	"github.com/stretchr/testify/assert"
+	"github.com/aymerick/raymond"
 )
 
 func TestConfigSections(t *testing.T) {
@@ -63,3 +64,13 @@ func TestConfigFromString(t *testing.T) {
 // 	assert.Equal(t, config.Get("field2.2.field22"), "XYZ")
 // 	assert.Equal(t, config.GetAsBoolean("field3"), true)
 // }
+
+func TestProcessTemplates(t *testing.T) {
+	config := "{{#if A}}{{B}}{{/if}}"
+	params := map[string]string { "A": "true", "B": "XYZ" }
+
+	result, err := raymond.Render(config, params)
+
+	assert.Nil(t, err)
+	assert.Equal(t, "XYZ", result)
+}
