@@ -7,7 +7,7 @@ import (
 
 var MemoryDiscoveryDescriptor = refer.NewDescriptor("pip-services", "discovery", "memory", "*", "1.0")
 
-func NewDiscoveryFactory() *build.Factory {
+func NewDefaultDiscoveryFactory() *build.Factory {
 	factory := build.NewFactory()
 
 	factory.RegisterType(MemoryDiscoveryDescriptor, NewEmptyMemoryDiscovery)

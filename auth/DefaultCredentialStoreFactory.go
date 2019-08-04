@@ -7,7 +7,7 @@ import (
 
 var MemoryCredentialStoreDescriptor = refer.NewDescriptor("pip-services", "credential-store", "memory", "*", "1.0")
 
-func NewCredentialStoreFactory() *build.Factory {
+func NewDefaultCredentialStoreFactory() *build.Factory {
 	factory := build.NewFactory()
 
 	factory.RegisterType(MemoryCredentialStoreDescriptor, NewEmptyMemoryCredentialStore)
