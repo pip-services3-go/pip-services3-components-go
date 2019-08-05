@@ -9,11 +9,13 @@ import (
 
 type Lock struct {
 	retryTimeout int64
+	locker       ILock
 }
 
-func NewLock() *Lock {
+func InheritLock(locker ILock) *Lock {
 	return &Lock{
 		retryTimeout: 100,
+		locker:       locker,
 	}
 }
 
@@ -21,16 +23,15 @@ func (c *Lock) Configure(config *config.ConfigParams) {
 	c.retryTimeout = config.GetAsLongWithDefault("options.retry_timeout", c.retryTimeout)
 }
 
-func (c *Lock) AcquireLockThroughRetry(correlationId string,
-	key string, ttl int64, timeout int64,
-	retryFunc func(correlationId string, key string, ttl int64) (bool, error)) error {
+func (c *Lock) AcquireLock(correlationId string,
+	key string, ttl int64, timeout int64) error {
 
 	expireTime := time.Now().Add(time.Duration(timeout) * time.Millisecond)
 
 	// Repeat until time expires
 	for time.Now().Before(expireTime) {
 		// Try to get lock first
-		locked, err := retryFunc(correlationId, key, ttl)
+		locked, err := c.locker.TryAcquireLock(correlationId, key, ttl)
 		if locked || err != nil {
 			return err
 		}

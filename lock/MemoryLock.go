@@ -12,10 +12,12 @@ type MemoryLock struct {
 }
 
 func NewMemoryLock() *MemoryLock {
-	return &MemoryLock{
-		Lock:  *NewLock(),
+	c := &MemoryLock{
 		locks: map[string]time.Time{},
 	}
+	c.Lock = *InheritLock(c)
+
+	return c
 }
 
 func (c *MemoryLock) TryAcquireLock(correlationId string,
@@ -35,11 +37,6 @@ func (c *MemoryLock) TryAcquireLock(correlationId string,
 	c.locks[key] = expireTime
 
 	return true, nil
-}
-
-func (c *MemoryLock) AcquireLock(correlationId string,
-	key string, ttl int64, timeout int64) error {
-	return c.AcquireLockThroughRetry(correlationId, key, ttl, timeout, c.TryAcquireLock)
 }
 
 func (c *MemoryLock) ReleaseLock(correlationId string,
