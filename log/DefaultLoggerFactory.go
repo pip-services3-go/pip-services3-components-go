@@ -14,6 +14,7 @@ func NewDefaultLoggerFactory() *build.Factory {
 
 	factory.RegisterType(NullLoggerDescriptor, NewNullLogger)
 	factory.RegisterType(ConsoleLoggerDescriptor, NewConsoleLogger)
+	factory.RegisterType(CompositeLoggerDescriptor, NewCompositeLogger)
 
 	return factory
 }
