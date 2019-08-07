@@ -27,3 +27,10 @@ func TestYamlConfigReader(t *testing.T) {
 	assert.Equal(t, "Test Param 1", config.GetAsString("field4"))
 	assert.Equal(t, "Test Param 2", config.GetAsString("field5"))
 }
+
+func TestYamlConfigReaderReadArray(t *testing.T) {
+	config, err := config.ReadYamlConfig("", "./dummy.yml", nil)
+
+	assert.Nil(t, err)
+	assert.True(t, config.Len() > 0)
+}

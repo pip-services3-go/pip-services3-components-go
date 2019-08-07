@@ -23,6 +23,10 @@ func (c *ConfigReader) Configure(config *cconfig.ConfigParams) {
 }
 
 func (c *ConfigReader) Parameterize(config string, parameters *cconfig.ConfigParams) (string, error) {
+	if parameters == nil {
+		parameters = cconfig.NewEmptyConfigParams()
+	}
+
 	parameters = c.parameters.Override(parameters)
 
 	context := parameters.Value()

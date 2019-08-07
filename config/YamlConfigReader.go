@@ -48,8 +48,8 @@ func (c *YamlConfigReader) ReadObject(correlationId string,
 		return nil, err
 	}
 
-	m := make(map[interface{}]interface{})
-	err = yaml.Unmarshal([]byte(data), m)
+	var m interface{}
+	err = yaml.Unmarshal([]byte(data), &m)
 	if err != nil {
 		return nil, err
 	}
