@@ -7,7 +7,7 @@ import (
 
 var ShutdownDescriptor = refer.NewDescriptor("pip-services", "shutdown", "*", "*", "1.0")
 
-func NewDefaultLoggerFactory() *build.Factory {
+func NewDefaultTestFactory() *build.Factory {
 	factory := build.NewFactory()
 
 	factory.RegisterType(ShutdownDescriptor, NewShutdown)
