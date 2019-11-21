@@ -8,6 +8,18 @@ import (
 	"github.com/pip-services3-go/pip-services3-commons-go/errors"
 )
 
+/*
+Abstract logger that caches captured log messages in memory and periodically dumps them. Child classes implement saving cached messages to their specified destinations.
+
+Configuration parameters
+level: maximum log level to capture
+source: source (context) name
+options:
+interval: interval in milliseconds to save log messages (default: 10 seconds)
+max_cache_size: maximum number of messages stored in this cache (default: 100)
+References
+*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+*/
 type ICachedLogSaver interface {
 	Save(messages []*LogMessage) error
 }
@@ -23,6 +35,10 @@ type CachedLogger struct {
 	saver        ICachedLogSaver
 }
 
+// Creates a new instance of the logger from ICachedLogSaver
+// Parameters:
+// 			- saver ICachedLogSaver
+// Returns CachedLogger
 func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
 	c := &CachedLogger{
 		cache:        []*LogMessage{},
@@ -37,6 +53,16 @@ func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
 	return c
 }
 
+// Writes a log message to the logger destination.
+// Parameters:
+// 		- level LogLevel
+// 		a log level.
+// 		- correlationId string
+// 		transaction id to trace execution through call chain.
+// 		- err error
+// 		an error object associated with this message.
+// 		- message string
+// 		a human-readable message to log.
 func (c *CachedLogger) Write(level int, correlationId string, err error, message string) {
 	logMessage := &LogMessage{
 		Time:          time.Now().UTC(),
@@ -58,6 +84,10 @@ func (c *CachedLogger) Write(level int, correlationId string, err error, message
 	c.Update()
 }
 
+// Configures component by passing configuration parameters.
+// Parameters:
+// 		- config *config.ConfigParams
+// 		configuration parameters to be set.
 func (c *CachedLogger) Configure(cfg *config.ConfigParams) {
 	c.Logger.Configure(cfg)
 
@@ -65,6 +95,7 @@ func (c *CachedLogger) Configure(cfg *config.ConfigParams) {
 	c.maxCacheSize = cfg.GetAsIntegerWithDefault("options.max_cache_size", c.maxCacheSize)
 }
 
+// Clears (removes) all cached log messages.
 func (c *CachedLogger) Clear() {
 	c.lock.Lock()
 	c.cache = []*LogMessage{}
@@ -72,6 +103,7 @@ func (c *CachedLogger) Clear() {
 	c.lock.Unlock()
 }
 
+// Dumps (writes) the currently cached log messages.
 func (c *CachedLogger) Dump() error {
 	if c.updated {
 		if !c.updated {
@@ -108,6 +140,7 @@ func (c *CachedLogger) Dump() error {
 	return nil
 }
 
+// Makes message cache as updated and dumps it when timeout expires.
 func (c *CachedLogger) Update() {
 	c.updated = true
 

@@ -6,18 +6,43 @@ import (
 	"github.com/pip-services3-go/pip-services3-commons-go/convert"
 )
 
+/*
+Helper class to convert log level values.
+*/
 type TLogLevelConverter struct{}
 
 var LogLevelConverter *TLogLevelConverter = &TLogLevelConverter{}
 
+// Converts numbers and strings to standard log level values.
+// Parameters:
+// 			- value interface{}
+// 			a value to be converted
+// Returns int
+// converted log level
 func (c *TLogLevelConverter) ToLogLevel(value interface{}) int {
 	return LogLevelFromString(value)
 }
 
+// Converts log level to a string.
+// see
+// LogLevel
+// Parameters:
+// 			- level int
+// 			a log level to convert
+// Returns string
+// log level name string.
 func (c *TLogLevelConverter) ToString(level int) string {
 	return LogLevelToString(level)
 }
 
+// Converts log level to a LogLevel.
+// see
+// LogLevel
+// Parameters:
+// 			- value interface{}
+// 			a log level string to convert
+// Returns int
+// log level value.
 func LogLevelFromString(value interface{}) int {
 	if value == nil {
 		return Info
@@ -44,6 +69,14 @@ func LogLevelFromString(value interface{}) int {
 	}
 }
 
+// Converts log level to a string.
+// see
+// LogLevel
+// Parameters:
+// 			- level int
+// 			a log level to convert
+// Returns string
+// log level name string.
 func LogLevelToString(level int) string {
 	switch level {
 	case Fatal:

@@ -9,11 +9,47 @@ import (
 	"github.com/pip-services3-go/pip-services3-components-go/log"
 )
 
+/*
+
+Performance counters that periodically dumps counters measurements to logger.
+
+Configuration parameters
+options:
+interval: interval in milliseconds to save current counters measurements (default: 5 mins)
+reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
+References
+*:logger:*:*:1.0 ILogger components to dump the captured counters
+*:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
+see
+Counter
+
+see
+CachedCounters
+
+see
+CompositeLogger
+
+Example
+counters := NewLogCounters();
+counters.SetReferences(NewReferencesFromTuples(
+    NewDescriptor("pip-services", "logger", "console", "default", "1.0"), NewConsoleLogger()
+));
+
+counters.Increment("mycomponent.mymethod.calls");
+timing := counters.BeginTiming("mycomponent.mymethod.exec_time");
+defer  timing.EndTiming();
+
+// do something
+
+counters.Dump();
+*/
 type LogCounters struct {
 	CachedCounters
 	logger *log.CompositeLogger
 }
 
+// Creates a new instance of the counters.
+// Returns *LogCounters
 func NewLogCounters() *LogCounters {
 	c := &LogCounters{
 		logger: log.NewCompositeLogger(),
@@ -22,6 +58,10 @@ func NewLogCounters() *LogCounters {
 	return c
 }
 
+// Sets references to dependent components.
+// Parameters:
+// 			- references refer.IReferences
+// 			references to locate the component dependencies.
 func (c *LogCounters) SetReferences(references refer.IReferences) {
 	c.logger.SetReferences(references)
 }
@@ -47,6 +87,10 @@ func (c *LogCounters) counterToString(counter *Counter) string {
 	return result
 }
 
+// Saves the current counters measurements.
+// Parameters:
+// 			- counters []*Counter
+// 			current counters measurements to be saves.
 func (c *LogCounters) Save(counters []*Counter) error {
 	if counters == nil || len(counters) == 0 {
 		return nil
