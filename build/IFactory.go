@@ -11,7 +11,7 @@ type IFactory interface {
 	// Checks if this factory is able to create component by given locator.
 	// This method searches for all registered components and returns a locator for component it is able to create that matches the given locator. If the factory is not able to create a requested component is returns null.
 	CanCreate(locator interface{}) interface{}
-	// 	Creates a component identified by given locator.
-	// Rturn a CreateError if the factory is not able to create the component.
+	// Creates a component identified by given locator.
+	// Return a CreateError if the factory is not able to create the component.
 	Create(locator interface{}) (interface{}, error)
 }

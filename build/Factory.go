@@ -36,6 +36,8 @@ type Factory struct {
 	registrations []*registration
 }
 
+// Create new factory
+// Return *Factory
 func NewFactory() *Factory {
 	return &Factory{
 		registrations: []*registration{},

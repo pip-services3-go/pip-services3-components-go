@@ -142,7 +142,7 @@ func (c *CachedCounters) GetAll() []*Counter {
 // an existing or newly created counter of the specified type.
 func (c *CachedCounters) Get(name string, typ int) *Counter {
 	if name == "" {
-		panic("Counter name cannot be null")
+		panic("Counter name cannot be nil")
 	}
 
 	c.mux.Lock()
