@@ -1,4 +1,4 @@
-# <img src="https://github.com/pip-services/pip-services/raw/master/design/Logo.png" alt="Pip.Services Logo" style="max-width:30%"> <br/> Component definitions for Go
+# <img src="https://github.com/pip-services/pip-services/raw/master/design/Logo.png" alt="Pip.Services Logo" style="max-width:30%"> <br/> Component definitions for Golang
 
 This framework is part of the [Pip.Services](https://github.com/pip-services/pip-services) project.
 It defines standard component definitions that can be used to build applications and services:

@@ -1,6 +1,6 @@
 package config
 
-import cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+import cconfig "github.com/pip-services3-go/pip-services3-commons-go/v3/config"
 
 /*
 Abstract config reader that reads configuration from a file. Child classes add support for config files in their specific format like JSON, YAML or property files.

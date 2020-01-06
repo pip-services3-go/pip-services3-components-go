@@ -1,8 +1,8 @@
 package info
 
 import (
-	"github.com/pip-services3-go/pip-services3-commons-go/refer"
-	"github.com/pip-services3-go/pip-services3-components-go/build"
+	"github.com/pip-services3-go/pip-services3-commons-go/v3/refer"
+	"github.com/pip-services3-go/pip-services3-components-go/v3/build"
 )
 
 /*

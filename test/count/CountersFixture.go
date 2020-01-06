@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pip-services3-go/pip-services3-components-go/count"
+	"github.com/pip-services3-go/pip-services3-components-go/v3/count"
 	"github.com/stretchr/testify/assert"
 )
 

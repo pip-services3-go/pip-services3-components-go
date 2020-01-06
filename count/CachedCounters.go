@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/v3/config"
 )
 
 /*

@@ -1,6 +1,6 @@
 package config
 
-import c "github.com/pip-services3-go/pip-services3-commons-go/config"
+import c "github.com/pip-services3-go/pip-services3-commons-go/v3/config"
 
 /*
 Interface for configuration readers that retrieve configuration from various sources and make it available for other components.

@@ -3,8 +3,8 @@ package test_info
 import (
 	"testing"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/config"
-	"github.com/pip-services3-go/pip-services3-components-go/info"
+	"github.com/pip-services3-go/pip-services3-commons-go/v3/config"
+	"github.com/pip-services3-go/pip-services3-components-go/v3/info"
 	"github.com/stretchr/testify/assert"
 )
 
