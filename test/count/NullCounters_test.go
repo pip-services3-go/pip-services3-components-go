@@ -3,7 +3,7 @@ package test_count
 import (
 	"testing"
 
-	"github.com/pip-services3-go/pip-services3-components-go/v3/count"
+	"github.com/pip-services3-go/pip-services3-components-go/count"
 )
 
 func TestNullCountersSimpleCounters(t *testing.T) {

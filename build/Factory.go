@@ -23,8 +23,8 @@ factory.Create(NewDescriptor("mygroup", "mycomponent2", "default", "name2", "1.0
 import (
 	refl "reflect"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/convert"
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/data"
+	"github.com/pip-services3-go/pip-services3-commons-go/convert"
+	"github.com/pip-services3-go/pip-services3-commons-go/data"
 )
 
 type registration struct {

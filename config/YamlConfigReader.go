@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	cconfig "github.com/pip-services3-go/pip-services3-commons-go/v3/config"
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/errors"
+	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/errors"
 	"gopkg.in/yaml.v2"
 )
 

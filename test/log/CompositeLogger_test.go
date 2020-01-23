@@ -3,8 +3,8 @@ package test_log
 import (
 	"testing"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/refer"
-	"github.com/pip-services3-go/pip-services3-components-go/v3/log"
+	"github.com/pip-services3-go/pip-services3-commons-go/refer"
+	"github.com/pip-services3-go/pip-services3-components-go/log"
 )
 
 func newCompositeLoggerFixture() *LoggerFixture {

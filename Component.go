@@ -1,10 +1,10 @@
 package components
 
 import (
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/config"
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/refer"
-	"github.com/pip-services3-go/pip-services3-components-go/v3/count"
-	"github.com/pip-services3-go/pip-services3-components-go/v3/log"
+	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/refer"
+	"github.com/pip-services3-go/pip-services3-components-go/count"
+	"github.com/pip-services3-go/pip-services3-components-go/log"
 )
 
 type Component struct {

@@ -3,7 +3,7 @@ package test_lock
 import (
 	"testing"
 
-	"github.com/pip-services3-go/pip-services3-components-go/v3/lock"
+	"github.com/pip-services3-go/pip-services3-components-go/lock"
 )
 
 func newMemoryLockFixture() *LockFixture {

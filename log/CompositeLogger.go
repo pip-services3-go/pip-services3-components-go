@@ -1,6 +1,6 @@
 package log
 
-import "github.com/pip-services3-go/pip-services3-commons-go/v3/refer"
+import "github.com/pip-services3-go/pip-services3-commons-go/refer"
 
 /*
 Aggregates all loggers from component references under a single component.

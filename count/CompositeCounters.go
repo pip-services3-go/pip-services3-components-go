@@ -3,7 +3,7 @@ package count
 import (
 	"time"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/refer"
+	"github.com/pip-services3-go/pip-services3-commons-go/refer"
 )
 
 /*

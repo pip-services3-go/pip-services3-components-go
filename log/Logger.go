@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/config"
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/errors"
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/refer"
-	"github.com/pip-services3-go/pip-services3-components-go/v3/info"
+	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/errors"
+	"github.com/pip-services3-go/pip-services3-commons-go/refer"
+	"github.com/pip-services3-go/pip-services3-components-go/info"
 )
 
 /*

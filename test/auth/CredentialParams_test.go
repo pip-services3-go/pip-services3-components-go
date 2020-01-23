@@ -3,7 +3,7 @@ package test_auth
 import (
 	"testing"
 
-	"github.com/pip-services3-go/pip-services3-components-go/v3/auth"
+	"github.com/pip-services3-go/pip-services3-components-go/auth"
 	"github.com/stretchr/testify/assert"
 )
 
