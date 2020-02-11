@@ -21,7 +21,7 @@ func InheritComponent() *Component {
 	}
 }
 
-func (c *Component) Configure(config *config.ConfigMap) {
+func (c *Component) Configure(config *config.ConfigParams) {
 	c.dependencyResolver.Configure(config)
 	c.logger.Configure(config)
 }
