@@ -26,12 +26,12 @@ type ICachedLogSaver interface {
 
 type CachedLogger struct {
 	Logger
-	cache        []*LogMessage
-	updated      bool
-	lastDumpTime time.Time
-	maxCacheSize int
-	interval     int
-	lock         *sync.Mutex
+	Cache        []*LogMessage
+	Updated      bool
+	LastDumpTime time.Time
+	MaxCacheSize int
+	Interval     int
+	Lock         *sync.Mutex
 	saver        ICachedLogSaver
 }
 
@@ -41,12 +41,12 @@ type CachedLogger struct {
 // Returns CachedLogger
 func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
 	c := &CachedLogger{
-		cache:        []*LogMessage{},
-		updated:      false,
-		lastDumpTime: time.Now(),
-		maxCacheSize: 100,
-		interval:     10000,
-		lock:         &sync.Mutex{},
+		Cache:        []*LogMessage{},
+		Updated:      false,
+		LastDumpTime: time.Now(),
+		MaxCacheSize: 100,
+		Interval:     10000,
+		Lock:         &sync.Mutex{},
 		saver:        saver,
 	}
 	c.Logger = *InheritLogger(c)
@@ -77,9 +77,9 @@ func (c *CachedLogger) Write(level int, correlationId string, err error, message
 		logMessage.Error = *errorDescription
 	}
 
-	c.lock.Lock()
-	c.cache = append(c.cache, logMessage)
-	c.lock.Unlock()
+	c.Lock.Lock()
+	c.Cache = append(c.Cache, logMessage)
+	c.Lock.Unlock()
 
 	c.Update()
 }
@@ -91,50 +91,50 @@ func (c *CachedLogger) Write(level int, correlationId string, err error, message
 func (c *CachedLogger) Configure(cfg *config.ConfigParams) {
 	c.Logger.Configure(cfg)
 
-	c.interval = cfg.GetAsIntegerWithDefault("options.interval", c.interval)
-	c.maxCacheSize = cfg.GetAsIntegerWithDefault("options.max_cache_size", c.maxCacheSize)
+	c.Interval = cfg.GetAsIntegerWithDefault("options.interval", c.Interval)
+	c.MaxCacheSize = cfg.GetAsIntegerWithDefault("options.max_cache_size", c.MaxCacheSize)
 }
 
 // Clears (removes) all cached log messages.
 func (c *CachedLogger) Clear() {
-	c.lock.Lock()
-	c.cache = []*LogMessage{}
-	c.updated = false
-	c.lock.Unlock()
+	c.Lock.Lock()
+	c.Cache = []*LogMessage{}
+	c.Updated = false
+	c.Lock.Unlock()
 }
 
 // Dumps (writes) the currently cached log messages.
 func (c *CachedLogger) Dump() error {
-	if c.updated {
-		if !c.updated {
+	if c.Updated {
+		if !c.Updated {
 			return nil
 		}
 
 		var messages []*LogMessage
-		c.lock.Lock()
+		c.Lock.Lock()
 
-		messages = c.cache
-		c.cache = []*LogMessage{}
+		messages = c.Cache
+		c.Cache = []*LogMessage{}
 
-		c.lock.Unlock()
+		c.Lock.Unlock()
 
 		err := c.saver.Save(messages)
 		if err != nil {
-			c.lock.Lock()
+			c.Lock.Lock()
 
 			// Put failed messages back to cache
-			c.cache = append(messages, c.cache...)
+			c.Cache = append(messages, c.Cache...)
 
 			// Truncate cache to max size
-			if len(c.cache) > c.maxCacheSize {
-				c.cache = c.cache[len(c.cache)-c.maxCacheSize:]
+			if len(c.Cache) > c.MaxCacheSize {
+				c.Cache = c.Cache[len(c.Cache)-c.MaxCacheSize:]
 			}
 
-			c.lock.Unlock()
+			c.Lock.Unlock()
 		}
 
-		c.updated = false
-		c.lastDumpTime = time.Now()
+		c.Updated = false
+		c.LastDumpTime = time.Now()
 		return err
 	}
 	return nil
@@ -142,11 +142,11 @@ func (c *CachedLogger) Dump() error {
 
 // Makes message cache as updated and dumps it when timeout expires.
 func (c *CachedLogger) Update() {
-	c.updated = true
+	c.Updated = true
 
-	elapsed := int(time.Since(c.lastDumpTime).Seconds() * 1000)
+	elapsed := int(time.Since(c.LastDumpTime).Seconds() * 1000)
 
-	if elapsed > c.interval {
+	if elapsed > c.Interval {
 		// Todo: Decide what to do with the error
 		c.Dump()
 	}
