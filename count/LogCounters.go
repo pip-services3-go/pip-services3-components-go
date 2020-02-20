@@ -97,7 +97,7 @@ func (c *LogCounters) Save(counters []*Counter) error {
 	}
 
 	sort.Slice(counters, func(i, j int) bool {
-		return counters[i].Name < counters[2].Name
+		return counters[i].Name < counters[j].Name
 	})
 
 	for _, counter := range counters {
