@@ -1,6 +1,7 @@
 package count
 
 import (
+	"math"
 	"sort"
 
 	"github.com/pip-services3-go/pip-services3-commons-go/convert"
@@ -68,14 +69,32 @@ func (c *LogCounters) SetReferences(references refer.IReferences) {
 func (c *LogCounters) counterToString(counter *Counter) string {
 	result := "Counter " + counter.Name + " { "
 	result = result + "\"type\": " + TypeToString(counter.Type)
-	result = result + ", \"last\": " + convert.StringConverter.ToString(counter.Last)
-	result = result + ", \"count\": " + convert.StringConverter.ToString(counter.Count)
-	result = result + ", \"min\": " + convert.StringConverter.ToString(counter.Min)
-	result = result + ", \"max\": " + convert.StringConverter.ToString(counter.Max)
-	result = result + ", \"avg\": " + convert.StringConverter.ToString(counter.Average)
 
-	if !counter.Time.IsZero() {
+	switch counter.Type {
+	case Increment:
+		result = result + ", \"count\": " + convert.StringConverter.ToString(counter.Count)
+	case LastValue:
+		result = result + ", \"last\": " + convert.StringConverter.ToString(counter.Last)
+	case Timestamp:
 		result = result + ", \"time\": " + convert.StringConverter.ToString(counter.Time)
+	default:
+
+		result = result + ", \"last\": " + convert.StringConverter.ToString(counter.Last)
+
+		if counter.Count > 0 {
+			result = result + ", \"count\": " + convert.StringConverter.ToString(counter.Count)
+		}
+
+		if counter.Min != math.MaxFloat32 {
+			result = result + ", \"min\": " + convert.StringConverter.ToString(counter.Min)
+		}
+
+		if counter.Max != -math.MaxFloat32 {
+			result = result + ", \"max\": " + convert.StringConverter.ToString(counter.Max)
+		}
+
+		result = result + ", \"avg\": " + convert.StringConverter.ToString(counter.Average)
+
 	}
 
 	result = result + " }"
