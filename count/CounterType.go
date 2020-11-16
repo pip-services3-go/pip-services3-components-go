@@ -15,3 +15,24 @@ const (
 	Timestamp  = 3
 	Increment  = 4
 )
+
+// TypeToString method converting counter type to string
+func TypeToString(t int) string {
+	name := ""
+
+	switch t {
+	case Interval:
+		name = "interval"
+	case LastValue:
+		name = "lastvalue"
+	case Statistics:
+		name = "statistics"
+	case Timestamp:
+		name = "timestamp"
+	case Increment:
+		name = "increment"
+
+	}
+
+	return name
+}

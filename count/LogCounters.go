@@ -2,7 +2,6 @@ package count
 
 import (
 	"sort"
-	"strconv"
 
 	"github.com/pip-services3-go/pip-services3-commons-go/convert"
 	"github.com/pip-services3-go/pip-services3-commons-go/refer"
@@ -68,21 +67,17 @@ func (c *LogCounters) SetReferences(references refer.IReferences) {
 
 func (c *LogCounters) counterToString(counter *Counter) string {
 	result := "Counter " + counter.Name + " { "
-	result = result + "\"type\": " + strconv.Itoa(counter.Type)
-	switch counter.Type {
-	case Interval:
-	case Statistics:
-		result = result + ", \"count\": " + convert.StringConverter.ToString(counter.Count)
-		result = result + ", \"min\": " + convert.StringConverter.ToString(counter.Min)
-		result = result + ", \"max\": " + convert.StringConverter.ToString(counter.Max)
-		result = result + ", \"avg\": " + convert.StringConverter.ToString(counter.Average)
-	case LastValue:
-		result = result + ", \"last\": " + convert.StringConverter.ToString(counter.Last)
-	case Timestamp:
+	result = result + "\"type\": " + TypeToString(counter.Type)
+	result = result + ", \"last\": " + convert.StringConverter.ToString(counter.Last)
+	result = result + ", \"count\": " + convert.StringConverter.ToString(counter.Count)
+	result = result + ", \"min\": " + convert.StringConverter.ToString(counter.Min)
+	result = result + ", \"max\": " + convert.StringConverter.ToString(counter.Max)
+	result = result + ", \"avg\": " + convert.StringConverter.ToString(counter.Average)
+
+	if !counter.Time.IsZero() {
 		result = result + ", \"time\": " + convert.StringConverter.ToString(counter.Time)
-	case Increment:
-		result = result + ", \"count\": " + convert.StringConverter.ToString(counter.Count)
 	}
+
 	result = result + " }"
 	return result
 }
