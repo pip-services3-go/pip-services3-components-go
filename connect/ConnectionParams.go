@@ -8,11 +8,11 @@ import (
 Contains connection parameters to connect to external services. They are used together with credential parameters, but usually stored separately from more protected sensitive values.
 
 Configuration parameters
-discovery_key: key to retrieve parameters from discovery service
-protocol: connection protocol like http, https, tcp, udp
-host: host name or IP address
-port: port number
-uri: resource URI or connection string with all parameters in it
+  discovery_key: key to retrieve parameters from discovery service
+  protocol: connection protocol like http, https, tcp, udp
+  host: host name or IP address
+  port: port number
+  uri: resource URI or connection string with all parameters in it
 In addition to standard parameters ConnectionParams may contain any number of custom parameters
 
 see
@@ -30,18 +30,17 @@ IDiscovery
 Example
 Example ConnectionParams object usage:
 
-connection := NewConnectionParamsFromTuples(
-    "protocol", "http",
-    "host", "10.1.1.100",
-    "port", "8080",
-    "cluster", "mycluster"
-);
-
- host := connection.Host();                             // Result: "10.1.1.100"
- port := connection.Port();                             // Result: 8080
- cluster := connection.GetAsNullableString("cluster");     // Result: "mycluster"
+  connection := NewConnectionParamsFromTuples(
+      "protocol", "http",
+      "host", "10.1.1.100",
+      "port", "8080",
+      "cluster", "mycluster"
+  );
+  
+  host := connection.Host();                             // Result: "10.1.1.100"
+  port := connection.Port();                             // Result: 8080
+  cluster := connection.GetAsNullableString("cluster");     // Result: "mycluster"
 */
-
 type ConnectionParams struct {
 	config.ConfigParams
 }
@@ -56,8 +55,8 @@ func NewEmptyConnectionParams() *ConnectionParams {
 
 // Creates a new connection parameters and fills it with values.
 // Parameters:
-// 		- values map[string]string
-// 		an object to be converted into key-value pairs to initialize this connection.
+//   - values map[string]string
+//   an object to be converted into key-value pairs to initialize this connection.
 // Returns *ConnectionParams
 func NewConnectionParams(values map[string]string) *ConnectionParams {
 	return &ConnectionParams{
@@ -69,8 +68,8 @@ func NewConnectionParams(values map[string]string) *ConnectionParams {
 // see
 // [[RecursiveObjectReader.getProperties]]
 // Parameters:
-// 			- value interface{}
-// 			configuration parameters in the form of an object with properties.
+//   - value interface{}
+//   configuration parameters in the form of an object with properties.
 // Returns ConnectionParams
 // generated ConnectionParams.
 func NewConnectionParamsFromValue(value interface{}) *ConnectionParams {
@@ -81,8 +80,8 @@ func NewConnectionParamsFromValue(value interface{}) *ConnectionParams {
 
 // Creates a new ConnectionParams object filled with provided key-value pairs called tuples. Tuples parameters contain a sequence of key1, value1, key2, value2, ... pairs.
 // Parameters:
-// 			- tuples ...interface{}
-// 			the tuples to fill a new ConnectionParams object.
+//   - tuples ...interface{}
+//   the tuples to fill a new ConnectionParams object.
 // Returns *ConnectionParams
 // a new ConnectionParams object.
 func NewConnectionParamsFromTuples(tuples ...interface{}) *ConnectionParams {
@@ -93,8 +92,8 @@ func NewConnectionParamsFromTuples(tuples ...interface{}) *ConnectionParams {
 
 // Method for creating a StringValueMap from an array of tuples.
 // Parameters:
-// 			- tuples []interface{}
-// 			the key-value tuples array to initialize the new StringValueMap with.
+//   - tuples []interface{}
+//   the key-value tuples array to initialize the new StringValueMap with.
 // Returns *ConnectionParams
 // the ConnectionParams created and filled by the 'tuples' array provided.
 func NewConnectionParamsFromTuplesArray(tuples []interface{}) *ConnectionParams {
@@ -105,8 +104,8 @@ func NewConnectionParamsFromTuplesArray(tuples []interface{}) *ConnectionParams 
 
 // Creates a new ConnectionParams object filled with key-value pairs serialized as a string.
 // Parameters:
-// 			- line string
-// 			a string with serialized key-value pairs as "key1=value1;key2=value2;..." Example: "Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z"
+//   - line string
+//   a string with serialized key-value pairs as "key1=value1;key2=value2;..." Example: "Key1=123;Key2=ABC;Key3=2016-09-16T00:00:00.00Z"
 // Returns *ConnectionParams
 // a new ConnectionParams object.
 func NewConnectionParamsFromString(line string) *ConnectionParams {
@@ -117,8 +116,8 @@ func NewConnectionParamsFromString(line string) *ConnectionParams {
 
 // Static method for creating a StringValueMap using the maps passed as parameters.
 // Parameters:
-// 			- maps ...map[string]string
-// 			the maps passed to this method to create a StringValueMap with.
+//   - maps ...map[string]string
+//   the maps passed to this method to create a StringValueMap with.
 // Returns ConnectionParams
 // the ConnectionParams created.
 func NewConnectionParamsFromMaps(maps ...map[string]string) *ConnectionParams {
@@ -129,8 +128,8 @@ func NewConnectionParamsFromMaps(maps ...map[string]string) *ConnectionParams {
 
 // Retrieves all ConnectionParams from configuration parameters from "connections" section. If "connection" section is present instead, than it returns a list with only one ConnectionParams.
 // Parameters:
-// 			- config *config.ConfigParams
-// 			a configuration parameters to retrieve connections
+//   - config *config.ConfigParams
+//   a configuration parameters to retrieve connections
 // Returns []*ConnectionParams
 // a list of retrieved ConnectionParams
 func NewManyConnectionParamsFromConfig(config *config.ConfigParams) []*ConnectionParams {
@@ -155,8 +154,8 @@ func NewManyConnectionParamsFromConfig(config *config.ConfigParams) []*Connectio
 
 // Retrieves a single ConnectionParams from configuration parameters from "connection" section. If "connections" section is present instead, then is returns only the first connection element.
 // Parameters:
-// 			- config *config.ConfigParams
-// 			ConnectionParams, containing a section named "connection(s)".
+//   - config *config.ConfigParams
+//   ConnectionParams, containing a section named "connection(s)".
 // Returns *ConnectionParams
 // the generated ConnectionParams object.
 func NewConnectionParamsFromConfig(config *config.ConfigParams) *ConnectionParams {
@@ -186,8 +185,8 @@ func (c *ConnectionParams) DiscoveryKey() string {
 
 // Sets the key to retrieve these parameters from [[DiscoveryService]].
 // Parameters:
-// 			- value string
-//			a new key to retrieve connection.
+//   - value string
+//   a new key to retrieve connection.
 func (c *ConnectionParams) SetDiscoveryKey(value string) {
 	c.Put("discovery_key", value)
 }
@@ -201,8 +200,8 @@ func (c *ConnectionParams) Protocol() string {
 
 // Gets the connection protocol.
 // Parameters:
-// 			- defaultValue string
-// 			the default protocol
+//   - defaultValue string
+//   the default protocol
 // Returns string
 // the connection protocol or the default value if it's not set.
 func (c *ConnectionParams) ProtocolWithDefault(defaultValue string) string {
@@ -211,8 +210,8 @@ func (c *ConnectionParams) ProtocolWithDefault(defaultValue string) string {
 
 // Sets the connection protocol.
 // Parameters:
-// 			- value string
-// 			a new connection protocol.
+//   - value string
+//   a new connection protocol.
 func (c *ConnectionParams) SetProtocol(value string) {
 	c.Put("protocol", value)
 }
@@ -230,8 +229,8 @@ func (c *ConnectionParams) Host() string {
 
 // Sets the host name or IP address.
 // Parameters:
-// 			- value string
-// 			a new host name or IP address.
+//   - value string
+//   a new host name or IP address.
 func (c *ConnectionParams) SetHost(value string) {
 	c.Put("host", value)
 }
@@ -245,8 +244,8 @@ func (c *ConnectionParams) Port() int {
 
 // Gets the port number.
 // Parameters:
-//			- defaultValue int
-//			default port number
+//  - defaultValue int
+//  default port number
 // Returns int
 // the port number.
 func (c *ConnectionParams) PortWithDefault(defaultValue int) int {
@@ -257,8 +256,8 @@ func (c *ConnectionParams) PortWithDefault(defaultValue int) int {
 // see
 // Host
 // Parameters:
-// 			- value int
-// a new port number.
+//   - value int
+//   a new port number.
 func (c *ConnectionParams) SetPort(value int) {
 	c.Put("port", value)
 }
@@ -272,8 +271,8 @@ func (c *ConnectionParams) Uri() string {
 
 // Sets the resource URI or connection string.
 // Parameters:
-// 			- value string
-// a new resource URI or connection string.
+//   - value string
+//   a new resource URI or connection string.
 func (c *ConnectionParams) SetUri(value string) {
 	c.Put("uri", value)
 }

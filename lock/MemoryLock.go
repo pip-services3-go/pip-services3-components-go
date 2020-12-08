@@ -11,8 +11,8 @@ Lock that is used to synchronize execution within one process using shared memor
 Remember: This implementation is not suitable for synchronization of distributed processes.
 
 Configuration parameters
-options:
-retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
+  options:
+    retry_timeout: timeout in milliseconds to retry lock acquisition. (Default: 100)
 see
 ILock
 
@@ -20,12 +20,12 @@ see
 Lock
 
 Example
-lock := NewMemoryLock()
-err = lock.Acquire("123", "key1")
-    if err == nil {
-        defer _ = lock.ReleaseLock("123", "key1")
-        // Processing...
-    }
+  lock := NewMemoryLock()
+  err = lock.Acquire("123", "key1")
+      if err == nil {
+          defer _ = lock.ReleaseLock("123", "key1")
+          // Processing...
+      }
 */
 type MemoryLock struct {
 	Lock
@@ -46,12 +46,12 @@ func NewMemoryLock() *MemoryLock {
 
 // Makes a single attempt to acquire a lock by its key. It returns immediately a positive or negative result.
 // Parameters:
-// 			- correlationId string
-// 			 transaction id to trace execution through call chain.
-// 			- key string
-// 			a unique lock key to acquire.
-// 			- ttl int64
-// 			a lock timeout (time to live) in milliseconds.
+//   - correlationId string
+//    transaction id to trace execution through call chain.
+//   - key string
+//   a unique lock key to acquire.
+//   - ttl int64
+//   a lock timeout (time to live) in milliseconds.
 // Returns bool, error
 // true if locked. Error object
 func (c *MemoryLock) TryAcquireLock(correlationId string,
@@ -75,10 +75,10 @@ func (c *MemoryLock) TryAcquireLock(correlationId string,
 
 // Releases the lock with the given key.
 // Parameters:
-// 			- correlationId string
-// 			not used.
-// 			- key string
-// 			the key of the lock that is to be released.
+//   - correlationId string
+//   not used.
+//   - key string
+//   the key of the lock that is to be released.
 // Return error
 func (c *MemoryLock) ReleaseLock(correlationId string,
 	key string) error {

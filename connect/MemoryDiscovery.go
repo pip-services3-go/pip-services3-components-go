@@ -8,10 +8,10 @@ import (
 Discovery service that keeps connections in memory.
 
 Configuration parameters
-[connection key 1]:
-... connection parameters for key 1
-[connection key 2]:
-... connection parameters for key N
+  [connection key 1]:
+  ... connection parameters for key 1
+  [connection key 2]:
+  ... connection parameters for key N
 see
 IDiscovery
 
@@ -19,19 +19,19 @@ see
 ConnectionParams
 
 Example
-config := NewConfigParamsFromTuples(
-    "key1.host", "10.1.1.100",
-    "key1.port", "8080",
-    "key2.host", "10.1.1.100",
-    "key2.port", "8082"
-);
-
-discovery := NewMemoryDiscovery();
-discovery.ReadConnections(config);
-
-discovery.Resolve("123", "key1", (err, connection) => {
-    // Result: host=10.1.1.100;port=8080
-});
+  config := NewConfigParamsFromTuples(
+      "key1.host", "10.1.1.100",
+      "key1.port", "8080",
+      "key2.host", "10.1.1.100",
+      "key2.port", "8082"
+  );
+  
+  discovery := NewMemoryDiscovery();
+  discovery.ReadConnections(config);
+  
+  discovery.Resolve("123", "key1", (err, connection) => {
+      // Result: host=10.1.1.100;port=8080
+  });
 */
 type MemoryDiscovery struct {
 	items map[string][]*ConnectionParams

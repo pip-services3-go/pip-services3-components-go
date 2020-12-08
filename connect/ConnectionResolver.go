@@ -11,16 +11,16 @@ Helper class to retrieve component connections.
 If connections are configured to be retrieved from IDiscovery, it automatically locates IDiscovery in component references and retrieve connections from there using discovery_key parameter.
 
 Configuration parameters
-connection:
-
-discovery_key: (optional) a key to retrieve the connection from IDiscovery
-... other connection parameters
-connections: alternative to connection
-
-[connection params 1]: first connection parameters
-... connection parameters for key 1
-[connection params N]: Nth connection parameters
-... connection parameters for key N
+  connection:
+  
+    discovery_key: (optional) a key to retrieve the connection from IDiscovery
+      ... other connection parameters
+    connections: alternative to connection
+    
+      [connection params 1]: first connection parameters
+      ... connection parameters for key 1
+      [connection params N]: Nth connection parameters
+      ... connection parameters for key N
 References
 *:discovery:*:*:1.0 (optional) IDiscovery services to resolve connections
 see
@@ -30,16 +30,16 @@ see
 IDiscovery
 
 Example
-config = NewConfigParamsFromTuples(
-    "connection.host", "10.1.1.100",
-    "connection.port", 8080
-);
+  config = NewConfigParamsFromTuples(
+      "connection.host", "10.1.1.100",
+      "connection.port", 8080
+  );
 
-connectionResolver := NewConnectionResolver();
-connectionResolver.Configure(config);
-connectionResolver.SetReferences(references);
-
-res, err := connectionResolver.Resolve("123");
+  connectionResolver := NewConnectionResolver();
+  connectionResolver.Configure(config);
+  connectionResolver.SetReferences(references);
+  
+  res, err := connectionResolver.Resolve("123");
 */
 type ConnectionResolver struct {
 	connections []*ConnectionParams
@@ -57,10 +57,10 @@ func NewEmptyConnectionResolver() *ConnectionResolver {
 
 // Creates a new instance of connection resolver.
 // Parameters:
-// 		 - config *config.ConfigParams
-// 		 component configuration parameters
-// 		- references refer.IReferences
-// 		component references
+//   - config *config.ConfigParams
+//   component configuration parameters
+//   - references refer.IReferences
+//   component references
 // Returns *ConnectionResolver
 func NewConnectionResolver(config *config.ConfigParams,
 	references refer.IReferences) *ConnectionResolver {
@@ -78,8 +78,8 @@ func NewConnectionResolver(config *config.ConfigParams,
 
 // Configures component by passing configuration parameters.
 // Parameters:
-// 			- config *config.ConfigParams
-// 			configuration parameters to be set.
+//   - config *config.ConfigParams
+//   configuration parameters to be set.
 func (c *ConnectionResolver) Configure(config *config.ConfigParams) {
 	connections := NewManyConnectionParamsFromConfig(config)
 
@@ -90,8 +90,8 @@ func (c *ConnectionResolver) Configure(config *config.ConfigParams) {
 
 // Sets references to dependent components.
 // Parameters:
-// 		- references refer.IReferences
-// 		references to locate the component dependencies.
+//   - references refer.IReferences
+//   references to locate the component dependencies.
 func (c *ConnectionResolver) SetReferences(references refer.IReferences) {
 	c.references = references
 }
@@ -106,8 +106,8 @@ func (c *ConnectionResolver) GetAll() []*ConnectionParams {
 
 // Adds a new connection to component connections
 // Parameters:
-// 		- connection *ConnectionParams
-// 		new connection parameters to be added
+//   - connection *ConnectionParams
+//   new connection parameters to be added
 func (c *ConnectionResolver) Add(connection *ConnectionParams) {
 	c.connections = append(c.connections, connection)
 }
@@ -148,8 +148,8 @@ func (c *ConnectionResolver) resolveInDiscovery(correlationId string,
 // see
 // IDiscovery
 // Parameters:
-// 			- correlationId: string
-// 			 transaction id to trace execution through call chain.
+//   - correlationId: string
+//   transaction id to trace execution through call chain.
 // Returns *ConnectionParams, error
 // resolved connection or error.
 func (c *ConnectionResolver) Resolve(correlationId string) (*ConnectionParams, error) {
@@ -220,8 +220,8 @@ func (c *ConnectionResolver) resolveAllInDiscovery(correlationId string,
 // see
 // IDiscovery
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
 // Returns []*ConnectionParams, error
 // resolved connections or error.
 func (c *ConnectionResolver) ResolveAll(correlationId string) ([]*ConnectionParams, error) {
@@ -288,10 +288,10 @@ func (c *ConnectionResolver) registerInDiscovery(correlationId string,
 // see
 // IDiscovery
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- connection *ConnectionParams
-// 			a connection to register.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - connection *ConnectionParams
+//   a connection to register.
 // Returns error
 func (c *ConnectionResolver) Register(correlationId string, connection *ConnectionParams) error {
 	registered, err := c.registerInDiscovery(correlationId, connection)

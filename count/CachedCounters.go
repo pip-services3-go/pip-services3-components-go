@@ -12,9 +12,9 @@ import (
 Abstract implementation of performance counters that measures and stores counters in memory. Child classes implement saving of the counters into various destinations.
 
 Configuration parameters
-options:
-interval: interval in milliseconds to save current counters measurements (default: 5 mins)
-reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
+  options:
+    interval: interval in milliseconds to save current counters measurements (default: 5 mins)
+    reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
 */
 type CachedCounters struct {
 	cache         map[string]*Counter
@@ -33,7 +33,7 @@ type ICountersSaver interface {
 
 // Inherit cache counters from saver
 // Parameters:
-//		 - save ICountersSaver
+//  - save ICountersSaver
 // Returns *CachedCounters
 func InheritCacheCounters(saver ICountersSaver) *CachedCounters {
 	return &CachedCounters{
@@ -49,8 +49,8 @@ func InheritCacheCounters(saver ICountersSaver) *CachedCounters {
 
 // Configures component by passing configuration parameters.
 // Parameters:
-// 		- config *config.ConfigParams
-// 		configuration parameters to be set.
+//   - config *config.ConfigParams
+//   configuration parameters to be set.
 func (c *CachedCounters) Configure(config *config.ConfigParams) {
 	c.interval = config.GetAsLongWithDefault("interval", c.interval)
 	c.resetTimeout = config.GetAsLongWithDefault("reset_timeout", c.resetTimeout)
@@ -58,8 +58,8 @@ func (c *CachedCounters) Configure(config *config.ConfigParams) {
 
 // Clears (resets) a counter specified by its name.
 // Parameters:
-// 		- name string
-// 		a counter name to clear.
+//   - name string
+//   a counter name to clear.
 func (c *CachedCounters) Clear(name string) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
@@ -134,10 +134,10 @@ func (c *CachedCounters) GetAll() []*Counter {
 
 // Gets a counter specified by its name. It counter does not exist or its type doesn't match the specified type it creates a new one.
 // Parameters:
-// 		- name string
-// 		a counter name to retrieve.
-// 		- typ int
-// 		a counter type.
+//   - name string
+//   a counter name to retrieve.
+//   - typ int
+//   a counter type.
 // Returns *Counter
 // an existing or newly created counter of the specified type.
 func (c *CachedCounters) Get(name string, typ int) *Counter {
@@ -173,8 +173,8 @@ func (c *CachedCounters) calculateStats(counter *Counter, value float32) {
 
 // Begins measurement of execution time interval. It returns Timing object which has to be called at Timing.endTiming to end the measurement and update the counter.
 // Parameters
-// 			- name string
-// 			a counter name of Interval type.
+//   - name string
+//   a counter name of Interval type.
 // Returns *Timing
 // a Timing callback object to end timing.
 func (c *CachedCounters) BeginTiming(name string) *Timing {
@@ -185,10 +185,10 @@ func (c *CachedCounters) BeginTiming(name string) *Timing {
 // see
 // Timing.endTiming
 // Parameters:
-// 		- name string
-// 		a counter name
-// 		elapsed float32
-// 		execution elapsed time in milliseconds to update the counter.
+//   - name string
+//   a counter name
+//   elapsed float32
+//   execution elapsed time in milliseconds to update the counter.
 func (c *CachedCounters) EndTiming(name string, elapsed float32) {
 	counter := c.Get(name, Interval)
 	c.calculateStats(counter, elapsed)
@@ -197,10 +197,10 @@ func (c *CachedCounters) EndTiming(name string, elapsed float32) {
 
 // Calculates min/average/max statistics based on the current and previous values.
 // Parameters:
-// 			- name string
-// 			a counter name of Statistics type
-// 			- value float32
-// 			a value to update statistics
+//   - name string
+//   a counter name of Statistics type
+//   - value float32
+//   a value to update statistics
 func (c *CachedCounters) Stats(name string, value float32) {
 	counter := c.Get(name, Statistics)
 	c.calculateStats(counter, value)
@@ -210,10 +210,10 @@ func (c *CachedCounters) Stats(name string, value float32) {
 // Records the last calculated measurement value.
 // Usually this method is used by metrics calculated externally.
 // Parameters:
-// 			- name string
-// 			a counter name of Last type.
-// 			- value number
-// 			a last value to record.
+//   - name string
+//   a counter name of Last type.
+//   - value number
+//   a last value to record.
 func (c *CachedCounters) Last(name string, value float32) {
 	counter := c.Get(name, LastValue)
 	counter.Last = value
@@ -222,18 +222,18 @@ func (c *CachedCounters) Last(name string, value float32) {
 
 // Records the current time as a timestamp.
 // Parameters:
-// 			- name string
-// 			a counter name of Timestamp type.
+//   - name string
+//   a counter name of Timestamp type.
 func (c *CachedCounters) TimestampNow(name string) {
 	c.Timestamp(name, time.Now())
 }
 
 // Records the given timestamp.
 // Parameters:
-// 		- name string
-// 		a counter name of Timestamp type.
-// 		value time.Time
-// 		a timestamp to record.
+//   - name string
+//   a counter name of Timestamp type.
+//   value time.Time
+//   a timestamp to record.
 func (c *CachedCounters) Timestamp(name string, value time.Time) {
 	counter := c.Get(name, Timestamp)
 	counter.Time = value
@@ -242,18 +242,18 @@ func (c *CachedCounters) Timestamp(name string, value time.Time) {
 
 // Increments counter by 1.
 // Parameters:
-// 		- name string
-// 		a counter name of Increment type.
+//   - name string
+//   a counter name of Increment type.
 func (c *CachedCounters) IncrementOne(name string) {
 	c.Increment(name, 1)
 }
 
 // Increments counter by given value.
 // Parameters:
-// 		- name string
-// 		a counter name of Increment type.
-// 		- value int
-// 		a value to add to the counter.
+//   - name string
+//   a counter name of Increment type.
+//   - value int
+//   a value to add to the counter.
 func (c *CachedCounters) Increment(name string, value int) {
 	counter := c.Get(name, Increment)
 	counter.Count = counter.Count + value

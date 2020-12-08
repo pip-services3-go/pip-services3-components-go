@@ -4,20 +4,20 @@ package build
 Basic component factory that creates components using registered types and factory functions.
 
 Example
- factory := NewFactory();
-factory.RegisterAsType(
-    NewDescriptor("mygroup", "mycomponent1", "default", "*", "1.0"),
-    MyComponent1
-);
-factory.Register(
-    NewDescriptor("mygroup", "mycomponent2", "default", "*", "1.0"),
-    (locator){
-        return NewMyComponent2();
-    }
-);
-
-factory.Create(NewDescriptor("mygroup", "mycomponent1", "default", "name1", "1.0"))
-factory.Create(NewDescriptor("mygroup", "mycomponent2", "default", "name2", "1.0"))
+  factory := NewFactory();
+  factory.RegisterAsType(
+      NewDescriptor("mygroup", "mycomponent1", "default", "*", "1.0"),
+      MyComponent1
+  );
+  factory.Register(
+      NewDescriptor("mygroup", "mycomponent2", "default", "*", "1.0"),
+      (locator){
+          return NewMyComponent2();
+      }
+  );
+  
+  factory.Create(NewDescriptor("mygroup", "mycomponent1", "default", "name1", "1.0"))
+  factory.Create(NewDescriptor("mygroup", "mycomponent2", "default", "name2", "1.0"))
 */
 
 import (
@@ -46,10 +46,10 @@ func NewFactory() *Factory {
 
 // Registers a component using a factory method.
 // Parameters:
-// 			- locator interface{}
-// 			a locator to identify component to be created.
-// 			factory func() interface{}
-// 			a factory function that receives a locator and returns a created component.
+//   - locator interface{}
+//   a locator to identify component to be created.
+//   factory func() interface{}
+//   a factory function that receives a locator and returns a created component.
 func (c *Factory) Register(locator interface{}, factory func() interface{}) {
 	if locator == nil {
 		panic("Locator cannot be nil")
@@ -66,10 +66,10 @@ func (c *Factory) Register(locator interface{}, factory func() interface{}) {
 
 // Registers a component using its type (a constructor function).
 // Parameters:
-// 		- locator interface{}
-// 		a locator to identify component to be created.
-// 		- factory interface{}
-// 		a factory.
+//   - locator interface{}
+//   a locator to identify component to be created.
+//   - factory interface{}
+//   a factory.
 func (c *Factory) RegisterType(locator interface{}, factory interface{}) {
 	if locator == nil {
 		panic("Locator cannot be nil")
@@ -91,8 +91,8 @@ func (c *Factory) RegisterType(locator interface{}, factory interface{}) {
 // Checks if this factory is able to create component by given locator.
 // This method searches for all registered components and returns a locator for component it is able to create that matches the given locator. If the factory is not able to create a requested component is returns null.
 // Parameters:
-// 			- locator interface{}
-// 			a locator to identify component to be created.
+//   - locator interface{}
+//   a locator to identify component to be created.
 // Returns interface{}
 // a locator for a component that the factory is able to create.
 func (c *Factory) CanCreate(locator interface{}) interface{} {
@@ -113,8 +113,8 @@ func (c *Factory) CanCreate(locator interface{}) interface{} {
 
 // Creates a component identified by given locator.
 // Parameters:
-// 			- locator interface{}
-// 			a locator to identify component to be created.
+//   - locator interface{}
+//   a locator to identify component to be created.
 // Returns interface{}, error
 // the created component and a CreateError if the factory is not able to create the component.
 func (c *Factory) Create(locator interface{}) (interface{}, error) {

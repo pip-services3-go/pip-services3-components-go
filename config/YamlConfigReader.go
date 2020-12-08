@@ -15,9 +15,9 @@ Config reader that reads configuration from YAML file.
 The reader supports parameterization using Handlebars template engine.
 
 Configuration parameters
-path: path to configuration file
-parameters: this entire section is used as template parameters
-...
+  path: path to configuration file
+  parameters: this entire section is used as template parameters
+  ...
 see
 IConfigReader
 
@@ -25,16 +25,16 @@ see
 FileConfigReader
 
 Example
-======== config.yml ======
-key1: "{{KEY1_VALUE}}"
-key2: "{{KEY2_VALUE}}"
-===========================
-
-configReader := NewYamlConfigReader("config.yml")
-
-parameters := NewConfigParamsFromTuples("KEY1_VALUE", 123, "KEY2_VALUE", "ABC");
-res, err := configReader.ReadConfig("123", parameters);
-// Result: key1=123;key2=ABC
+  ======== config.yml ======
+  key1: "{{KEY1_VALUE}}"
+  key2: "{{KEY2_VALUE}}"
+  ===========================
+  
+  configReader := NewYamlConfigReader("config.yml")
+  
+  parameters := NewConfigParamsFromTuples("KEY1_VALUE", 123, "KEY2_VALUE", "ABC");
+  res, err := configReader.ReadConfig("123", parameters);
+  // Result: key1=123;key2=ABC
 
 */
 type YamlConfigReader struct {
@@ -51,8 +51,8 @@ func NewEmptyYamlConfigReader() *YamlConfigReader {
 
 // Creates a new instance of the config reader.
 // Parameters:
-// 		- path string
-// 		a path to configuration file.
+//   - path string
+//   a path to configuration file.
 // Returns *YamlConfigReader
 func NewYamlConfigReader(path string) *YamlConfigReader {
 	return &YamlConfigReader{
@@ -62,10 +62,10 @@ func NewYamlConfigReader(path string) *YamlConfigReader {
 
 // Reads configuration file, parameterizes its content and converts it into JSON object.
 // Parameters:
-// 			- correlationId string
-// 			 transaction id to trace execution through call chain.
-// 			- parameters *cconfig.ConfigParams
-// 			values to parameters the configuration.
+//   - correlationId string
+//    transaction id to trace execution through call chain.
+//   - parameters *cconfig.ConfigParams
+//   values to parameters the configuration.
 // Returns interface{}, error
 // a JSON object with configuration and error.
 func (c *YamlConfigReader) ReadObject(correlationId string,
@@ -103,11 +103,11 @@ func (c *YamlConfigReader) ReadObject(correlationId string,
 
 // Reads configuration from a file, parameterize it with given values and returns a new ConfigParams object.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- path string
-// 			- parameters *cconfig.ConfigParams
-// 			values to parameters the configuration or null to skip parameterization.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - path string
+//   - parameters *cconfig.ConfigParams
+//   values to parameters the configuration or null to skip parameterization.
 // Returns *cconfgi.ConfigParams, error
 func (c *YamlConfigReader) ReadConfig(correlationId string,
 	parameters *cconfig.ConfigParams) (result *cconfig.ConfigParams, err error) {
@@ -133,11 +133,11 @@ func (c *YamlConfigReader) ReadConfig(correlationId string,
 
 // Reads configuration file, parameterizes its content and converts it into JSON object.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- path string
-// 			- parameters *cconfig.ConfigParams
-// 			values to parameters the configuration.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - path string
+//   - parameters *cconfig.ConfigParams
+//   values to parameters the configuration.
 // Returns interface{}, error
 // a JSON object with configuration.
 func ReadYamlObject(correlationId string, path string,
@@ -149,11 +149,11 @@ func ReadYamlObject(correlationId string, path string,
 
 // Reads configuration from a file, parameterize it with given values and returns a new ConfigParams object.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- path string
-// 			- parameters *cconfig.ConfigParams
-// 			values to parameters the configuration or null to skip parameterization.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - path string
+//   - parameters *cconfig.ConfigParams
+//   values to parameters the configuration or null to skip parameterization.
 // Returns *cconfig.ConfigParams, error
 func ReadYamlConfig(correlationId string, path string,
 	parameters *cconfig.ConfigParams) (*cconfig.ConfigParams, error) {

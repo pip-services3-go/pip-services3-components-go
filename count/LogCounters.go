@@ -14,9 +14,9 @@ import (
 Performance counters that periodically dumps counters measurements to logger.
 
 Configuration parameters
-options:
-interval: interval in milliseconds to save current counters measurements (default: 5 mins)
-reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
+  options:
+    interval: interval in milliseconds to save current counters measurements (default: 5 mins)
+    reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
 References
 *:logger:*:*:1.0 ILogger components to dump the captured counters
 *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source

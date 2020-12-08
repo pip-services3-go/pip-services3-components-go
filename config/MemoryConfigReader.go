@@ -17,18 +17,18 @@ see
 IConfigReader
 
 Example
-config := NewConfigParamsFromTuples(
-    "connection.host", "{{SERVICE_HOST}}",
-    "connection.port", "{{SERVICE_PORT}}{{^SERVICE_PORT}}8080{{/SERVICE_PORT}}"
-);
+  config := NewConfigParamsFromTuples(
+      "connection.host", "{{SERVICE_HOST}}",
+      "connection.port", "{{SERVICE_PORT}}{{^SERVICE_PORT}}8080{{/SERVICE_PORT}}"
+  );
 
-configReader := NewMemoryConfigReader();
-configReader.Configure(config);
-
-parameters := NewConfigParamsFromValue(process.env);
-
-res, err := configReader.ReadConfig("123", parameters);
-// Possible result: connection.host=10.1.1.100;connection.port=8080
+  configReader := NewMemoryConfigReader();
+  configReader.Configure(config);
+  
+  parameters := NewConfigParamsFromValue(process.env);
+  
+  res, err := configReader.ReadConfig("123", parameters);
+  // Possible result: connection.host=10.1.1.100;connection.port=8080
 */
 type MemoryConfigReader struct {
 	config *cconfig.ConfigParams
@@ -44,8 +44,8 @@ func NewEmptyMemoryConfigReader() *MemoryConfigReader {
 
 // Creates a new instance of config reader.
 // Parameters:
-// 			- config *cconfig.ConfigParams
-// 			component configuration parameters
+//   - config *cconfig.ConfigParams
+//   component configuration parameters
 // Returns *MemoryConfigReader
 func NewMemoryConfigReader(config *cconfig.ConfigParams) *MemoryConfigReader {
 	return &MemoryConfigReader{
@@ -55,18 +55,18 @@ func NewMemoryConfigReader(config *cconfig.ConfigParams) *MemoryConfigReader {
 
 // Configures component by passing configuration parameters.
 // Parameters:
-// 		- config *cconfig.ConfigParams
-// 		configuration parameters to be set.
+//   - config *cconfig.ConfigParams
+//   configuration parameters to be set.
 func (c *MemoryConfigReader) Configure(config *cconfig.ConfigParams) {
 	c.config = config
 }
 
 // Reads configuration and parameterize it with given values.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- parameters *cconfig.ConfigParams
-// 			values to parameters the configuration or null to skip parameterization.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - parameters *cconfig.ConfigParams
+//   values to parameters the configuration or null to skip parameterization.
 // Returns *cconfig.ConfigParams, error
 // configuration or error.
 func (c *MemoryConfigReader) ReadConfig(correlationId string,

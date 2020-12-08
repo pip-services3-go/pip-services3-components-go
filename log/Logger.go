@@ -17,8 +17,8 @@ Abstract logger that captures and formats log messages. Child classes take the c
 Configuration parameters
 Parameters to pass to the configure method for component configuration:
 
-level: maximum log level to capture
-source: source (context) name
+  level: maximum log level to capture
+  source: source (context) name
 References
 *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 */
@@ -34,8 +34,8 @@ type Logger struct {
 
 // Creates a new instance of the logger and inherite from ILogerWriter.
 // Parameters:
-// 			- writer ILogWriter
-// 			inherite from
+//   - writer ILogWriter
+//   inherite from
 // Returns *Logger
 func InheritLogger(writer ILogWriter) *Logger {
 	return &Logger{
@@ -54,7 +54,7 @@ func (c *Logger) Level() int {
 
 // Set the maximum log level.
 // Parameters:
-// 			- value int
+//   - value int
 // a new maximum log level.
 func (c *Logger) SetLevel(value int) {
 	c.level = value
@@ -69,16 +69,16 @@ func (c *Logger) Source() string {
 
 // Sets the source (context) name.
 // Parameters:
-// 			- value string
-// 			a new source (context) name.
+//   - value string
+//   a new source (context) name.
 func (c *Logger) SetSource(value string) {
 	c.source = value
 }
 
 // Configures component by passing configuration parameters.
 // Parameters:
-// 			- config ConfigParams
-// 			configuration parameters to be set.
+//   - config ConfigParams
+//   configuration parameters to be set.
 func (c *Logger) Configure(cfg *config.ConfigParams) {
 	c.level = LogLevelConverter.ToLogLevel(cfg.GetAsStringWithDefault("level", strconv.Itoa(c.level)))
 	c.source = cfg.GetAsStringWithDefault("source", c.source)
@@ -86,8 +86,8 @@ func (c *Logger) Configure(cfg *config.ConfigParams) {
 
 // Sets references to dependent components.
 // Parameters:
-// 			- references IReferences
-// 			references to locate the component dependencies.
+//   - references IReferences
+//   references to locate the component dependencies.
 func (c *Logger) SetReferences(references refer.IReferences) {
 	contextInfo, ok := references.GetOneOptional(
 		refer.NewDescriptor("pip-services", "context-info", "*", "*", "1.0")).(info.ContextInfo)
@@ -98,8 +98,8 @@ func (c *Logger) SetReferences(references refer.IReferences) {
 
 // Composes an human-readable error description
 // Parameters:
-// 			- err error
-// 			an error to format.
+//   - err error
+//   an error to format.
 // Returns string
 // a human-reable error description.
 func (c *Logger) ComposeError(err error) string {
@@ -125,16 +125,16 @@ func (c *Logger) ComposeError(err error) string {
 
 // Formats the log message and writes it to the logger destination.
 // Parameters:
-// 			- level int
-// 			a log level.
-// 			- correlationId: string
-// 			 transaction id to trace execution through call chain.
-// 			- err error
-// 			an error object associated with this message.
-// 			- message string
-// 			a human-readable message to log.
-// 			- args []interface{}
-// 			arguments to parameterize the message.
+//   - level int
+//   a log level.
+//   - correlationId: string
+//    transaction id to trace execution through call chain.
+//   - err error
+//   an error object associated with this message.
+//   - message string
+//   a human-readable message to log.
+//   - args []interface{}
+//   arguments to parameterize the message.
 func (c *Logger) FormatAndWrite(level int, correlationId string, err error, message string, args []interface{}) {
 	if args != nil && len(args) > 0 {
 		message = fmt.Sprintf(message, args...)
@@ -147,92 +147,92 @@ func (c *Logger) FormatAndWrite(level int, correlationId string, err error, mess
 
 // Logs a message at specified log level.
 // Parameters:
-//			- level int
-// 			a log level.
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- err error
-// 			an error object associated with this message.
-// 			- message string
-// 			a human-readable message to log.
-// 			- args ...interface{}
-// 			arguments to parameterize the message.
+//   - level int
+//   a log level.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - err error
+//   an error object associated with this message.
+//   - message string
+//   a human-readable message to log.
+//   - args ...interface{}
+//   arguments to parameterize the message.
 func (c *Logger) Log(level int, correlationId string, err error, message string, args ...interface{}) {
 	c.FormatAndWrite(level, correlationId, err, message, args)
 }
 
 // Logs fatal (unrecoverable) message that caused the process to crash.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- err error
-// 			an error object associated with this message.
-// 			- message string
-// 			a human-readable message to log.
-// 			- args ...interface{}
-// 			arguments to parameterize the message.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - err error
+//   an error object associated with this message.
+//   - message string
+//   a human-readable message to log.
+//   - args ...interface{}
+//   arguments to parameterize the message.
 func (c *Logger) Fatal(correlationId string, err error, message string, args ...interface{}) {
 	c.FormatAndWrite(Fatal, correlationId, err, message, args)
 }
 
 // Logs recoverable application error.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- err error
-// 			an error object associated with this message.
-// 			- message string
-// 			a human-readable message to log.
-// 			- args ...interface{}
-// 			arguments to parameterize the message.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - err error
+//   an error object associated with this message.
+//   - message string
+//   a human-readable message to log.
+//   - args ...interface{}
+//   arguments to parameterize the message.
 func (c *Logger) Error(correlationId string, err error, message string, args ...interface{}) {
 	c.FormatAndWrite(Error, correlationId, err, message, args)
 }
 
 // Logs a warning that may or may not have a negative impact.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- message string
-// 			a human-readable message to log.
-// 			- args ...interface{}
-// 			arguments to parameterize the message
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - message string
+//   a human-readable message to log.
+//   - args ...interface{}
+//   arguments to parameterize the message
 func (c *Logger) Warn(correlationId string, message string, args ...interface{}) {
 	c.FormatAndWrite(Warn, correlationId, nil, message, args)
 }
 
 // Logs an important information message
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- message string
-// 			a human-readable message to log.
-// 			- args ...interface{}
-// 			arguments to parameterize the message
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - message string
+//   a human-readable message to log.
+//   - args ...interface{}
+//   arguments to parameterize the message
 func (c *Logger) Info(correlationId string, message string, args ...interface{}) {
 	c.FormatAndWrite(Info, correlationId, nil, message, args)
 }
 
 // Logs a high-level debug information for troubleshooting.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- message string
-// 			a human-readable message to log.
-// 			- args ...interface{}
-// 			arguments to parameterize the message
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - message string
+//   a human-readable message to log.
+//   - args ...interface{}
+//   arguments to parameterize the message
 func (c *Logger) Debug(correlationId string, message string, args ...interface{}) {
 	c.FormatAndWrite(Debug, correlationId, nil, message, args)
 }
 
 // Logs a low-level debug information for troubleshooting.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- message string
-// 			a human-readable message to log.
-// 			- args ...interface{}
-// 			arguments to parameterize the message
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - message string
+//   a human-readable message to log.
+//   - args ...interface{}
+//   arguments to parameterize the message
 func (c *Logger) Trace(correlationId string, message string, args ...interface{}) {
 	c.FormatAndWrite(Trace, correlationId, nil, message, args)
 }

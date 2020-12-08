@@ -15,8 +15,8 @@ var LogLevelConverter *TLogLevelConverter = &TLogLevelConverter{}
 
 // Converts numbers and strings to standard log level values.
 // Parameters:
-// 			- value interface{}
-// 			a value to be converted
+//   - value interface{}
+//   a value to be converted
 // Returns int
 // converted log level
 func (c *TLogLevelConverter) ToLogLevel(value interface{}) int {
@@ -27,8 +27,8 @@ func (c *TLogLevelConverter) ToLogLevel(value interface{}) int {
 // see
 // LogLevel
 // Parameters:
-// 			- level int
-// 			a log level to convert
+//   - level int
+//   a log level to convert
 // Returns string
 // log level name string.
 func (c *TLogLevelConverter) ToString(level int) string {
@@ -39,8 +39,8 @@ func (c *TLogLevelConverter) ToString(level int) string {
 // see
 // LogLevel
 // Parameters:
-// 			- value interface{}
-// 			a log level string to convert
+//   - value interface{}
+//   a log level string to convert
 // Returns int
 // log level value.
 func LogLevelFromString(value interface{}) int {
@@ -73,8 +73,8 @@ func LogLevelFromString(value interface{}) int {
 // see
 // LogLevel
 // Parameters:
-// 			- level int
-// 			a log level to convert
+//   - level int
+//   a log level to convert
 // Returns string
 // log level name string.
 func LogLevelToString(level int) string {

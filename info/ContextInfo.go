@@ -13,22 +13,21 @@ Context information component that provides detail information about execution c
 Most often ContextInfo is used by logging and performance counters to identify source of the collected logs and metrics.
 
 Configuration parameters
-name: the context (container or process) name
-description: human-readable description of the context
-properties: entire section of additional descriptive properties
-...
+  name: the context (container or process) name
+  description: human-readable description of the context
+  properties: entire section of additional descriptive properties
+  ...
 Example
-contextInfo := NewContextInfo();
-contextInfo.Configure(NewConfigParamsFromTuples(
-    "name", "MyMicroservice",
-    "description", "My first microservice"
-));
-
-context.Name;            // Result: "MyMicroservice"
-context.ContextId;        // Possible result: "mylaptop"
-context.StartTime;        // Possible result: 2018-01-01:22:12:23.45Z
+  contextInfo := NewContextInfo();
+  contextInfo.Configure(NewConfigParamsFromTuples(
+      "name", "MyMicroservice",
+      "description", "My first microservice"
+  ));
+  
+  context.Name;            // Result: "MyMicroservice"
+  context.ContextId;        // Possible result: "mylaptop"
+  context.StartTime;        // Possible result: 2018-01-01:22:12:23.45Z
 */
-
 type ContextInfo struct {
 	Name        string            `json:"name"`
 	Description string            `json:"description"`
@@ -58,8 +57,8 @@ func (c *ContextInfo) Uptime() int64 {
 
 // Configures component by passing configuration parameters.
 // Parameters:
-// 			- config *config.ConfigParams
-// 			configuration parameters to be set.
+//   - config *config.ConfigParams
+//   configuration parameters to be set.
 func (c *ContextInfo) Configure(cfg *config.ConfigParams) {
 	c.Name = cfg.GetAsStringWithDefault("name", c.Name)
 	c.Name = cfg.GetAsStringWithDefault("info.name", c.Name)
@@ -72,8 +71,8 @@ func (c *ContextInfo) Configure(cfg *config.ConfigParams) {
 
 // Creates a new instance of this context info.
 // Parameters:
-// 			- ncfg *config.ConfigParams
-// 			a context configuration parameters.
+//   - ncfg *config.ConfigParams
+//   a context configuration parameters.
 // Returns *ContextInfo
 func NewContextInfoFromConfig(cfg *config.ConfigParams) *ContextInfo {
 	result := NewContextInfo()
