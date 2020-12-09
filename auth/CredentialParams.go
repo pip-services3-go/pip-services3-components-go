@@ -165,21 +165,21 @@ func NewCredentialParamsFromConfig(config *config.ConfigParams) *CredentialParam
 	return nil
 }
 
-// Checks if these credential parameters shall be retrieved from [[CredentialStore]]. The credential parameters are redirected to [[CredentialStore]] when store_key parameter is set.
+// Checks if these credential parameters shall be retrieved from CredentialStore. The credential parameters are redirected to CredentialStore when store_key parameter is set.
 // Returns bool
-// true if credentials shall be retrieved from [[CredentialStore]]
+// true if credentials shall be retrieved from CredentialStore
 func (c *CredentialParams) UseCredentialStore() bool {
 	return c.GetAsString("store_key") != ""
 }
 
-// Gets the key to retrieve these credentials from [[CredentialStore]]. If this key is null, than all parameters are already present.
+// Gets the key to retrieve these credentials from CredentialStore. If this key is null, than all parameters are already present.
 // Returns string
 // the store key to retrieve credentials.
 func (c *CredentialParams) StoreKey() string {
 	return c.GetAsString("store_key")
 }
 
-// Sets the key to retrieve these parameters from [[CredentialStore]].
+// Sets the key to retrieve these parameters from CredentialStore.
 // Parameters:
 //   - value string
 //   a new key to retrieve credentials.

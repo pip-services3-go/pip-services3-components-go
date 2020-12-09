@@ -66,7 +66,7 @@ func NewConnectionParams(values map[string]string) *ConnectionParams {
 
 // Method that creates a ConfigParams object based on the values that are stored in the 'value' object's properties.
 // see
-// [[RecursiveObjectReader.getProperties]]
+// RecursiveObjectReader.getProperties
 // Parameters:
 //   - value interface{}
 //   configuration parameters in the form of an object with properties.
@@ -174,7 +174,7 @@ func (c *ConnectionParams) UseDiscovery() bool {
 	return c.GetAsString("discovery_key") != ""
 }
 
-// Gets the key to retrieve this connection from [[DiscoveryService]]. If this key is null, than all parameters are already present.
+// Gets the key to retrieve this connection from DiscoveryService. If this key is null, than all parameters are already present.
 // see
 // UseDiscovery
 // Returns string
@@ -183,7 +183,7 @@ func (c *ConnectionParams) DiscoveryKey() string {
 	return c.GetAsString("discovery_key")
 }
 
-// Sets the key to retrieve these parameters from [[DiscoveryService]].
+// Sets the key to retrieve these parameters from DiscoveryService.
 // Parameters:
 //   - value string
 //   a new key to retrieve connection.

@@ -560,7 +560,7 @@ a list of retrieved CredentialParams
 
 			
 				
-				<h3 id="CredentialParams.AccessId">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7584:7628#L221">AccessId</a>
+				<h3 id="CredentialParams.AccessId">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7564:7608#L221">AccessId</a>
 					<a class="permalink" href="index.html#CredentialParams.AccessId">&#xb6;</a>
 					
 					
@@ -577,7 +577,7 @@ the application access id.
 				
 			
 				
-				<h3 id="CredentialParams.AccessKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=8112:8157#L240">AccessKey</a>
+				<h3 id="CredentialParams.AccessKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=8092:8137#L240">AccessKey</a>
 					<a class="permalink" href="index.html#CredentialParams.AccessKey">&#xb6;</a>
 					
 					
@@ -594,7 +594,7 @@ the application secret key.
 				
 			
 				
-				<h3 id="CredentialParams.Password">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7099:7143#L202">Password</a>
+				<h3 id="CredentialParams.Password">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7079:7123#L202">Password</a>
 					<a class="permalink" href="index.html#CredentialParams.Password">&#xb6;</a>
 					
 					
@@ -611,7 +611,7 @@ the user password.
 				
 			
 				
-				<h3 id="CredentialParams.SetAccessId">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7860:7912#L233">SetAccessId</a>
+				<h3 id="CredentialParams.SetAccessId">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7840:7892#L233">SetAccessId</a>
 					<a class="permalink" href="index.html#CredentialParams.SetAccessId">&#xb6;</a>
 					
 					
@@ -630,7 +630,7 @@ a new application access id.
 				
 			
 				
-				<h3 id="CredentialParams.SetAccessKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=8395:8448#L252">SetAccessKey</a>
+				<h3 id="CredentialParams.SetAccessKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=8375:8428#L252">SetAccessKey</a>
 					<a class="permalink" href="index.html#CredentialParams.SetAccessKey">&#xb6;</a>
 					
 					
@@ -649,7 +649,7 @@ a new application secret key.
 				
 			
 				
-				<h3 id="CredentialParams.SetPassword">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7352:7404#L214">SetPassword</a>
+				<h3 id="CredentialParams.SetPassword">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=7332:7384#L214">SetPassword</a>
 					<a class="permalink" href="index.html#CredentialParams.SetPassword">&#xb6;</a>
 					
 					
@@ -668,14 +668,14 @@ a new user password.
 				
 			
 				
-				<h3 id="CredentialParams.SetStoreKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6440:6492#L176">SetStoreKey</a>
+				<h3 id="CredentialParams.SetStoreKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6420:6472#L176">SetStoreKey</a>
 					<a class="permalink" href="index.html#CredentialParams.SetStoreKey">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) SetStoreKey(value <a href="http://localhost:6060/pkg/builtin/#string">string</a>)</pre>
 				<p>
-Sets the key to retrieve these parameters from [[CredentialStore]].
+Sets the key to retrieve these parameters from CredentialStore.
 Parameters:
 </p>
 <pre>- value string
@@ -687,7 +687,7 @@ a new key to retrieve credentials.
 				
 			
 				
-				<h3 id="CredentialParams.SetUsername">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6889:6941#L195">SetUsername</a>
+				<h3 id="CredentialParams.SetUsername">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6869:6921#L195">SetUsername</a>
 					<a class="permalink" href="index.html#CredentialParams.SetUsername">&#xb6;</a>
 					
 					
@@ -706,14 +706,14 @@ a new user name.
 				
 			
 				
-				<h3 id="CredentialParams.StoreKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6209:6253#L168">StoreKey</a>
+				<h3 id="CredentialParams.StoreKey">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6193:6237#L168">StoreKey</a>
 					<a class="permalink" href="index.html#CredentialParams.StoreKey">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) StoreKey() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				<p>
-Gets the key to retrieve these credentials from [[CredentialStore]]. If this key is null, than all parameters are already present.
+Gets the key to retrieve these credentials from CredentialStore. If this key is null, than all parameters are already present.
 Returns string
 the store key to retrieve credentials.
 </p>
@@ -723,16 +723,16 @@ the store key to retrieve credentials.
 				
 			
 				
-				<h3 id="CredentialParams.UseCredentialStore">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=5916:5968#L161">UseCredentialStore</a>
+				<h3 id="CredentialParams.UseCredentialStore">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=5904:5956#L161">UseCredentialStore</a>
 					<a class="permalink" href="index.html#CredentialParams.UseCredentialStore">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="index.html#CredentialParams">CredentialParams</a>) UseCredentialStore() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
 				<p>
-Checks if these credential parameters shall be retrieved from [[CredentialStore]]. The credential parameters are redirected to [[CredentialStore]] when store_key parameter is set.
+Checks if these credential parameters shall be retrieved from CredentialStore. The credential parameters are redirected to CredentialStore when store_key parameter is set.
 Returns bool
-true if credentials shall be retrieved from [[CredentialStore]]
+true if credentials shall be retrieved from CredentialStore
 </p>
 
 				
@@ -740,7 +740,7 @@ true if credentials shall be retrieved from [[CredentialStore]]
 				
 			
 				
-				<h3 id="CredentialParams.Username">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6644:6688#L183">Username</a>
+				<h3 id="CredentialParams.Username">func (*CredentialParams) <a href="http://localhost:6060/src/auth/CredentialParams.go?s=6624:6668#L183">Username</a>
 					<a class="permalink" href="index.html#CredentialParams.Username">&#xb6;</a>
 					
 					
