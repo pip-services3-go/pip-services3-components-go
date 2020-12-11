@@ -21,10 +21,10 @@ type Counter struct {
 
 // Creates a instance of the data obejct
 // Parameters:
-// 			- name string
-// 			a counter name.
-// 			- type CounterType
-// 			a counter type.
+//   - name string
+//   a counter name.
+//   - type CounterType
+//   a counter type.
 // Returns *Counter
 func NewCounter(name string, typ int) *Counter {
 	return &Counter{

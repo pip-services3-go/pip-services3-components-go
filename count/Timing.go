@@ -8,7 +8,7 @@ import (
 Callback object returned by ICounters.beginTiming to end timing of execution block and update the associated counter.
 
 Example
- timing := counters.BeginTiming("mymethod.exec_time");
+  timing := counters.BeginTiming("mymethod.exec_time");
   defer  timing.EndTiming();
 
 */
@@ -28,10 +28,10 @@ func NewEmptyTiming() *Timing {
 
 // Creates a new instance of the timing callback object.
 // Parameters:
-// 			- counter string
-// 			an associated counter name
-// 			- callback ITimingCallback
-// 			a callback that shall be called when EndTiming is called.
+//   - counter string
+//   an associated counter name
+//   - callback ITimingCallback
+//   a callback that shall be called when EndTiming is called.
 // Retruns *Timing
 func NewTiming(counter string, callback ITimingCallback) *Timing {
 	return &Timing{

@@ -9,7 +9,7 @@ import (
 Abstract config reader that supports configuration parameterization.
 
 Configuration parameters
-parameters: this entire section is used as template parameters
+  parameters: this entire section is used as template parameters
 */
 type ConfigReader struct {
 	parameters *cconfig.ConfigParams
@@ -25,8 +25,8 @@ func NewConfigReader() *ConfigReader {
 
 // Configures component by passing configuration parameters.
 // Parameters:
-// 			- config *config.ConfigParams
-// 			configuration parameters to be set.
+//  - config *config.ConfigParams
+//  configuration parameters to be set.
 func (c *ConfigReader) Configure(config *cconfig.ConfigParams) {
 	parameters := config.GetSection("parameters")
 	if parameters.Len() > 0 {
@@ -37,10 +37,10 @@ func (c *ConfigReader) Configure(config *cconfig.ConfigParams) {
 // Parameterized configuration template given as string with dynamic parameters.
 // The method uses Handlebars template engine: https://handlebarsjs.com
 // Parameters:
-// 			- config string
-// 			a string with configuration template to be parameterized
-// 			- parameters *config.ConfigParams
-// 			dynamic parameters to inject into the template
+//   - config string
+//   a string with configuration template to be parameterized
+//   - parameters *config.ConfigParams
+//   dynamic parameters to inject into the template
 // Returns string, error
 // a parameterized configuration string abd error.
 func (c *ConfigReader) Parameterize(config string, parameters *cconfig.ConfigParams) (string, error) {

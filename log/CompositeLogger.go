@@ -13,25 +13,25 @@ see
 ILogger
 
 Example
-type MyComponent {
-    _logger CompositeLogger
-}
-    func (mc* MyComponent) Configure(config: ConfigParams): void {
-        mc._logger.Configure(config);
-        ...
-    }
-
-    func (mc* MyComponent) SetReferences(references: IReferences): void {
-        mc._logger.SetReferences(references);
-        ...
-    }
-
-    func (mc* MyComponent)myMethod(string correlationId): void {
-        mc._logger.Debug(correlationId, "Called method mycomponent.mymethod");
-        ...
-    }
-var mc MyComponent = MyComponent{}
-mc._logger = NewCompositeLogger();
+  type MyComponent {
+      _logger CompositeLogger
+  }
+      func (mc* MyComponent) Configure(config: ConfigParams): void {
+          mc._logger.Configure(config);
+          ...
+      }
+  
+      func (mc* MyComponent) SetReferences(references: IReferences): void {
+          mc._logger.SetReferences(references);
+          ...
+      }
+  
+      func (mc* MyComponent)myMethod(string correlationId): void {
+          mc._logger.Debug(correlationId, "Called method mycomponent.mymethod");
+          ...
+      }
+  var mc MyComponent = MyComponent{}
+  mc._logger = NewCompositeLogger();
 */
 type CompositeLogger struct {
 	Logger
@@ -51,8 +51,8 @@ func NewCompositeLogger() *CompositeLogger {
 
 // Creates a new instance of the logger.
 // Parameters:
-//  	- references refer.IReferences
-// 		references to locate the component dependencies.
+//   - references refer.IReferences
+//   references to locate the component dependencies.
 // Returns CompositeLogger
 func NewCompositeLoggerFromReferences(references refer.IReferences) *CompositeLogger {
 	c := NewCompositeLogger()
@@ -62,8 +62,8 @@ func NewCompositeLoggerFromReferences(references refer.IReferences) *CompositeLo
 
 // Sets references to dependent components.
 // Parameters:
-// 		- references IReferences
-// 		references to locate the component dependencies.
+//   - references IReferences
+//   references to locate the component dependencies.
 func (c *CompositeLogger) SetReferences(references refer.IReferences) {
 	c.Logger.SetReferences(references)
 
@@ -86,14 +86,14 @@ func (c *CompositeLogger) SetReferences(references refer.IReferences) {
 
 // Writes a log message to the logger destination(s).
 // Parameters:
-// 		- level int
-// 		a log level.
-// 		- correlationId string
-// 		transaction id to trace execution through call chain.
-// 		- err error
-// 		an error object associated with this message.
-// 		- message string
-// 		a human-readable message to log.
+//   - level int
+//   a log level.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - err error
+//   an error object associated with this message.
+//   - message string
+//   a human-readable message to log.
 func (c *CompositeLogger) Write(level int, correlationId string, err error, message string) {
 	if c.loggers == nil && len(c.loggers) == 0 {
 		return

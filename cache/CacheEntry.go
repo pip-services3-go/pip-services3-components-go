@@ -15,12 +15,12 @@ type CacheEntry struct {
 
 // Creates a new instance of the cache entry and assigns its values.
 // Parameters:
-// 		- key string
-// 		a unique key to locate the value.
-// 		- value interface{]
-// 		a value to be stored.
-// 		- timeout int64
-// 		expiration timeout in milliseconds.
+//   - key string
+//   a unique key to locate the value.
+//   - value interface{]
+//   a value to be stored.
+//   - timeout int64
+//   expiration timeout in milliseconds.
 // Returns *CacheEntry
 func NewCacheEntry(key string, value interface{}, timeout int64) *CacheEntry {
 	return &CacheEntry{
@@ -53,10 +53,10 @@ func (c *CacheEntry) Expiration() time.Time {
 
 // Sets a new value and extends its expiration.
 // Parameters:
-// 			- value interface{}
-// 			a new cached value.
-// 			- timeout int64
-// 			a expiration timeout in milliseconds.
+//   - value interface{}
+//   a new cached value.
+//   - timeout int64
+//   a expiration timeout in milliseconds.
 func (c *CacheEntry) SetValue(value interface{}, timeout int64) {
 	c.value = value
 	c.expiration = time.Now().Add(time.Duration(timeout) * time.Millisecond)

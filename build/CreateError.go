@@ -11,9 +11,9 @@ import (
 
 // Creates an error instance and assigns its values.
 // Parameters:
-// 			- correlationId string
-// 			- message string
-// 			human-readable error of the component that cannot be created.
+//   - correlationId string
+//   - message string
+//   human-readable error of the component that cannot be created.
 // Returns *errors.ApplicationError
 func NewCreateError(correlationId string, message string) *errors.ApplicationError {
 	e := errors.NewInternalError(correlationId, "CANNOT_CREATE", message)
@@ -22,9 +22,9 @@ func NewCreateError(correlationId string, message string) *errors.ApplicationErr
 
 // Creates an error instance and assigns its values.
 // Parameters:
-// 			- correlationId string
-// 			- locator interface{}
-// 			human-readable locator of the component that cannot be created.
+//   - correlationId string
+//   - locator interface{}
+//   human-readable locator of the component that cannot be created.
 // Returns *errors.ApplicationError
 func NewCreateErrorByLocator(correlationId string, locator interface{}) *errors.ApplicationError {
 	message := fmt.Sprintf("Requested component %v cannot be created", locator)

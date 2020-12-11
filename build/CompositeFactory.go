@@ -7,13 +7,13 @@ Aggregates multiple factories into a single factory component. When a new compon
 This component is used to conveniently keep all supported factories in a single place.
 
 Example
-factory := NewCompositeFactory();
-factory.Add(NewDefaultLoggerFactory());
-factory.Add(NewDefaultCountersFactory());
-
-loggerLocator := NewDescriptor("*", "logger", "*", "*", "1.0");
-factory.CanCreate(loggerLocator);         // Result: Descriptor("pip-service", "logger", "null", "default", "1.0")
-factory.Create(loggerLocator);             // Result: created NullLogger
+  factory := NewCompositeFactory();
+  factory.Add(NewDefaultLoggerFactory());
+  factory.Add(NewDefaultCountersFactory());
+  
+  loggerLocator := NewDescriptor("*", "logger", "*", "*", "1.0");
+  factory.CanCreate(loggerLocator);         // Result: Descriptor("pip-service", "logger", "null", "default", "1.0")
+  factory.Create(loggerLocator);             // Result: created NullLogger
 */
 type CompositeFactory struct {
 	factories []IFactory
@@ -29,8 +29,8 @@ func NewCompositeFactory() *CompositeFactory {
 
 // Creates a new instance of the factory.
 // Parameters:
-// 			- factories ...IFactory
-// 			a list of factories to embed into this factory.
+//   - factories ...IFactory
+//   a list of factories to embed into this factory.
 // Returns *CompositeFactory
 func NewCompositeFactoryFromFactories(factories ...IFactory) *CompositeFactory {
 	return &CompositeFactory{
@@ -40,8 +40,8 @@ func NewCompositeFactoryFromFactories(factories ...IFactory) *CompositeFactory {
 
 // Adds a factory into the list of embedded factories.
 // Parameters:
-// 			- factory IFactory
-// 			a factory to be added.
+//   - factory IFactory
+//   a factory to be added.
 func (c *CompositeFactory) Add(factory IFactory) {
 	if factory == nil {
 		panic("Factory cannot be nil")
@@ -52,8 +52,8 @@ func (c *CompositeFactory) Add(factory IFactory) {
 
 // Removes a factory from the list of embedded factories.
 // Parameters:
-// 			- factory IFactory
-// 			the factory to remove.
+//   - factory IFactory
+//   the factory to remove.
 func (c *CompositeFactory) Remove(factory IFactory) {
 	for i, thisFactory := range c.factories {
 		if thisFactory == factory {
@@ -66,8 +66,8 @@ func (c *CompositeFactory) Remove(factory IFactory) {
 // Checks if this factory is able to create component by given locator.
 // This method searches for all registered components and returns a locator for component it is able to create that matches the given locator. If the factory is not able to create a requested component is returns null.
 // Parameters:
-// 			- locator interface{}
-// 			a locator to identify component to be created.
+//   - locator interface{}
+//   a locator to identify component to be created.
 // Returns interface{}
 // a locator for a component that the factory is able to create.
 func (c *CompositeFactory) CanCreate(locator interface{}) interface{} {
@@ -88,8 +88,8 @@ func (c *CompositeFactory) CanCreate(locator interface{}) interface{} {
 
 // Creates a component identified by given locator.
 // Parameters:
-// 			- locator interface{}
-// 			a locator to identify component to be created.
+//   - locator interface{}
+//   a locator to identify component to be created.
 // Returns interface{}, error
 // the created component and a CreateError if the factory is not able to create the component..
 func (c *CompositeFactory) Create(locator interface{}) (interface{}, error) {

@@ -17,22 +17,22 @@ see
 ICounters
 
 Example
-type MyComponent {
-    _counters CompositeCounters = new CompositeCounters();
-}
-    func (mc * MyConponent)setReferences(references: IReferences) {
-        mc._counters.SetReferences(references);
-    }
-
-    func (mc * MyConponent) myMethod() {
-        mc._counters.Increment("mycomponent.mymethod.calls");
-        timing := mc._counters.BeginTiming("mycomponent.mymethod.exec_time");
-		 defer timing.EndTiming();
-		// do something
-
-    	}
-var mc MyComponent{};
-mc._counters = NewCompositeCounters();
+  type MyComponent {
+      _counters CompositeCounters = new CompositeCounters();
+  }
+      func (mc * MyConponent)setReferences(references: IReferences) {
+          mc._counters.SetReferences(references);
+      }
+  
+      func (mc * MyConponent) myMethod() {
+          mc._counters.Increment("mycomponent.mymethod.calls");
+          timing := mc._counters.BeginTiming("mycomponent.mymethod.exec_time");
+  		 defer timing.EndTiming();
+  		// do something
+  
+      	}
+  var mc MyComponent{};
+  mc._counters = NewCompositeCounters();
 
 */
 type CompositeCounters struct {

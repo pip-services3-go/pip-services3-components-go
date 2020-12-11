@@ -12,11 +12,11 @@ import (
 Abstract logger that caches captured log messages in memory and periodically dumps them. Child classes implement saving cached messages to their specified destinations.
 
 Configuration parameters
-level: maximum log level to capture
-source: source (context) name
-options:
-interval: interval in milliseconds to save log messages (default: 10 seconds)
-max_cache_size: maximum number of messages stored in this cache (default: 100)
+  level: maximum log level to capture
+  source: source (context) name
+  options:
+    interval: interval in milliseconds to save log messages (default: 10 seconds)
+    max_cache_size: maximum number of messages stored in this cache (default: 100)
 References
 *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 */
@@ -37,7 +37,7 @@ type CachedLogger struct {
 
 // Creates a new instance of the logger from ICachedLogSaver
 // Parameters:
-// 			- saver ICachedLogSaver
+//  - saver ICachedLogSaver
 // Returns CachedLogger
 func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
 	c := &CachedLogger{
@@ -55,14 +55,14 @@ func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
 
 // Writes a log message to the logger destination.
 // Parameters:
-// 		- level LogLevel
-// 		a log level.
-// 		- correlationId string
-// 		transaction id to trace execution through call chain.
-// 		- err error
-// 		an error object associated with this message.
-// 		- message string
-// 		a human-readable message to log.
+//   - level LogLevel
+//   a log level.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - err error
+//   an error object associated with this message.
+//   - message string
+//   a human-readable message to log.
 func (c *CachedLogger) Write(level int, correlationId string, err error, message string) {
 	logMessage := &LogMessage{
 		Time:          time.Now().UTC(),
@@ -86,8 +86,8 @@ func (c *CachedLogger) Write(level int, correlationId string, err error, message
 
 // Configures component by passing configuration parameters.
 // Parameters:
-// 		- config *config.ConfigParams
-// 		configuration parameters to be set.
+//   - config *config.ConfigParams
+//   configuration parameters to be set.
 func (c *CachedLogger) Configure(cfg *config.ConfigParams) {
 	c.Logger.Configure(cfg)
 

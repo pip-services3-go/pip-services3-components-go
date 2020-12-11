@@ -20,16 +20,16 @@ type LogMessage struct {
 
 // Create new log message object
 // Parameters:
-//			- level int
-//			an log level
-//			- source string
-//			an source
-//			- correletionId string
-//			transaction id to trace execution through call chain.
-//			- err errors.ErrorDescription
-//			an error object associated with this message.
-//			- message string
-//			a human-readable message to log.
+//   - level int
+//   an log level
+//   - source string
+//   an source
+//   - correletionId string
+//   transaction id to trace execution through call chain.
+//   - err errors.ErrorDescription
+//   an error object associated with this message.
+//   - message string
+//   a human-readable message to log.
 // Returns LogMessage
 func NewLogMessage(level int, source string, correlationId string,
 	err errors.ErrorDescription, message string) LogMessage {

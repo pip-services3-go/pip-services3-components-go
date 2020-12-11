@@ -12,15 +12,15 @@ Cache that stores values in the process memory.
 Remember: This implementation is not suitable for synchronization of distributed processes.
 
 Configuration parameters
-options:
-timeout: default caching timeout in milliseconds (default: 1 minute)
-max_size: maximum number of values stored in this cache (default: 1000)
+  options:
+    timeout: default caching timeout in milliseconds (default: 1 minute)
+    max_size: maximum number of values stored in this cache (default: 1000)
 see
 ICache
 
 Example
-cache := NewMemoryCache();
-res, err := cache.Store("123", "key1", "ABC", 10000);
+  cache := NewMemoryCache();
+  res, err := cache.Store("123", "key1", "ABC", 10000);
 */
 type MemoryCache struct {
 	cache   map[string]*CacheEntry
@@ -42,8 +42,8 @@ func NewMemoryCache() *MemoryCache {
 
 // Creates a new instance of the cache.
 // Parameters
-// 			- cfg *config.ConfigParams
-// 			configuration parameters to be set.
+//   - cfg *config.ConfigParams
+//   configuration parameters to be set.
 // Returns *MemoryCache
 func NewMemoryCacheFromConfig(cfg *config.ConfigParams) *MemoryCache {
 	c := NewMemoryCache()
@@ -53,8 +53,8 @@ func NewMemoryCacheFromConfig(cfg *config.ConfigParams) *MemoryCache {
 
 // Configures component by passing configuration parameters.
 // Parameters:
-// 			- config *config.ConfigParams
-// 			configuration parameters to be set.
+//   - config *config.ConfigParams
+//   configuration parameters to be set.
 func (c *MemoryCache) Configure(cfg *config.ConfigParams) {
 	c.timeout = cfg.GetAsLongWithDefault("timeout", c.timeout)
 	c.maxSize = cfg.GetAsIntegerWithDefault("max_size", c.maxSize)
@@ -88,10 +88,10 @@ func (c *MemoryCache) Cleanup() {
 
 // Retrieves cached value from the cache using its key. If value is missing in the cache or expired it returns null.
 // Parameters:
-// 			- correlationId string
-// 			 transaction id to trace execution through call chain.
-//			- key string
-// 			a unique value key.
+//   - correlationId string
+//    transaction id to trace execution through call chain.
+//   - key string
+//   a unique value key.
 // Returns interface{}, error
 func (c *MemoryCache) Retrieve(correlationId string, key string) (interface{}, error) {
 	if key == "" {
@@ -116,14 +116,14 @@ func (c *MemoryCache) Retrieve(correlationId string, key string) (interface{}, e
 
 // Stores value in the cache with expiration time, if success return stored value.
 // Parameters:
-// 			- correlationId string
-// 			 transaction id to trace execution through call chain.
-// 			- key string
-// 			a unique value key.
-// 			- value interface{}
-// 			a value to store.
-// 			- timeout int64
-// 			expiration timeout in milliseconds.
+//   - correlationId string
+//    transaction id to trace execution through call chain.
+//   - key string
+//   a unique value key.
+//   - value interface{}
+//   a value to store.
+//   - timeout int64
+//   expiration timeout in milliseconds.
 // Returns interface{}, error
 func (c *MemoryCache) Store(correlationId string, key string, value interface{}, timeout int64) (interface{}, error) {
 	if key == "" {
@@ -161,10 +161,10 @@ func (c *MemoryCache) Store(correlationId string, key string, value interface{},
 
 // Removes a value from the cache by its key.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- key string
-// 			a unique value key.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - key string
+//   a unique value key.
 // Returns error
 func (c *MemoryCache) Remove(correlationId string, key string) error {
 	if key == "" {
@@ -181,8 +181,8 @@ func (c *MemoryCache) Remove(correlationId string, key string) error {
 
 // Clear a value from the cache.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
 func (c *MemoryCache) Clear(correlationId string) error {
 	c.lock.Lock()
 	defer c.lock.Unlock()

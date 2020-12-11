@@ -15,10 +15,10 @@ func NewNullCache() *NullCache {
 
 // Retrieves cached value from the cache using its key. If value is missing in the cache or expired it returns null.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- key string
-// 			a unique value key.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - key string
+//   a unique value key.
 // Returns interface{}, error
 func (c *NullCache) Retrieve(correlationId string, key string) (interface{}, error) {
 	return nil, nil
@@ -26,14 +26,14 @@ func (c *NullCache) Retrieve(correlationId string, key string) (interface{}, err
 
 // Stores value in the cache with expiration time, if success return stored value.
 // Parameters:
-// 			- correlationId string
-// 			 transaction id to trace execution through call chain.
-// 			- key string
-// 			a unique value key.
-// 			- value interface{}
-// 			a value to store.
-// 			- timeout int64
-// 			expiration timeout in milliseconds.
+//   - correlationId string
+//    transaction id to trace execution through call chain.
+//   - key string
+//   a unique value key.
+//   - value interface{}
+//   a value to store.
+//   - timeout int64
+//   expiration timeout in milliseconds.
 // Returns interface{}, error
 func (c *NullCache) Store(correlationId string, key string, value interface{}, timeout int64) (interface{}, error) {
 	return value, nil
@@ -41,10 +41,10 @@ func (c *NullCache) Store(correlationId string, key string, value interface{}, t
 
 // Removes a value from the cache by its key.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.\
-// 			- key string
-// 			a unique value key.
+//   - correlationId string
+//   transaction id to trace execution through call chain.\
+//   - key string
+//   a unique value key.
 // Returns error
 func (c *NullCache) Remove(correlationId string, key string) error {
 	return nil
