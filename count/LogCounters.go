@@ -94,7 +94,6 @@ func (c *LogCounters) counterToString(counter *Counter) string {
 		}
 
 		result = result + ", \"avg\": " + convert.StringConverter.ToString(counter.Average)
-
 	}
 
 	result = result + " }"

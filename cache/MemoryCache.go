@@ -1,6 +1,7 @@
 package cache
 
 import (
+	"encoding/json"
 	"sync"
 
 	"github.com/pip-services3-go/pip-services3-commons-go/config"
@@ -107,11 +108,44 @@ func (c *MemoryCache) Retrieve(correlationId string, key string) (interface{}, e
 			delete(c.cache, key)
 			return nil, nil
 		}
+		var value interface{}
+		err := json.Unmarshal((entry.Value()).([]byte), &value)
+		if err != nil {
+			return nil, err
+		}
+		return value, nil
+	}
+	return nil, nil
+}
 
-		return entry.Value(), nil
+// Retrive cached value from the cache using its key and restore into reference object. If value is missing in the cache or expired it returns false.
+// Parameters:
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - key string   a unique value key.
+//   - refObj       pointer to object for restore
+// Returns bool, error
+func (c *MemoryCache) RetrieveAs(correlationId string, key string, refObj interface{}) (bool, error) {
+	if key == "" {
+		panic("Key cannot be empty")
 	}
 
-	return nil, nil
+	c.lock.Lock()
+	defer c.lock.Unlock()
+
+	entry := c.cache[key]
+	if entry != nil {
+		if entry.IsExpired() {
+			delete(c.cache, key)
+			return false, nil
+		}
+		err := json.Unmarshal((entry.Value()).([]byte), refObj)
+		if err != nil {
+			return false, err
+		}
+		return true, nil
+	}
+	return false, nil
 }
 
 // Stores value in the cache with expiration time, if success return stored value.
@@ -145,10 +179,16 @@ func (c *MemoryCache) Store(correlationId string, key string, value interface{},
 	// 	return nil, nil
 	// }
 
+	jsonVal, err := json.Marshal(value)
+
+	if err != nil {
+		return nil, err
+	}
+
 	if entry != nil {
-		entry.SetValue(value, timeout)
+		entry.SetValue(jsonVal, timeout)
 	} else {
-		c.cache[key] = NewCacheEntry(key, value, timeout)
+		c.cache[key] = NewCacheEntry(key, jsonVal, timeout)
 	}
 
 	// cleanup

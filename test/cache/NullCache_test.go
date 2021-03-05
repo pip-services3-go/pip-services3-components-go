@@ -15,6 +15,12 @@ func TestNullCache(t *testing.T) {
 	assert.Nil(t, value)
 	assert.Nil(t, err)
 
+	var str string
+	ok, err := cache.RetrieveAs("", "key1", &str)
+	assert.False(t, ok)
+	assert.Equal(t, str, "")
+	assert.Nil(t, err)
+
 	value, err = cache.Store("", "key1", "value1", 0)
 	assert.Equal(t, "value1", value)
 	assert.Nil(t, err)

@@ -24,6 +24,17 @@ func (c *NullCache) Retrieve(correlationId string, key string) (interface{}, err
 	return nil, nil
 }
 
+// Retrieve cached value from the cache using its key and restore into reference object. If value is missing in the cache or expired it returns false.
+// Parameters:
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - key string   a unique value key.
+//   - refObj       pointer to object for restore
+// Returns bool, error
+func (c *NullCache) RetrieveAs(correlationId string, key string, refObj interface{}) (bool, error) {
+	return false, nil
+}
+
 // Stores value in the cache with expiration time, if success return stored value.
 // Parameters:
 //   - correlationId string
