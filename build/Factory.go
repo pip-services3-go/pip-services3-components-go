@@ -15,7 +15,7 @@ Example
           return NewMyComponent2();
       }
   );
-  
+
   factory.Create(NewDescriptor("mygroup", "mycomponent1", "default", "name1", "1.0"))
   factory.Create(NewDescriptor("mygroup", "mycomponent2", "default", "name2", "1.0"))
 */
@@ -29,7 +29,7 @@ import (
 
 type registration struct {
 	locator interface{}
-	factory func() interface{}
+	factory func(locator interface{}) interface{}
 }
 
 type Factory struct {
@@ -50,7 +50,7 @@ func NewFactory() *Factory {
 //   a locator to identify component to be created.
 //   factory func() interface{}
 //   a factory function that receives a locator and returns a created component.
-func (c *Factory) Register(locator interface{}, factory func() interface{}) {
+func (c *Factory) Register(locator interface{}, factory func(locator interface{}) interface{}) {
 	if locator == nil {
 		panic("Locator cannot be nil")
 	}
@@ -83,7 +83,7 @@ func (c *Factory) RegisterType(locator interface{}, factory interface{}) {
 		panic("Factory must be parameterless function")
 	}
 
-	c.Register(locator, func() interface{} {
+	c.Register(locator, func(locator interface{}) interface{} {
 		return val.Call([]refl.Value{})[0].Interface()
 	})
 }
@@ -118,7 +118,7 @@ func (c *Factory) CanCreate(locator interface{}) interface{} {
 // Returns interface{}, error
 // the created component and a CreateError if the factory is not able to create the component.
 func (c *Factory) Create(locator interface{}) (interface{}, error) {
-	var factory func() interface{}
+	var factory func(locator interface{}) interface{}
 
 	for _, registration := range c.registrations {
 		thisLocator := registration.locator
@@ -156,7 +156,7 @@ func (c *Factory) Create(locator interface{}) (interface{}, error) {
 			}
 		}()
 
-		return factory()
+		return factory(locator)
 	}()
 
 	return obj, err

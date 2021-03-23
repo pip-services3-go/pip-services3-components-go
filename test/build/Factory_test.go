@@ -16,7 +16,7 @@ func TestFactory(t *testing.T) {
 	factory := build.NewFactory()
 	descriptor := refer.NewDescriptor("test", "object", "default", "*", "1.0")
 
-	factory.Register(descriptor, newObject)
+	factory.RegisterType(descriptor, newObject)
 
 	locator := factory.CanCreate(descriptor)
 	assert.NotNil(t, locator)

@@ -1,6 +1,6 @@
 module github.com/pip-services3-go/pip-services3-components-go
 
-go 1.12
+go 1.13
 
 require (
 	github.com/aymerick/raymond v2.0.2+incompatible
