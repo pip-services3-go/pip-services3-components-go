@@ -26,8 +26,8 @@ import (
  *
  * ### References ###
  *
- * - \*:discovery:\*:\*:1.0          (optional) [IDiscovery]] services to resolve connections
- * - \*:credential-store:\*:\*:1.0   (optional) Credential stores to resolve credentials
+ * - *:discovery:*:*:1.0          (optional) [IDiscovery]] services to resolve connections
+ * - *:credential-store:*:*:1.0   (optional) Credential stores to resolve credentials
  */
 type CompositeConnectionResolver struct {
 
