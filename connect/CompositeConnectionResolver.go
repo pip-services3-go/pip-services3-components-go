@@ -134,7 +134,7 @@ func (c *CompositeConnectionResolver) Resolve(correlationId string) (options *co
 // - parameters        optional parameters
 // - return 		   resolved options or error.
 func (c *CompositeConnectionResolver) Compose(correlationId string, connections []*ConnectionParams, credential *auth.CredentialParams,
-	parameters *config.ConfigParams) (options interface{}, err error) {
+	parameters *config.ConfigParams) (options *config.ConfigParams, err error) {
 
 	// Validate connection parameters
 	for _, connection := range connections {
