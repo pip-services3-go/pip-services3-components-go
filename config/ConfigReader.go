@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/aymerick/raymond"
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	mustache "github.com/pip-services3-go/pip-services3-expressions-go/mustache"
 )
 
 /*
@@ -35,7 +35,7 @@ func (c *ConfigReader) Configure(config *cconfig.ConfigParams) {
 }
 
 // Parameterized configuration template given as string with dynamic parameters.
-// The method uses Handlebars template engine: https://handlebarsjs.com
+// The method uses Mustache template engine implemented in expressions module
 // Parameters:
 //   - config string
 //   a string with configuration template to be parameterized
@@ -51,6 +51,12 @@ func (c *ConfigReader) Parameterize(config string, parameters *cconfig.ConfigPar
 	parameters = c.parameters.Override(parameters)
 
 	context := parameters.Value()
-	result, err := raymond.Render(config, context)
+
+	mustacheTemplate, err := mustache.NewMustacheTemplateFromString(config)
+	if err != nil {
+		return "", err
+	}
+
+	result, err := mustacheTemplate.EvaluateWithVariables(context)
 	return result, err
 }

@@ -13,8 +13,8 @@ func TestMemoryCache(t *testing.T) {
 	cache := cache.NewMemoryCache()
 	var str string
 
-	ok, err := cache.RetrieveAs("", "key1", &str)
-	assert.False(t, ok)
+	ref, err := cache.RetrieveAs("", "key1", &str)
+	assert.Nil(t, ref)
 	assert.Equal(t, "", str)
 	assert.Nil(t, err)
 
@@ -30,8 +30,8 @@ func TestMemoryCache(t *testing.T) {
 	assert.Equal(t, "value1", value)
 	assert.Nil(t, err)
 
-	ok, err = cache.RetrieveAs("", "key1", &str)
-	assert.True(t, ok)
+	ref, err = cache.RetrieveAs("", "key1", &str)
+	assert.NotNil(t, ref)
 	assert.Equal(t, "value1", str)
 	assert.Nil(t, err)
 

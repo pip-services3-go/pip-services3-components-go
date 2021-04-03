@@ -123,9 +123,9 @@ func (c *MemoryCache) Retrieve(correlationId string, key string) (interface{}, e
 //   - correlationId string
 //   transaction id to trace execution through call chain.
 //   - key string   a unique value key.
-//   - refObj       pointer to object for restore
+//   - result       pointer to object for restore
 // Returns bool, error
-func (c *MemoryCache) RetrieveAs(correlationId string, key string, refObj interface{}) (bool, error) {
+func (c *MemoryCache) RetrieveAs(correlationId string, key string, result interface{}) (interface{}, error) {
 	if key == "" {
 		panic("Key cannot be empty")
 	}
@@ -137,15 +137,15 @@ func (c *MemoryCache) RetrieveAs(correlationId string, key string, refObj interf
 	if entry != nil {
 		if entry.IsExpired() {
 			delete(c.cache, key)
-			return false, nil
+			return nil, nil
 		}
-		err := json.Unmarshal((entry.Value()).([]byte), refObj)
+		err := json.Unmarshal((entry.Value()).([]byte), result)
 		if err != nil {
-			return false, err
+			return nil, err
 		}
-		return true, nil
+		return result, nil
 	}
-	return false, nil
+	return nil, nil
 }
 
 // Stores value in the cache with expiration time, if success return stored value.

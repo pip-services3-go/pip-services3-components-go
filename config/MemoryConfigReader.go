@@ -1,14 +1,14 @@
 package config
 
 import (
-	"github.com/aymerick/raymond"
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	mustache "github.com/pip-services3-go/pip-services3-expressions-go/mustache"
 )
 
 /*
 Config reader that stores configuration in memory.
 
-The reader supports parameterization using Handlebars template engine: https://handlebarsjs.com
+The reader supports parameterization using Mustache template engine implemented in expressions module.
 
 Configuration parameters
 The configuration parameters are the configuration template
@@ -24,9 +24,9 @@ Example
 
   configReader := NewMemoryConfigReader();
   configReader.Configure(config);
-  
+
   parameters := NewConfigParamsFromValue(process.env);
-  
+
   res, err := configReader.ReadConfig("123", parameters);
   // Possible result: connection.host=10.1.1.100;connection.port=8080
 */
@@ -75,9 +75,19 @@ func (c *MemoryConfigReader) ReadConfig(correlationId string,
 	if parameters != nil {
 		template := c.config.String()
 		context := parameters.Value()
-		config, err := raymond.Render(template, context)
+
+		mustacheTemplate, err := mustache.NewMustacheTemplateFromString(template)
+		if err != nil {
+			return nil, err
+		}
+
+		config, err := mustacheTemplate.EvaluateWithVariables(context)
+		if err != nil {
+			return nil, err
+		}
+
 		result := cconfig.NewConfigParamsFromString(config)
-		return result, err
+		return result, nil
 	} else {
 		result := cconfig.NewConfigParamsFromValue(c.config.Value())
 		return result, nil
