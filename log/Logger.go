@@ -11,6 +11,10 @@ import (
 	"github.com/pip-services3-go/pip-services3-components-go/info"
 )
 
+type ILoggerOverrides interface {
+	Write(level int, correlationId string, err error, message string)
+}
+
 /*
 Abstract logger that captures and formats log messages. Child classes take the captured messages and write them to their specific destinations.
 
@@ -22,26 +26,22 @@ Parameters to pass to the configure method for component configuration:
 References
 *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 */
-type ILogWriter interface {
-	Write(level int, correlationId string, err error, message string)
-}
-
 type Logger struct {
-	level  int
-	source string
-	writer ILogWriter
+	Overrides ILoggerOverrides
+	level     int
+	source    string
 }
 
 // Creates a new instance of the logger and inherite from ILogerWriter.
 // Parameters:
-//   - writer ILogWriter
+//   - overrides ILoggerOverrides
 //   inherite from
 // Returns *Logger
-func InheritLogger(writer ILogWriter) *Logger {
+func InheritLogger(overrides ILoggerOverrides) *Logger {
 	return &Logger{
-		level:  Info,
-		source: "",
-		writer: writer,
+		Overrides: overrides,
+		level:     Info,
+		source:    "",
 	}
 }
 
@@ -140,8 +140,8 @@ func (c *Logger) FormatAndWrite(level int, correlationId string, err error, mess
 		message = fmt.Sprintf(message, args...)
 	}
 
-	if c.writer != nil {
-		c.writer.Write(level, correlationId, err, message)
+	if c.Overrides != nil {
+		c.Overrides.Write(level, correlationId, err, message)
 	}
 }
 

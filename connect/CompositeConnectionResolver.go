@@ -7,6 +7,22 @@ import (
 	"github.com/pip-services3-go/pip-services3-components-go/auth"
 )
 
+type ICompositeConnectionResolverOverrides interface {
+	ValidateConnection(correlationId string, connection *ConnectionParams) error
+
+	ValidateCredential(correlationId string, credential *auth.CredentialParams) error
+
+	ComposeOptions(connections []*ConnectionParams, credential *auth.CredentialParams, parameters *config.ConfigParams) *config.ConfigParams
+
+	MergeConnection(options *config.ConfigParams, connection *ConnectionParams) *config.ConfigParams
+
+	MergeCredential(options *config.ConfigParams, credential *auth.CredentialParams) *config.ConfigParams
+
+	MergeOptional(options *config.ConfigParams, parameters *config.ConfigParams) *config.ConfigParams
+
+	FinalizeOptions(options *config.ConfigParams) *config.ConfigParams
+}
+
 /**
  * Helper class that resolves connection and credential parameters,
  * validates them and generates connection options.
@@ -30,6 +46,7 @@ import (
  * - *:credential-store:*:*:1.0   (optional) Credential stores to resolve credentials
  */
 type CompositeConnectionResolver struct {
+	Overrides ICompositeConnectionResolverOverrides
 
 	// The connection options
 	Options *config.ConfigParams
@@ -53,10 +70,13 @@ type CompositeConnectionResolver struct {
 	SupportedProtocols []string
 }
 
-// NewCompositeConnectionResolver creates new CompositeConnectionResolver
+// InheritCompositeConnectionResolver creates new CompositeConnectionResolver
+// Parameters:
+//   - overrides a child reference with overrides for virtual methods
 // return *CompositeConnectionResolver
-func NewCompositeConnectionResolver() *CompositeConnectionResolver {
+func InheritCompositeConnectionResolver(overrides ICompositeConnectionResolverOverrides) *CompositeConnectionResolver {
 	return &CompositeConnectionResolver{
+		Overrides:          overrides,
 		ConnectionResolver: NewEmptyConnectionResolver(),
 		CredentialResolver: auth.NewEmptyCredentialResolver(),
 		ClusterSupported:   true,
@@ -138,7 +158,7 @@ func (c *CompositeConnectionResolver) Compose(correlationId string, connections 
 
 	// Validate connection parameters
 	for _, connection := range connections {
-		err = c.ValidateConnection(correlationId, connection)
+		err = c.Overrides.ValidateConnection(correlationId, connection)
 		if err != nil {
 			break
 		}
@@ -149,13 +169,13 @@ func (c *CompositeConnectionResolver) Compose(correlationId string, connections 
 	}
 
 	// Validate credential parameters
-	err = c.ValidateCredential(correlationId, credential)
+	err = c.Overrides.ValidateCredential(correlationId, credential)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return c.ComposeOptions(connections, credential, parameters), nil
+	return c.Overrides.ComposeOptions(connections, credential, parameters), nil
 }
 
 // Validates connection parameters.
@@ -216,17 +236,17 @@ func (c *CompositeConnectionResolver) ComposeOptions(connections []*ConnectionPa
 
 	// Merge connection parameters
 	for _, connection := range connections {
-		options = c.MergeConnection(options, connection)
+		options = c.Overrides.MergeConnection(options, connection)
 	}
 
 	// Merge credential parameters
-	options = c.MergeCredential(options, credential)
+	options = c.Overrides.MergeCredential(options, credential)
 
 	// Merge optional parameters
-	options = c.MergeOptional(options, parameters)
+	options = c.Overrides.MergeOptional(options, parameters)
 
 	// Perform final processing
-	options = c.FinalizeOptions(options)
+	options = c.Overrides.FinalizeOptions(options)
 
 	return options
 }

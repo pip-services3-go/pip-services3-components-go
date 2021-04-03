@@ -112,8 +112,6 @@
 				<dd><a href="index.html#pkg-constants">Constants</a></dd>
 			
 			
-				<dd><a href="index.html#pkg-variables">Variables</a></dd>
-			
 			
 				
 				<dd><a href="index.html#NewDefaultCountersFactory">func NewDefaultCountersFactory() *build.Factory</a></dd>
@@ -126,7 +124,7 @@
 				<dd><a href="index.html#CachedCounters">type CachedCounters</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InheritCacheCounters">func InheritCacheCounters(saver ICountersSaver) *CachedCounters</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritCacheCounters">func InheritCacheCounters(overrides ICachedCountersOverrides) *CachedCounters</a></dd>
 				
 				
 					
@@ -219,12 +217,12 @@
 				
 			
 				
-				<dd><a href="index.html#ICounters">type ICounters</a></dd>
+				<dd><a href="index.html#ICachedCountersOverrides">type ICachedCountersOverrides</a></dd>
 				
 				
 			
 				
-				<dd><a href="index.html#ICountersSaver">type ICountersSaver</a></dd>
+				<dd><a href="index.html#ICounters">type ICounters</a></dd>
 				
 				
 			
@@ -353,21 +351,6 @@ Increment: = 4 Counter that increment counters
 			
 		
 		
-			<h2 id="pkg-variables">Variables</h2>
-			
-				
-				<pre>var <span id="CompositeCountersDescriptor">CompositeCountersDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;counters&#34;, &#34;composite&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
-			
-				
-				<pre>var <span id="LogCountersDescriptor">LogCountersDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;counters&#34;, &#34;log&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
-			
-				<p>
-Creates ICounters components by their descriptors.
-</p>
-
-				<pre>var <span id="NullCountersDescriptor">NullCountersDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;counters&#34;, &#34;null&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
-			
-		
 		
 			
 			
@@ -405,7 +388,7 @@ TypeToString method converting counter type to string
 		
 			
 			
-			<h2 id="CachedCounters">type <a href="http://localhost:6060/src/count/CachedCounters.go?s=520:753#L9">CachedCounters</a>
+			<h2 id="CachedCounters">type <a href="http://localhost:6060/src/count/CachedCounters.go?s=520:760#L9">CachedCounters</a>
 				<a class="permalink" href="index.html#CachedCounters">&#xb6;</a>
 				
 				
@@ -422,6 +405,7 @@ Configuration parameters
 </pre>
 
 			<pre>type CachedCounters struct {
+<span id="CachedCounters.Overrides"></span>    Overrides <a href="index.html#ICachedCountersOverrides">ICachedCountersOverrides</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -436,12 +420,12 @@ Configuration parameters
 
 			
 				
-				<h3 id="InheritCacheCounters">func <a href="http://localhost:6060/src/count/CachedCounters.go?s=928:991#L28">InheritCacheCounters</a>
+				<h3 id="InheritCacheCounters">func <a href="http://localhost:6060/src/count/CachedCounters.go?s=945:1022#L29">InheritCacheCounters</a>
 					<a class="permalink" href="index.html#InheritCacheCounters">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func InheritCacheCounters(saver <a href="index.html#ICountersSaver">ICountersSaver</a>) *<a href="index.html#CachedCounters">CachedCounters</a></pre>
+				<pre>func InheritCacheCounters(overrides <a href="index.html#ICachedCountersOverrides">ICachedCountersOverrides</a>) *<a href="index.html#CachedCounters">CachedCounters</a></pre>
 				<p>
 Inherit cache counters from saver
 Parameters:
@@ -458,7 +442,7 @@ Returns *CachedCounters
 
 			
 				
-				<h3 id="CachedCounters.BeginTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=4369:4426#L170">BeginTiming</a>
+				<h3 id="CachedCounters.BeginTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=4408:4465#L171">BeginTiming</a>
 					<a class="permalink" href="index.html#CachedCounters.BeginTiming">&#xb6;</a>
 					
 					
@@ -481,7 +465,7 @@ a Timing callback object to end timing.
 				
 			
 				
-				<h3 id="CachedCounters.Clear">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1698:1741#L53">Clear</a>
+				<h3 id="CachedCounters.Clear">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1733:1776#L54">Clear</a>
 					<a class="permalink" href="index.html#CachedCounters.Clear">&#xb6;</a>
 					
 					
@@ -500,7 +484,7 @@ a counter name to clear.
 				
 			
 				
-				<h3 id="CachedCounters.ClearAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1839:1874#L61">ClearAll</a>
+				<h3 id="CachedCounters.ClearAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1874:1909#L62">ClearAll</a>
 					<a class="permalink" href="index.html#CachedCounters.ClearAll">&#xb6;</a>
 					
 					
@@ -515,7 +499,7 @@ Clears (resets) all counters.
 				
 			
 				
-				<h3 id="CachedCounters.Configure">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1368:1431#L44">Configure</a>
+				<h3 id="CachedCounters.Configure">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1403:1466#L45">Configure</a>
 					<a class="permalink" href="index.html#CachedCounters.Configure">&#xb6;</a>
 					
 					
@@ -534,7 +518,7 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="CachedCounters.Dump">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=1999:2036#L69">Dump</a>
+				<h3 id="CachedCounters.Dump">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2034:2071#L70">Dump</a>
 					<a class="permalink" href="index.html#CachedCounters.Dump">&#xb6;</a>
 					
 					
@@ -549,7 +533,7 @@ Dumps (saves) the current values of counters.
 				
 			
 				
-				<h3 id="CachedCounters.EndTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=4705:4769#L182">EndTiming</a>
+				<h3 id="CachedCounters.EndTiming">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=4744:4808#L183">EndTiming</a>
 					<a class="permalink" href="index.html#CachedCounters.EndTiming">&#xb6;</a>
 					
 					
@@ -572,7 +556,7 @@ execution elapsed time in milliseconds to update the counter.
 				
 			
 				
-				<h3 id="CachedCounters.Get">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=3331:3390#L133">Get</a>
+				<h3 id="CachedCounters.Get">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=3370:3429#L134">Get</a>
 					<a class="permalink" href="index.html#CachedCounters.Get">&#xb6;</a>
 					
 					
@@ -597,7 +581,7 @@ an existing or newly created counter of the specified type.
 				
 			
 				
-				<h3 id="CachedCounters.GetAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2823:2867#L113">GetAll</a>
+				<h3 id="CachedCounters.GetAll">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=2862:2906#L114">GetAll</a>
 					<a class="permalink" href="index.html#CachedCounters.GetAll">&#xb6;</a>
 					
 					
@@ -613,7 +597,7 @@ Returns []*Counter
 				
 			
 				
-				<h3 id="CachedCounters.Increment">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6418:6476#L247">Increment</a>
+				<h3 id="CachedCounters.Increment">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6457:6515#L248">Increment</a>
 					<a class="permalink" href="index.html#CachedCounters.Increment">&#xb6;</a>
 					
 					
@@ -634,7 +618,7 @@ a value to add to the counter.
 				
 			
 				
-				<h3 id="CachedCounters.IncrementOne">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6176:6226#L237">IncrementOne</a>
+				<h3 id="CachedCounters.IncrementOne">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=6215:6265#L238">IncrementOne</a>
 					<a class="permalink" href="index.html#CachedCounters.IncrementOne">&#xb6;</a>
 					
 					
@@ -653,7 +637,7 @@ a counter name of Increment type.
 				
 			
 				
-				<h3 id="CachedCounters.Last">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5446:5503#L207">Last</a>
+				<h3 id="CachedCounters.Last">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5485:5542#L208">Last</a>
 					<a class="permalink" href="index.html#CachedCounters.Last">&#xb6;</a>
 					
 					
@@ -675,7 +659,7 @@ a last value to record.
 				
 			
 				
-				<h3 id="CachedCounters.Stats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5068:5126#L194">Stats</a>
+				<h3 id="CachedCounters.Stats">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5107:5165#L195">Stats</a>
 					<a class="permalink" href="index.html#CachedCounters.Stats">&#xb6;</a>
 					
 					
@@ -696,7 +680,7 @@ a value to update statistics
 				
 			
 				
-				<h3 id="CachedCounters.Timestamp">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5936:6000#L227">Timestamp</a>
+				<h3 id="CachedCounters.Timestamp">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5975:6039#L228">Timestamp</a>
 					<a class="permalink" href="index.html#CachedCounters.Timestamp">&#xb6;</a>
 					
 					
@@ -717,7 +701,7 @@ a timestamp to record.
 				
 			
 				
-				<h3 id="CachedCounters.TimestampNow">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5695:5745#L217">TimestampNow</a>
+				<h3 id="CachedCounters.TimestampNow">func (*CachedCounters) <a href="http://localhost:6060/src/count/CachedCounters.go?s=5734:5784#L218">TimestampNow</a>
 					<a class="permalink" href="index.html#CachedCounters.TimestampNow">&#xb6;</a>
 					
 					
@@ -1077,6 +1061,30 @@ Returns *Counter
 		
 			
 			
+			<h2 id="ICachedCountersOverrides">type <a href="http://localhost:6060/src/count/CachedCounters.go?s=762:838#L21">ICachedCountersOverrides</a>
+				<a class="permalink" href="index.html#ICachedCountersOverrides">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ICachedCountersOverrides interface {
+    Save(counters []*<a href="index.html#Counter">Counter</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
 			<h2 id="ICounters">type <a href="http://localhost:6060/src/count/ICounters.go?s=396:1176#L3">ICounters</a>
 				<a class="permalink" href="index.html#ICounters">&#xb6;</a>
 				
@@ -1105,30 +1113,6 @@ Returns *Counter
 
     <span class="comment">// Increments counter by given value.</span>
     Increment(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value <a href="http://localhost:6060/pkg/builtin/#int">int</a>)
-}</pre>
-
-			
-
-			
-
-			
-			
-			
-
-			
-
-			
-		
-			
-			
-			<h2 id="ICountersSaver">type <a href="http://localhost:6060/src/count/CachedCounters.go?s=755:821#L20">ICountersSaver</a>
-				<a class="permalink" href="index.html#ICountersSaver">&#xb6;</a>
-				
-				
-			</h2>
-			
-			<pre>type ICountersSaver interface {
-    Save(counters []*<a href="index.html#Counter">Counter</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
 }</pre>
 
 			
@@ -1265,7 +1249,7 @@ Returns *LogCounters
 
 			
 				
-				<h3 id="LogCounters.Save">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=2930:2983#L98">Save</a>
+				<h3 id="LogCounters.Save">func (*LogCounters) <a href="http://localhost:6060/src/count/LogCounters.go?s=2929:2982#L97">Save</a>
 					<a class="permalink" href="index.html#LogCounters.Save">&#xb6;</a>
 					
 					

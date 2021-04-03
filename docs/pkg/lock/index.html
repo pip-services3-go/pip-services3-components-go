@@ -110,8 +110,6 @@
 			<dl>
 			
 			
-				<dd><a href="index.html#pkg-variables">Variables</a></dd>
-			
 			
 				
 				<dd><a href="index.html#NewDefaultLockFactory">func NewDefaultLockFactory() *build.Factory</a></dd>
@@ -123,10 +121,15 @@
 				
 			
 				
+				<dd><a href="index.html#ILockOverrides">type ILockOverrides</a></dd>
+				
+				
+			
+				
 				<dd><a href="index.html#Lock">type Lock</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InheritLock">func InheritLock(locker ILock) *Lock</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritLock">func InheritLock(overrides ILockOverrides) *Lock</a></dd>
 				
 				
 					
@@ -200,18 +203,6 @@
 
 		
 		
-			<h2 id="pkg-variables">Variables</h2>
-			
-				
-				<pre>var <span id="MemoryLockDescriptor">MemoryLockDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;lock&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
-			
-				<p>
-Creates ILock components by their descriptors.
-</p>
-
-				<pre>var <span id="NullLockDescriptor">NullLockDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;lock&#34;, &#34;null&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
-			
-		
 		
 			
 			
@@ -270,7 +261,31 @@ The lock allows to manage multiple locks identified by unique keys.
 		
 			
 			
-			<h2 id="Lock">type <a href="http://localhost:6060/src/lock/Lock.go?s=353:413#L7">Lock</a>
+			<h2 id="ILockOverrides">type <a href="http://localhost:6060/src/lock/Lock.go?s=161:201#L1">ILockOverrides</a>
+				<a class="permalink" href="index.html#ILockOverrides">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ILockOverrides interface {
+    <a href="index.html#ILock">ILock</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Lock">type <a href="http://localhost:6060/src/lock/Lock.go?s=395:464#L11">Lock</a>
 				<a class="permalink" href="index.html#Lock">&#xb6;</a>
 				
 				
@@ -286,6 +301,7 @@ Configuration parameters
 </pre>
 
 			<pre>type Lock struct {
+<span id="Lock.Overrides"></span>    Overrides <a href="index.html#ILockOverrides">ILockOverrides</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -300,12 +316,12 @@ Configuration parameters
 
 			
 				
-				<h3 id="InheritLock">func <a href="http://localhost:6060/src/lock/Lock.go?s=459:495#L14">InheritLock</a>
+				<h3 id="InheritLock">func <a href="http://localhost:6060/src/lock/Lock.go?s=510:558#L18">InheritLock</a>
 					<a class="permalink" href="index.html#InheritLock">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func InheritLock(locker <a href="index.html#ILock">ILock</a>) *<a href="index.html#Lock">Lock</a></pre>
+				<pre>func InheritLock(overrides <a href="index.html#ILockOverrides">ILockOverrides</a>) *<a href="index.html#Lock">Lock</a></pre>
 				<p>
 Inherit lock fron ILock
 Returns *Lock
@@ -317,7 +333,7 @@ Returns *Lock
 
 			
 				
-				<h3 id="Lock.AcquireLock">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=1238:1331#L40">AcquireLock</a>
+				<h3 id="Lock.AcquireLock">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=1304:1397#L44">AcquireLock</a>
 					<a class="permalink" href="index.html#Lock.AcquireLock">&#xb6;</a>
 					
 					
@@ -346,7 +362,7 @@ Returns error
 				
 			
 				
-				<h3 id="Lock.Configure">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=718:771#L25">Configure</a>
+				<h3 id="Lock.Configure">func (*Lock) <a href="http://localhost:6060/src/lock/Lock.go?s=784:837#L29">Configure</a>
 					<a class="permalink" href="index.html#Lock.Configure">&#xb6;</a>
 					
 					

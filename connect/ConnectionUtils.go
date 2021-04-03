@@ -14,8 +14,7 @@ var ConnectionUtils = TConnectionUtils{}
 /**
  * A set of utility functions to process connection parameters
  */
-type TConnectionUtils struct {
-}
+type TConnectionUtils struct{}
 
 /**
  * Concatinates two options by combining duplicated properties into comma-separated list
