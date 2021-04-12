@@ -8,25 +8,32 @@ import (
 //Aggregates all tracers from component references under a single component.
 //It allows to record traces and conveniently send them to multiple destinations.
 //### References ###
-//- <code>\*:tracer:\*:\*:1.0</code>     (optional) [[ITracer]] components to pass operation traces
+//- \*:tracer:\*:\*:1.0     (optional) [[ITracer]] components to pass operation traces
 //See [[ITracer]]
 //### Example ###
-//    class MyComponent implements IReferenceable {
-//        private _tracer: CompositeTracer = new CompositeTracer();
-//        public setReferences(references: IReferences): void {
-//            this._tracer.setReferences(references);
+//    type MyComponent struct {
+//         tracer CompositeTracer
+//		}
+//       func NewMyComponent() *MyComponent{
+//			return &MyComponent{
+//				tracer: NewCompositeTracer(nil);
+//          }
+//       }
+//        func (c* MyComponent) SetReferences(references IReferences) {
+//            c.tracer.SetReferences(references)
 //            ...
 //        }
-//        public myMethod(correlatonId: string): void {
-//            var timing = this._tracer.beginTrace(correlationId, "mycomponent", "mymethod");
-//            try {
+
+//        public MyMethod(correlatonId string) {
+//            timing := c.tracer.BeginTrace(correlationId, "mycomponent", "mymethod");
+//
 //                ...
-//                timing.endTrace();
-//            } catch (err) {
-//                timing.endFailure(err);
+//                timing.EndTrace();
+//            if err != nil {
+//                timing.EndFailure(err);
 //            }
 //        }
-//    }
+//
 
 type CompositeTracer struct {
 	Tracers []ITracer

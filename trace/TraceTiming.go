@@ -18,7 +18,7 @@ import "time"
 
 type TraceTiming struct {
 	start         int64
-	trace         ITracer
+	tracer        ITracer
 	correlationId string
 	component     string
 	operation     string
@@ -35,7 +35,7 @@ func NewTraceTiming(correlationId string, component string, operation string, tr
 		correlationId: correlationId,
 		component:     component,
 		operation:     operation,
-		trace:         tracer,
+		tracer:        tracer,
 		start:         time.Now().UTC().UnixNano(),
 	}
 }
@@ -43,9 +43,9 @@ func NewTraceTiming(correlationId string, component string, operation string, tr
 //Ends timing of an execution block, calculates elapsed time
 //and records the associated trace.
 func (c *TraceTiming) EndTrace() {
-	if c.trace != nil {
+	if c.tracer != nil {
 		elapsed := time.Now().UTC().UnixNano() - c.start
-		c.trace.Trace(c.correlationId, c.component, c.operation, elapsed/int64(time.Millisecond))
+		c.tracer.Trace(c.correlationId, c.component, c.operation, elapsed/int64(time.Millisecond))
 	}
 }
 
@@ -53,8 +53,8 @@ func (c *TraceTiming) EndTrace() {
 //and records the associated trace.
 //- error             an error object associated with this trace.
 func (c *TraceTiming) EndFailure(err error) {
-	if c.trace != nil {
+	if c.tracer != nil {
 		elapsed := time.Now().UTC().UnixNano() - c.start
-		c.trace.Failure(c.correlationId, c.component, c.operation, err, elapsed/int64(time.Millisecond))
+		c.tracer.Failure(c.correlationId, c.component, c.operation, err, elapsed/int64(time.Millisecond))
 	}
 }

@@ -21,7 +21,7 @@ import (
 //
 // ### References ###
 //
-// - \*:context-info:\*:\*:1.0     (optional) [[ContextInfo]] to detect the context id and specify counters source
+// - *:context-info:*:*:1.0     (optional) [[ContextInfo]] to detect the context id and specify counters source
 //
 // See [[ITracer]]
 // See [[OperationTrace]]
@@ -34,19 +34,18 @@ type CachedTracer struct {
 	source       string
 	Cache        []*OperationTrace
 	updated      bool
-	lastDumpTime int64
+	lastDumpTime time.Time
 	maxCacheSize int
 	interval     int64
 	saver        ICachedTraceSaver
 }
 
 // Creates a new instance of the logger.
-
 func InheritCachedTracer(saver ICachedTraceSaver) *CachedTracer {
 	return &CachedTracer{
 		Cache:        make([]*OperationTrace, 0),
 		updated:      false,
-		lastDumpTime: time.Now().UTC().UnixNano(),
+		lastDumpTime: time.Now().UTC(),
 		maxCacheSize: 100,
 		interval:     10000,
 		saver:        saver,
@@ -131,16 +130,9 @@ func (c *CachedTracer) Failure(correlationId string, component string, operation
 // - component         a name of called component
 // - operation         a name of the executed operation.
 // Returns                 a trace timing object.
-
 func (c *CachedTracer) BeginTrace(correlationId string, component string, operation string) *TraceTiming {
 	return NewTraceTiming(correlationId, component, operation, c)
 }
-
-// Saves log messages from the cache.
-//
-// - messages  a list with log messages
-// - callback  callback function that receives error or null for success.
-//func (c* CachedTracer) Save(messages: OperationTrace[], callback: (err: any) => void): void;
 
 // Clears (removes) all cached log messages.
 func (c *CachedTracer) Clear() {
@@ -149,7 +141,6 @@ func (c *CachedTracer) Clear() {
 }
 
 // Dumps (writes) the currently cached log messages.
-//
 // See [[Write]]
 func (c *CachedTracer) Dump() {
 	if c.updated {
@@ -174,21 +165,18 @@ func (c *CachedTracer) Dump() {
 		}
 
 		c.updated = false
-		c.lastDumpTime = time.Now().UTC().UnixNano()
+		c.lastDumpTime = time.Now().UTC()
 	}
 }
 
 // Makes trace cache as updated
 // and dumps it when timeout expires.
-//
-// See [[dump]]
+// See [[Dump]]
 func (c *CachedTracer) Update() {
 	c.updated = true
-	now := time.Now().UTC()
-
-	if now.UnixNano() > c.lastDumpTime+c.interval*int64(time.Millisecond) {
-
+	elapsed := int64(time.Since(c.lastDumpTime).Seconds() * 1000)
+	if elapsed > c.interval {
+		// Todo: Decide what to do with the error
 		c.Dump()
-
 	}
 }
