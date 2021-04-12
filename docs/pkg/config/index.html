@@ -116,8 +116,6 @@ ConfigReader&#39;s Parameterize method allows us to take a standard configuratio
 			<dl>
 			
 			
-				<dd><a href="index.html#pkg-variables">Variables</a></dd>
-			
 			
 				
 				<dd><a href="index.html#NewDefaultConfigReaderFactory">func NewDefaultConfigReaderFactory() *build.Factory</a></dd>
@@ -262,21 +260,6 @@ ConfigReader&#39;s Parameterize method allows us to take a standard configuratio
 
 		
 		
-			<h2 id="pkg-variables">Variables</h2>
-			
-				
-				<pre>var <span id="JsonConfigReaderDescriptor">JsonConfigReaderDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;config-reader&#34;, &#34;json&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
-			
-				<p>
-Creates IConfigReader components by their descriptors.
-</p>
-
-				<pre>var <span id="MemoryConfigReaderDescriptor">MemoryConfigReaderDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;config-reader&#34;, &#34;memory&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
-			
-				
-				<pre>var <span id="YamlConfigReaderDescriptor">YamlConfigReaderDescriptor</span> = <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">refer</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#NewDescriptor">NewDescriptor</a>(&#34;pip-services&#34;, &#34;config-reader&#34;, &#34;yaml&#34;, &#34;*&#34;, &#34;1.0&#34;)</pre>
-			
-		
 		
 			
 			
@@ -408,7 +391,7 @@ a JSON object with configuration.
 		
 			
 			
-			<h2 id="ConfigReader">type <a href="http://localhost:6060/src/config/ConfigReader.go?s=296:358#L4">ConfigReader</a>
+			<h2 id="ConfigReader">type <a href="http://localhost:6060/src/config/ConfigReader.go?s=343:405#L4">ConfigReader</a>
 				<a class="permalink" href="index.html#ConfigReader">&#xb6;</a>
 				
 				
@@ -437,7 +420,7 @@ Configuration parameters
 
 			
 				
-				<h3 id="NewConfigReader">func <a href="http://localhost:6060/src/config/ConfigReader.go?s=433:469#L10">NewConfigReader</a>
+				<h3 id="NewConfigReader">func <a href="http://localhost:6060/src/config/ConfigReader.go?s=480:516#L10">NewConfigReader</a>
 					<a class="permalink" href="index.html#NewConfigReader">&#xb6;</a>
 					
 					
@@ -454,7 +437,7 @@ Returns *ConfigReader
 
 			
 				
-				<h3 id="ConfigReader.Configure">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=697:759#L20">Configure</a>
+				<h3 id="ConfigReader.Configure">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=744:806#L20">Configure</a>
 					<a class="permalink" href="index.html#ConfigReader.Configure">&#xb6;</a>
 					
 					
@@ -473,7 +456,7 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="ConfigReader.Parameterize">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1288:1388#L36">Parameterize</a>
+				<h3 id="ConfigReader.Parameterize">func (*ConfigReader) <a href="http://localhost:6060/src/config/ConfigReader.go?s=1341:1441#L36">Parameterize</a>
 					<a class="permalink" href="index.html#ConfigReader.Parameterize">&#xb6;</a>
 					
 					
@@ -481,7 +464,7 @@ configuration parameters to be set.
 				<pre>func (c *<a href="index.html#ConfigReader">ConfigReader</a>) Parameterize(config <a href="http://localhost:6060/pkg/builtin/#string">string</a>, parameters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconfig</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>) (<a href="http://localhost:6060/pkg/builtin/#string">string</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Parameterized configuration template given as string with dynamic parameters.
-The method uses Handlebars template engine: <a href="https://handlebarsjs.com">https://handlebarsjs.com</a>
+The method uses Mustache template engine implemented in expressions module
 Parameters:
 </p>
 <pre>- config string
@@ -803,7 +786,7 @@ a JSON object with configuration adn error.
 		
 			
 			
-			<h2 id="MemoryConfigReader">type <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=836:900#L23">MemoryConfigReader</a>
+			<h2 id="MemoryConfigReader">type <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=886:950#L23">MemoryConfigReader</a>
 				<a class="permalink" href="index.html#MemoryConfigReader">&#xb6;</a>
 				
 				
@@ -812,7 +795,7 @@ a JSON object with configuration adn error.
 Config reader that stores configuration in memory.
 </p>
 <p>
-The reader supports parameterization using Handlebars template engine: <a href="https://handlebarsjs.com">https://handlebarsjs.com</a>
+The reader supports parameterization using Mustache template engine implemented in expressions module.
 </p>
 <p>
 Configuration parameters
@@ -854,7 +837,7 @@ res, err := configReader.ReadConfig(&#34;123&#34;, parameters);
 
 			
 				
-				<h3 id="NewEmptyMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=977:1030#L29">NewEmptyMemoryConfigReader</a>
+				<h3 id="NewEmptyMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1027:1080#L29">NewEmptyMemoryConfigReader</a>
 					<a class="permalink" href="index.html#NewEmptyMemoryConfigReader">&#xb6;</a>
 					
 					
@@ -869,7 +852,7 @@ Returns *MemoryConfigReader
 				
 			
 				
-				<h3 id="NewMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1276:1352#L40">NewMemoryConfigReader</a>
+				<h3 id="NewMemoryConfigReader">func <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1326:1402#L40">NewMemoryConfigReader</a>
 					<a class="permalink" href="index.html#NewMemoryConfigReader">&#xb6;</a>
 					
 					
@@ -892,7 +875,7 @@ Returns *MemoryConfigReader
 
 			
 				
-				<h3 id="MemoryConfigReader.Configure">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1561:1629#L50">Configure</a>
+				<h3 id="MemoryConfigReader.Configure">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=1611:1679#L50">Configure</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.Configure">&#xb6;</a>
 					
 					
@@ -911,7 +894,7 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="MemoryConfigReader.ReadConfig">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2003:2130#L62">ReadConfig</a>
+				<h3 id="MemoryConfigReader.ReadConfig">func (*MemoryConfigReader) <a href="http://localhost:6060/src/config/MemoryConfigReader.go?s=2053:2180#L62">ReadConfig</a>
 					<a class="permalink" href="index.html#MemoryConfigReader.ReadConfig">&#xb6;</a>
 					
 					

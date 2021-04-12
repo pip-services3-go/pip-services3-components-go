@@ -10,7 +10,7 @@ Example
   factory := NewCompositeFactory();
   factory.Add(NewDefaultLoggerFactory());
   factory.Add(NewDefaultCountersFactory());
-  
+
   loggerLocator := NewDescriptor("*", "logger", "*", "*", "1.0");
   factory.CanCreate(loggerLocator);         // Result: Descriptor("pip-service", "logger", "null", "default", "1.0")
   factory.Create(loggerLocator);             // Result: created NullLogger
@@ -72,7 +72,7 @@ func (c *CompositeFactory) Remove(factory IFactory) {
 // a locator for a component that the factory is able to create.
 func (c *CompositeFactory) CanCreate(locator interface{}) interface{} {
 	if locator == nil {
-		panic("Locator cannot be null")
+		panic("Locator cannot be nil")
 	}
 
 	// Iterate from the latest factories
@@ -94,7 +94,7 @@ func (c *CompositeFactory) CanCreate(locator interface{}) interface{} {
 // the created component and a CreateError if the factory is not able to create the component..
 func (c *CompositeFactory) Create(locator interface{}) (interface{}, error) {
 	if locator == nil {
-		panic("Locator cannot be null")
+		panic("Locator cannot be nil")
 	}
 
 	// Iterate from the latest factories

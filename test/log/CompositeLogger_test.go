@@ -3,16 +3,16 @@ package test_log
 import (
 	"testing"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/refer"
+	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	"github.com/pip-services3-go/pip-services3-components-go/log"
 )
 
 func newCompositeLoggerFixture() *LoggerFixture {
 	logger := log.NewCompositeLogger()
 
-	refs := refer.NewReferencesFromTuples(
-		log.ConsoleLoggerDescriptor, log.NewConsoleLogger(),
-		log.CompositeLoggerDescriptor, logger,
+	refs := cref.NewReferencesFromTuples(
+		cref.NewDescriptor("pip-services", "logger", "console", "default", "1.0"), log.NewConsoleLogger(),
+		// cref.NewDescriptor("pip-services", "logger", "composite", "default", "1.0"), logger,
 	)
 	logger.SetReferences(refs)
 

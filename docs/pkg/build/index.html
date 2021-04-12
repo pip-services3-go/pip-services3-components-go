@@ -155,7 +155,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Create">func (c *Factory) Create(locator interface{}) (interface{}, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Register">func (c *Factory) Register(locator interface{}, factory func() interface{})</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Factory.Register">func (c *Factory) Register(locator interface{}, factory func(locator interface{}) interface{})</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#Factory.RegisterType">func (c *Factory) RegisterType(locator interface{}, factory interface{})</a></dd>
@@ -249,7 +249,7 @@ Returns *errors.ApplicationError
 		
 			
 			
-			<h2 id="CompositeFactory">type <a href="http://localhost:6060/src/build/CompositeFactory.go?s=688:742#L8">CompositeFactory</a>
+			<h2 id="CompositeFactory">type <a href="http://localhost:6060/src/build/CompositeFactory.go?s=686:740#L8">CompositeFactory</a>
 				<a class="permalink" href="index.html#CompositeFactory">&#xb6;</a>
 				
 				
@@ -287,7 +287,7 @@ factory.Create(loggerLocator);             // Result: created NullLogger
 
 			
 				
-				<h3 id="NewCompositeFactory">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=815:859#L14">NewCompositeFactory</a>
+				<h3 id="NewCompositeFactory">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=813:857#L14">NewCompositeFactory</a>
 					<a class="permalink" href="index.html#NewCompositeFactory">&#xb6;</a>
 					
 					
@@ -302,7 +302,7 @@ Returns *CompositeFactory
 				
 			
 				
-				<h3 id="NewCompositeFactoryFromFactories">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1090:1168#L25">NewCompositeFactoryFromFactories</a>
+				<h3 id="NewCompositeFactoryFromFactories">func <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1088:1166#L25">NewCompositeFactoryFromFactories</a>
 					<a class="permalink" href="index.html#NewCompositeFactoryFromFactories">&#xb6;</a>
 					
 					
@@ -325,7 +325,7 @@ Returns *CompositeFactory
 
 			
 				
-				<h3 id="CompositeFactory.Add">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1350:1398#L35">Add</a>
+				<h3 id="CompositeFactory.Add">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1348:1396#L35">Add</a>
 					<a class="permalink" href="index.html#CompositeFactory.Add">&#xb6;</a>
 					
 					
@@ -344,7 +344,7 @@ a factory to be added.
 				
 			
 				
-				<h3 id="CompositeFactory.CanCreate">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=2313:2382#L63">CanCreate</a>
+				<h3 id="CompositeFactory.CanCreate">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=2311:2380#L63">CanCreate</a>
 					<a class="permalink" href="index.html#CompositeFactory.CanCreate">&#xb6;</a>
 					
 					
@@ -368,7 +368,7 @@ a locator for a component that the factory is able to create.
 				
 			
 				
-				<h3 id="CompositeFactory.Create">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=2922:2997#L85">Create</a>
+				<h3 id="CompositeFactory.Create">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=2919:2994#L85">Create</a>
 					<a class="permalink" href="index.html#CompositeFactory.Create">&#xb6;</a>
 					
 					
@@ -391,7 +391,7 @@ the created component and a CreateError if the factory is not able to create the
 				
 			
 				
-				<h3 id="CompositeFactory.Remove">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1631:1682#L47">Remove</a>
+				<h3 id="CompositeFactory.Remove">func (*CompositeFactory) <a href="http://localhost:6060/src/build/CompositeFactory.go?s=1629:1680#L47">Remove</a>
 					<a class="permalink" href="index.html#CompositeFactory.Remove">&#xb6;</a>
 					
 					
@@ -412,7 +412,7 @@ the factory to remove.
 		
 			
 			
-			<h2 id="Factory">type <a href="http://localhost:6060/src/build/Factory.go?s=838:892#L25">Factory</a>
+			<h2 id="Factory">type <a href="http://localhost:6060/src/build/Factory.go?s=855:909#L25">Factory</a>
 				<a class="permalink" href="index.html#Factory">&#xb6;</a>
 				
 				
@@ -433,7 +433,7 @@ the factory to remove.
 
 			
 				
-				<h3 id="NewFactory">func <a href="http://localhost:6060/src/build/Factory.go?s=935:961#L31">NewFactory</a>
+				<h3 id="NewFactory">func <a href="http://localhost:6060/src/build/Factory.go?s=952:978#L31">NewFactory</a>
 					<a class="permalink" href="index.html#NewFactory">&#xb6;</a>
 					
 					
@@ -450,7 +450,7 @@ Return *Factory
 
 			
 				
-				<h3 id="Factory.CanCreate">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=2656:2716#L88">CanCreate</a>
+				<h3 id="Factory.CanCreate">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=2711:2771#L88">CanCreate</a>
 					<a class="permalink" href="index.html#Factory.CanCreate">&#xb6;</a>
 					
 					
@@ -474,7 +474,7 @@ a locator for a component that the factory is able to create.
 				
 			
 				
-				<h3 id="Factory.Create">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=3266:3332#L110">Create</a>
+				<h3 id="Factory.Create">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=3321:3387#L110">Create</a>
 					<a class="permalink" href="index.html#Factory.Create">&#xb6;</a>
 					
 					
@@ -497,12 +497,12 @@ the created component and a CreateError if the factory is not able to create the
 				
 			
 				
-				<h3 id="Factory.Register">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1280:1355#L43">Register</a>
+				<h3 id="Factory.Register">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1297:1391#L43">Register</a>
 					<a class="permalink" href="index.html#Factory.Register">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Factory">Factory</a>) Register(locator interface{}, factory func() interface{})</pre>
+				<pre>func (c *<a href="index.html#Factory">Factory</a>) Register(locator interface{}, factory func(locator interface{}) interface{})</pre>
 				<p>
 Registers a component using a factory method.
 Parameters:
@@ -518,7 +518,7 @@ a factory function that receives a locator and returns a created component.
 				
 			
 				
-				<h3 id="Factory.RegisterType">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1781:1853#L63">RegisterType</a>
+				<h3 id="Factory.RegisterType">func (*Factory) <a href="http://localhost:6060/src/build/Factory.go?s=1817:1889#L63">RegisterType</a>
 					<a class="permalink" href="index.html#Factory.RegisterType">&#xb6;</a>
 					
 					

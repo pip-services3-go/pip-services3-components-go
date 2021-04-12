@@ -8,6 +8,11 @@ import (
 	"github.com/pip-services3-go/pip-services3-commons-go/errors"
 )
 
+type ICachedLoggerOverrides interface {
+	ILoggerOverrides
+	Save(messages []*LogMessage) error
+}
+
 /*
 Abstract logger that caches captured log messages in memory and periodically dumps them. Child classes implement saving cached messages to their specified destinations.
 
@@ -20,36 +25,32 @@ Configuration parameters
 References
 *:context-info:*:*:1.0 (optional) ContextInfo to detect the context id and specify counters source
 */
-type ICachedLogSaver interface {
-	Save(messages []*LogMessage) error
-}
-
 type CachedLogger struct {
 	Logger
+	Overrides    ICachedLoggerOverrides
 	Cache        []*LogMessage
 	Updated      bool
 	LastDumpTime time.Time
 	MaxCacheSize int
 	Interval     int
 	Lock         *sync.Mutex
-	saver        ICachedLogSaver
 }
 
 // Creates a new instance of the logger from ICachedLogSaver
 // Parameters:
-//  - saver ICachedLogSaver
+//  - overrides ICachedLoggerOverrides
 // Returns CachedLogger
-func InheritCachedLogger(saver ICachedLogSaver) *CachedLogger {
+func InheritCachedLogger(overrides ICachedLoggerOverrides) *CachedLogger {
 	c := &CachedLogger{
+		Overrides:    overrides,
 		Cache:        []*LogMessage{},
 		Updated:      false,
 		LastDumpTime: time.Now(),
 		MaxCacheSize: 100,
 		Interval:     10000,
 		Lock:         &sync.Mutex{},
-		saver:        saver,
 	}
-	c.Logger = *InheritLogger(c)
+	c.Logger = *InheritLogger(overrides)
 	return c
 }
 
@@ -118,7 +119,7 @@ func (c *CachedLogger) Dump() error {
 
 		c.Lock.Unlock()
 
-		err := c.saver.Save(messages)
+		err := c.Overrides.Save(messages)
 		if err != nil {
 			c.Lock.Lock()
 

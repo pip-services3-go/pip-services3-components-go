@@ -8,26 +8,26 @@ import (
 )
 
 type Component struct {
-	dependencyResolver *refer.DependencyResolver
-	logger             *log.CompositeLogger
-	counters           *count.CompositeCounters
+	DependencyResolver *refer.DependencyResolver
+	Logger             *log.CompositeLogger
+	Counters           *count.CompositeCounters
 }
 
 func InheritComponent() *Component {
 	return &Component{
-		dependencyResolver: refer.NewDependencyResolver(),
-		logger:             log.NewCompositeLogger(),
-		counters:           count.NewCompositeCounters(),
+		DependencyResolver: refer.NewDependencyResolver(),
+		Logger:             log.NewCompositeLogger(),
+		Counters:           count.NewCompositeCounters(),
 	}
 }
 
 func (c *Component) Configure(config *config.ConfigParams) {
-	c.dependencyResolver.Configure(config)
-	c.logger.Configure(config)
+	c.DependencyResolver.Configure(config)
+	c.Logger.Configure(config)
 }
 
 func (c *Component) SetReferences(references refer.IReferences) {
-	c.dependencyResolver.SetReferences(references)
-	c.logger.SetReferences(references)
-	c.counters.SetReferences(references)
+	c.DependencyResolver.SetReferences(references)
+	c.Logger.SetReferences(references)
+	c.Counters.SetReferences(references)
 }

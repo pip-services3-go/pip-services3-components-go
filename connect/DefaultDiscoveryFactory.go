@@ -8,14 +8,14 @@ import (
 /*
 Creates IDiscovery components by their descriptors.
 */
-var MemoryDiscoveryDescriptor = refer.NewDescriptor("pip-services", "discovery", "memory", "*", "1.0")
+var memoryDiscoveryDescriptor = refer.NewDescriptor("pip-services", "discovery", "memory", "*", "1.0")
 
 // Create a new instance of the factory.
 // Returns *build.Factory
 func NewDefaultDiscoveryFactory() *build.Factory {
 	factory := build.NewFactory()
 
-	factory.RegisterType(MemoryDiscoveryDescriptor, NewEmptyMemoryDiscovery)
+	factory.RegisterType(memoryDiscoveryDescriptor, NewEmptyMemoryDiscovery)
 
 	return factory
 }

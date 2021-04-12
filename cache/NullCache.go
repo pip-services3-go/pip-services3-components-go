@@ -31,8 +31,8 @@ func (c *NullCache) Retrieve(correlationId string, key string) (interface{}, err
 //   - key string   a unique value key.
 //   - refObj       pointer to object for restore
 // Returns bool, error
-func (c *NullCache) RetrieveAs(correlationId string, key string, refObj interface{}) (bool, error) {
-	return false, nil
+func (c *NullCache) RetrieveAs(correlationId string, key string, result interface{}) (interface{}, error) {
+	return nil, nil
 }
 
 // Stores value in the cache with expiration time, if success return stored value.

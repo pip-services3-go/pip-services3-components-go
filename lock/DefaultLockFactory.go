@@ -8,16 +8,16 @@ import (
 /*
 Creates ILock components by their descriptors.
 */
-var NullLockDescriptor = refer.NewDescriptor("pip-services", "lock", "null", "*", "1.0")
-var MemoryLockDescriptor = refer.NewDescriptor("pip-services", "lock", "memory", "*", "1.0")
+var nullLockDescriptor = refer.NewDescriptor("pip-services", "lock", "null", "*", "1.0")
+var memoryLockDescriptor = refer.NewDescriptor("pip-services", "lock", "memory", "*", "1.0")
 
 // Create a new instance of the factory.
 // Returns *build.Factory
 func NewDefaultLockFactory() *build.Factory {
 	factory := build.NewFactory()
 
-	factory.RegisterType(NullLockDescriptor, NewNullLock)
-	factory.RegisterType(MemoryLockDescriptor, NewMemoryLock)
+	factory.RegisterType(nullLockDescriptor, NewNullLock)
+	factory.RegisterType(memoryLockDescriptor, NewMemoryLock)
 
 	return factory
 }

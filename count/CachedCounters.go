@@ -17,6 +17,8 @@ Configuration parameters
     reset_timeout: timeout in milliseconds to reset the counters. 0 disables the reset (default: 0)
 */
 type CachedCounters struct {
+	Overrides ICachedCountersOverrides
+
 	cache         map[string]*Counter
 	updated       bool
 	lastDumpTime  time.Time
@@ -24,10 +26,9 @@ type CachedCounters struct {
 	mux           sync.Mutex
 	interval      int64
 	resetTimeout  int64
-	saver         ICountersSaver
 }
 
-type ICountersSaver interface {
+type ICachedCountersOverrides interface {
 	Save(counters []*Counter) error
 }
 
@@ -35,15 +36,15 @@ type ICountersSaver interface {
 // Parameters:
 //  - save ICountersSaver
 // Returns *CachedCounters
-func InheritCacheCounters(saver ICountersSaver) *CachedCounters {
+func InheritCacheCounters(overrides ICachedCountersOverrides) *CachedCounters {
 	return &CachedCounters{
+		Overrides:     overrides,
 		cache:         map[string]*Counter{},
 		updated:       false,
 		lastDumpTime:  time.Now(),
 		lastResetTime: time.Now(),
 		interval:      300000,
 		resetTimeout:  0,
-		saver:         saver,
 	}
 }
 
@@ -82,7 +83,7 @@ func (c *CachedCounters) Dump() error {
 	}
 
 	counters := c.GetAll()
-	err := c.saver.Save(counters)
+	err := c.Overrides.Save(counters)
 	if err != nil {
 		return err
 	}
