@@ -11,8 +11,8 @@ They are critical to monitor and improve performance, scalability and reliabilit
 */
 
 type ICounters interface {
-	// Begins measurement of execution time interval. It returns Timing object which has to be called at Timing.endTiming to end the measurement and update the counter.
-	BeginTiming(name string) *Timing
+	// Begins measurement of execution time interval. It returns CounterTiming object which has to be called at CounterTiming.EndTiming to end the measurement and update the counter.
+	BeginTiming(name string) *CounterTiming
 
 	// Calculates min/average/max statistics based on the current and previous values.
 	Stats(name string, value float32)

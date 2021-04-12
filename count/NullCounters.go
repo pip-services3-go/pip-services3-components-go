@@ -15,14 +15,14 @@ func NewNullCounters() *NullCounters {
 	return &NullCounters{}
 }
 
-// Begins measurement of execution time interval. It returns Timing object which has to be called at Timing.endTiming to end the measurement and update the counter.
+// Begins measurement of execution time interval. It returns CounterTiming object which has to be called at CounterTiming.endCounterTiming to end the measurement and update the counter.
 // Parameters:
 //   - name string
 //   a counter name of Interval type.
-// Returns *Timing
-// a Timing callback object to end timing.
-func (c *NullCounters) BeginTiming(name string) *Timing {
-	return NewEmptyTiming()
+// Returns *CounterTiming
+// a CounterTiming callback object to end timing.
+func (c *NullCounters) BeginTiming(name string) *CounterTiming {
+	return NewEmptyCounterTiming()
 }
 
 // Calculates min/average/max statistics based on the current and previous values.

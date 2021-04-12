@@ -12,6 +12,6 @@ Interface for a callback to end measurement of execution elapsed time.
 //   a counter name
 //   - elapsed float32
 //   execution elapsed time in milliseconds to update the counter.
-type ITimingCallback interface {
+type ICounterTimingCallback interface {
 	EndTiming(name string, elapsed float32)
 }

@@ -12,16 +12,16 @@ Example
   defer  timing.EndTiming();
 
 */
-type Timing struct {
+type CounterTiming struct {
 	start    time.Time
-	callback ITimingCallback
+	callback ICounterTimingCallback
 	counter  string
 }
 
 // Creates a new instance of the timing callback object.
-// Retruns *Timing
-func NewEmptyTiming() *Timing {
-	return &Timing{
+// Retruns *CounterTiming
+func NewEmptyCounterTiming() *CounterTiming {
+	return &CounterTiming{
 		start: time.Now(),
 	}
 }
@@ -30,11 +30,11 @@ func NewEmptyTiming() *Timing {
 // Parameters:
 //   - counter string
 //   an associated counter name
-//   - callback ITimingCallback
+//   - callback ICounterTimingCallback
 //   a callback that shall be called when EndTiming is called.
-// Retruns *Timing
-func NewTiming(counter string, callback ITimingCallback) *Timing {
-	return &Timing{
+// Retruns *CounterTiming
+func NewCounterTiming(counter string, callback ICounterTimingCallback) *CounterTiming {
+	return &CounterTiming{
 		start:    time.Now(),
 		callback: callback,
 		counter:  counter,
@@ -42,7 +42,7 @@ func NewTiming(counter string, callback ITimingCallback) *Timing {
 }
 
 // Ends timing of an execution block, calculates elapsed time and updates the associated counter.
-func (c *Timing) EndTiming() {
+func (c *CounterTiming) EndTiming() {
 	if c.callback == nil {
 		return
 	}

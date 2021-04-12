@@ -23,13 +23,13 @@ Example
       func (mc * MyConponent)setReferences(references: IReferences) {
           mc._counters.SetReferences(references);
       }
-  
+
       func (mc * MyConponent) myMethod() {
           mc._counters.Increment("mycomponent.mymethod.calls");
           timing := mc._counters.BeginTiming("mycomponent.mymethod.exec_time");
   		 defer timing.EndTiming();
   		// do something
-  
+
       	}
   var mc MyComponent{};
   mc._counters = NewCompositeCounters();
@@ -81,19 +81,19 @@ func (c *CompositeCounters) SetReferences(references refer.IReferences) {
 	}
 }
 
-// Begins measurement of execution time interval. It returns Timing object which has to be called at Timing.endTiming to end the measurement and update the counter.
+// Begins measurement of execution time interval. It returns CounterTiming object which has to be called at CounterTiming.EndCounterTiming to end the measurement and update the counter.
 // Parameters:
 // 			- name string
 // 			a counter name of Interval type.
-// Returns *Timing
-// a Timing callback object to end timing.
-func (c *CompositeCounters) BeginTiming(name string) *Timing {
-	return NewTiming(name, c)
+// Returns *CounterTiming
+// a CounterTiming callback object to end timing.
+func (c *CompositeCounters) BeginTiming(name string) *CounterTiming {
+	return NewCounterTiming(name, c)
 }
 
 // Ends measurement of execution elapsed time and updates specified counter.
 // see
-// Timing.endTiming
+// CounterTiming.endCounterTiming
 // Parameters:
 // 			- name string
 // 			a counter name
@@ -101,7 +101,7 @@ func (c *CompositeCounters) BeginTiming(name string) *Timing {
 // 			execution elapsed time in milliseconds to update the counter.
 func (c *CompositeCounters) EndTiming(name string, elapsed float32) {
 	for _, counter := range c.counters {
-		callback, ok := counter.(ITimingCallback)
+		callback, ok := counter.(ICounterTimingCallback)
 		if ok {
 			callback.EndTiming(name, elapsed)
 		}

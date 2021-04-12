@@ -171,19 +171,19 @@ func (c *CachedCounters) calculateStats(counter *Counter, value float32) {
 	counter.Average = ((counter.Average * float32(counter.Count-1)) + value) / float32(counter.Count)
 }
 
-// Begins measurement of execution time interval. It returns Timing object which has to be called at Timing.endTiming to end the measurement and update the counter.
+// Begins measurement of execution time interval. It returns CounterTiming object which has to be called at CounterTiming.EndTiming to end the measurement and update the counter.
 // Parameters
 //   - name string
 //   a counter name of Interval type.
-// Returns *Timing
-// a Timing callback object to end timing.
-func (c *CachedCounters) BeginTiming(name string) *Timing {
-	return NewTiming(name, c)
+// Returns *CounterTiming
+// a CounterTiming callback object to end timing.
+func (c *CachedCounters) BeginTiming(name string) *CounterTiming {
+	return NewCounterTiming(name, c)
 }
 
 // Ends measurement of execution elapsed time and updates specified counter.
 // see
-// Timing.endTiming
+// CounterTiming.EndTiming
 // Parameters:
 //   - name string
 //   a counter name
