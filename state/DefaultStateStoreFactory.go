@@ -5,11 +5,6 @@ import (
 	"github.com/pip-services3-go/pip-services3-components-go/build"
 )
 
-var (
-	nullStateStoreDescriptor   = refer.NewDescriptor("pip-services", "state-store", "null", "*", "1.0")
-	memoryStateStoreDescriptor = refer.NewDescriptor("pip-services", "state-store", "memory", "*", "1.0")
-)
-
 // Creates IStateStore components by their descriptors.
 // See Factory
 // See IStateStore
@@ -17,6 +12,8 @@ var (
 // See NullStateStore
 func NewDefaultStateStoreFactory() *build.Factory {
 	factory := build.NewFactory()
+	nullStateStoreDescriptor := refer.NewDescriptor("pip-services", "state-store", "null", "*", "1.0")
+	memoryStateStoreDescriptor := refer.NewDescriptor("pip-services", "state-store", "memory", "*", "1.0")
 
 	factory.RegisterType(nullStateStoreDescriptor, NewEmptyNullStateStore)
 	factory.RegisterType(memoryStateStoreDescriptor, NewEmptyMemoryStateStore)
