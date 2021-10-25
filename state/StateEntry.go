@@ -4,9 +4,9 @@ import "time"
 
 //Data object to store state values with their keys used by [[MemoryStateEntry]]
 type StateEntry struct {
-	key            string
-	value          interface{}
-	lastUpdateTime int64 // timestamp in ms
+	key            string      `json:"key" bson:"key"`
+	value          interface{} `json:"value" bson:"value"`
+	lastUpdateTime int64       `json:"last_update_time" bson:"last_update_time"` // timestamp in ms
 }
 
 // NewStateEntry method creates a new instance of the state entry and assigns its values.
