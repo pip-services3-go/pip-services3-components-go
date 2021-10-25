@@ -1,6 +1,9 @@
 package config
 
-import c "github.com/pip-services3-go/pip-services3-commons-go/config"
+import (
+	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
+	crun "github.com/pip-services3-go/pip-services3-commons-go/run"
+)
 
 /*
 Interface for configuration readers that retrieve configuration from various sources and make it available for other components.
@@ -9,5 +12,11 @@ Some IConfigReader implementations may support configuration parameterization. T
 */
 type IConfigReader interface {
 	// Reads configuration and parameterize it with given values.
-	ReadConfig(correlationId string, parameters *c.ConfigParams) (*c.ConfigParams, error)
+	ReadConfig(correlationId string, parameters *cconf.ConfigParams) (*cconf.ConfigParams, error)
+
+	//Adds a listener that will be notified when configuration is changed
+	AddChangeListener(listener crun.INotifiable)
+
+	// Remove a previously added change listener.
+	RemoveChangeListener(listener crun.INotifiable)
 }

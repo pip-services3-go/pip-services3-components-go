@@ -2,15 +2,13 @@ package config
 
 import (
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	crun "github.com/pip-services3-go/pip-services3-commons-go/run"
 	mustache "github.com/pip-services3-go/pip-services3-expressions-go/mustache"
 )
 
-/*
-Abstract config reader that supports configuration parameterization.
-
-Configuration parameters
-  parameters: this entire section is used as template parameters
-*/
+// Abstract config reader that supports configuration parameterization.
+// Configuration parameters
+//   parameters: this entire section is used as template parameters
 type ConfigReader struct {
 	parameters *cconfig.ConfigParams
 }
@@ -59,4 +57,14 @@ func (c *ConfigReader) Parameterize(config string, parameters *cconfig.ConfigPar
 
 	result, err := mustacheTemplate.EvaluateWithVariables(context)
 	return result, err
+}
+
+// AddChangeListener - Adds a listener that will be notified when configuration is changed
+func (c *ConfigReader) AddChangeListener(listener crun.INotifiable) {
+	// Do nothing...
+}
+
+// RemoveChangeListener - Remove a previously added change listener.
+func (c *ConfigReader) RemoveChangeListener(listener crun.INotifiable) {
+	// Do nothing...
 }

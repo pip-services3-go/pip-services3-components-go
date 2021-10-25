@@ -2,6 +2,7 @@ package config
 
 import (
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	crun "github.com/pip-services3-go/pip-services3-commons-go/run"
 	mustache "github.com/pip-services3-go/pip-services3-expressions-go/mustache"
 )
 
@@ -92,4 +93,14 @@ func (c *MemoryConfigReader) ReadConfig(correlationId string,
 		result := cconfig.NewConfigParamsFromValue(c.config.Value())
 		return result, nil
 	}
+}
+
+// AddChangeListener - Adds a listener that will be notified when configuration is changed
+func (c *MemoryConfigReader) AddChangeListener(listener crun.INotifiable) {
+	// Do nothing...
+}
+
+// RemoveChangeListener - Remove a previously added change listener.
+func (c *MemoryConfigReader) RemoveChangeListener(listener crun.INotifiable) {
+	// Do nothing...
 }
