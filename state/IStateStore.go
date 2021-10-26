@@ -1,7 +1,6 @@
 package state
 
 // Interface for state storages that are used to store and retrieve transaction states.
-
 type IStateStore interface {
 
 	// Loads state from the store using its key.

@@ -2,7 +2,7 @@ package state
 
 import "time"
 
-//Data object to store state values with their keys used by [[MemoryStateEntry]]
+// Data object to store state values with their keys used by [[MemoryStateEntry]]
 type StateEntry struct {
 	key            string      `json:"key" bson:"key"`
 	value          interface{} `json:"value" bson:"value"`

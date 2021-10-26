@@ -13,20 +13,17 @@ import (
 //
 // ### Configuration parameters ###
 //
-// __options:__
+//  options:
 // - timeout:               default caching timeout in milliseconds (default: disabled)
-//
-// See ICache
 //
 // ### Example ###
 //
-//     let store = new MemoryStateStore();
-//
-//     let value = await store.load("123", "key1");
+//     store := NewMemoryStateStore();
+//     value := store.Load("123", "key1");
 //     ...
-//     await store.save("123", "key1", "ABC");
+//     store.Save("123", "key1", "ABC");
 //
-type MemoryStateStore struct { //implements IStateStore, IReconfigurable
+type MemoryStateStore struct {
 	states  map[string]interface{}
 	timeout int64
 }
@@ -35,21 +32,18 @@ type MemoryStateStore struct { //implements IStateStore, IReconfigurable
 
 func NewEmptyMemoryStateStore() *MemoryStateStore {
 	return &MemoryStateStore{
-		states:  make(map[string]interface{}, 0),
+		states:  make(map[string]interface{}),
 		timeout: 0,
 	}
 }
 
 // Configures component by passing configuration parameters.
-//
 // - config    configuration parameters to be set.
 func (c *MemoryStateStore) Configure(config *cconf.ConfigParams) {
 	c.timeout = config.GetAsLongWithDefault("options.timeout", c.timeout)
 }
 
 // Clears component state.
-//
-// - correlationId 	(optional) transaction id to trace execution through call chain.
 func (c *MemoryStateStore) cleanup() {
 	if c.timeout == 0 {
 		return
@@ -142,7 +136,6 @@ func (c *MemoryStateStore) Save(correlationId string, key string, value interfac
 //
 // - correlationId     (optional) transaction id to trace execution through call chain.
 // - key               a unique state key.
-
 func (c *MemoryStateStore) Delete(correlationId string, key string) interface{} {
 	if len(key) == 0 {
 		panic(errors.NewError("Key cannot be empty"))

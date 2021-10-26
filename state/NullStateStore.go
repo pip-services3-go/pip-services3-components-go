@@ -4,9 +4,7 @@ package state
 //
 // It can be used in testing or in situations when state management is not required
 // but shall be disabled.
-//
-// See ICache
-type NullStateStore struct { // implements IStateStore
+type NullStateStore struct {
 }
 
 func NewEmptyNullStateStore() *NullStateStore {
