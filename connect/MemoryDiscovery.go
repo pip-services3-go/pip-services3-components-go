@@ -19,19 +19,19 @@ see
 ConnectionParams
 
 Example
-  config := NewConfigParamsFromTuples(
-      "key1.host", "10.1.1.100",
-      "key1.port", "8080",
-      "key2.host", "10.1.1.100",
-      "key2.port", "8082"
-  );
-  
-  discovery := NewMemoryDiscovery();
-  discovery.ReadConnections(config);
-  
-  discovery.Resolve("123", "key1", (err, connection) => {
-      // Result: host=10.1.1.100;port=8080
-  });
+  config := config.NewConfigParamsFromTuples(
+  	"connections.key1.host", "10.1.1.100",
+  	"connections.key1.port", "8080",
+  	"connections.key2.host", "10.1.1.101",
+  	"connections.key2.port", "8082",
+  )
+
+  discovery := NewEmptyMemoryDiscovery();
+  discovery.Configure(config);
+
+  connection, err := discovery.ResolveOne("123", "key1")
+  // Result: host=10.1.1.100;port=8080
+
 */
 type MemoryDiscovery struct {
 	items map[string][]*ConnectionParams
@@ -76,12 +76,14 @@ func (c *MemoryDiscovery) Configure(config *config.ConfigParams) {
 // configuration parameters to be read
 func (c *MemoryDiscovery) ReadConnections(config *config.ConfigParams) {
 	c.items = map[string][]*ConnectionParams{}
+	connections := config.GetSection("connections")
 
-	keys := config.Keys()
-	for _, key := range keys {
-		value := config.GetAsString(key)
-		connection := NewConnectionParamsFromString(value)
-		c.items[key] = []*ConnectionParams{connection}
+	if connections.Len() > 0 {
+		connectionSections := connections.GetSectionNames()
+		for _, key := range connectionSections {
+			connection := connections.GetSection(key)
+			c.items[key] = []*ConnectionParams{NewConnectionParamsFromValue(connection)}
+		}
 	}
 }
 
@@ -98,13 +100,14 @@ func (c *MemoryDiscovery) Register(correlationId string, key string,
 	connection *ConnectionParams) (result *ConnectionParams, err error) {
 
 	if connection != nil {
-		connections, _ := c.items[key]
+		connections := c.items[key]
 		if connections == nil {
 			connections = []*ConnectionParams{connection}
-			c.items[key] = connections
 		} else {
 			connections = append(connections, connection)
 		}
+
+		c.items[key] = connections
 	}
 
 	return connection, nil
