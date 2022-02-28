@@ -26,7 +26,7 @@ Example
       "key2.user", "bsmith",
       "key2.pass", "mypass"
   );
-  
+
   credentialStore := NewEmptyMemoryCredentialStore();
   credentialStore.ReadCredentials(config);
   res, err := credentialStore.Lookup("123", "key1");
@@ -75,11 +75,11 @@ func (c *MemoryCredentialStore) Configure(config *config.ConfigParams) {
 func (c *MemoryCredentialStore) ReadCredentials(config *config.ConfigParams) {
 	c.items = map[string]*CredentialParams{}
 
-	keys := config.Keys()
-	for _, key := range keys {
-		value := config.GetAsString(key)
-		credential := NewCredentialParamsFromString(value)
-		c.items[key] = credential
+	sections := config.GetSectionNames()
+	for _, section := range sections {
+		value := config.GetSection(section)
+		credential := NewCredentialParams(value.Value())
+		c.items[section] = credential
 	}
 }
 
