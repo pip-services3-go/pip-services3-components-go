@@ -1,6 +1,10 @@
 {
-  "name": "pip-services3-components-go",
-  "registry": "github.com/pip-services3-go",
+  "name":  "pip-services3-components-go",
+  "type": "module",
+  "language": "go",
   "version": "1.3.1",
-  "build": 0
+  "build": 0,
+  "registry": "pipdevs",
+  "artifacts": [
+  ]
 }
