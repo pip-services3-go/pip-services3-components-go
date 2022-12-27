@@ -2,6 +2,7 @@ name: Pip.Services Components Go Delivery
 
 # Configure trigger rules
 on: 
+  push:
     branches:
       - master
     paths:
