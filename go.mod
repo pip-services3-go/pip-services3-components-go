@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/pip-services3-go/pip-services3-commons-go v1.1.6
-	github.com/pip-services3-go/pip-services3-expressions-go v1.0.0
-	github.com/stretchr/testify v1.7.0
+	github.com/pip-services3-go/pip-services3-expressions-go v1.1.0
+	github.com/stretchr/testify v1.8.1
 	gopkg.in/yaml.v2 v2.4.0
 )

@@ -1,6 +1,6 @@
 # <img src="https://uploads-ssl.webflow.com/5ea5d3315186cf5ec60c3ee4/5edf1c94ce4c859f2b188094_logo.svg" alt="Pip.Services Logo" width="200"> <br/> Component definitions for Pip.Services in Go Changelog
 
-## <a name="1.3.1"></a> 1.3.1 (2023-01-12) 
+## <a name="1.3.2"></a> 1.3.2 (2023-01-12) 
 
 ## Bug fixes
 * Fixed MemoryCredentialStore reading by keys
