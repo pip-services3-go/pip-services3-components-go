@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#375EAB">
 
-  <title>test_log - Go Documentation Server</title>
+  <title>test_state - Go Documentation Server</title>
 
 <link type="text/css" rel="stylesheet" href="../../../lib/godoc/style.css">
 
@@ -43,7 +43,7 @@
 
 
   <h1>
-    Package test_log
+    Package test_state
     <span class="text-muted"></span>
   </h1>
 
@@ -77,7 +77,7 @@
 		
 		<div id="short-nav">
 			<dl>
-			<dd><code>import "test/log"</code></dd>
+			<dd><code>import "test/state"</code></dd>
 			</dl>
 			<dl>
 			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
@@ -110,23 +110,22 @@
 			<dl>
 			
 			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
 			
 			
+			
 				
-				<dd><a href="index.html#LoggerFixture">type LoggerFixture</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewLoggerFixture">func NewLoggerFixture(logger log.ILogger) *LoggerFixture</a></dd>
-				
+				<dd><a href="index.html#StateStoreFixture">type StateStoreFixture</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#LoggerFixture.TestErrorLogging">func (c *LoggerFixture) TestErrorLogging(t *testing.T)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStateStoreFixture">func NewStateStoreFixture(state state.IStateStore) *StateStoreFixture</a></dd>
+				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#LoggerFixture.TestLogLevel">func (c *LoggerFixture) TestLogLevel(t *testing.T)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StateStoreFixture.TestDelete">func (c *StateStoreFixture) TestDelete(t *testing.T)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#LoggerFixture.TestSimpleLogging">func (c *LoggerFixture) TestSimpleLogging(t *testing.T)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#StateStoreFixture.TestSaveAndLoad">func (c *StateStoreFixture) TestSaveAndLoad(t *testing.T)</a></dd>
 				
 			
 			
@@ -140,7 +139,7 @@
 			<p>
 			<span style="font-size:90%">
 			
-				<a href="http://localhost:6060/src/test/log/LoggerFixture.go">LoggerFixture.go</a>
+				<a href="http://localhost:6060/src/test/state/StateStoreFixture.go">StateStoreFixture.go</a>
 			
 			</span>
 			</p>
@@ -152,17 +151,32 @@
 
 		
 		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var <span id="KEY1">KEY1</span> <a href="http://localhost:6060/pkg/builtin/#string">string</a> = &#34;key1&#34;</pre>
+			
+				
+				<pre>var <span id="KEY2">KEY2</span> <a href="http://localhost:6060/pkg/builtin/#string">string</a> = &#34;key2&#34;</pre>
+			
+				
+				<pre>var <span id="VALUE1">VALUE1</span> <a href="http://localhost:6060/pkg/builtin/#string">string</a> = &#34;value1&#34;</pre>
+			
+				
+				<pre>var <span id="VALUE2">VALUE2</span> <a href="http://localhost:6060/pkg/builtin/#string">string</a> = &#34;value2&#34;</pre>
+			
+		
 		
 		
 			
 			
-			<h2 id="LoggerFixture">type <a href="http://localhost:6060/src/test/log/LoggerFixture.go?s=153:202#L1">LoggerFixture</a>
-				<a class="permalink" href="index.html#LoggerFixture">&#xb6;</a>
+			<h2 id="StateStoreFixture">type <a href="http://localhost:6060/src/test/state/StateStoreFixture.go?s=257:315#L6">StateStoreFixture</a>
+				<a class="permalink" href="index.html#StateStoreFixture">&#xb6;</a>
 				
 				
 			</h2>
 			
-			<pre>type LoggerFixture struct {
+			<pre>type StateStoreFixture struct {
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -177,12 +191,12 @@
 
 			
 				
-				<h3 id="NewLoggerFixture">func <a href="http://localhost:6060/src/test/log/LoggerFixture.go?s=204:260#L5">NewLoggerFixture</a>
-					<a class="permalink" href="index.html#NewLoggerFixture">&#xb6;</a>
+				<h3 id="NewStateStoreFixture">func <a href="http://localhost:6060/src/test/state/StateStoreFixture.go?s=317:386#L10">NewStateStoreFixture</a>
+					<a class="permalink" href="index.html#NewStateStoreFixture">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewLoggerFixture(logger <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/log/">log</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/log/#ILogger">ILogger</a>) *<a href="index.html#LoggerFixture">LoggerFixture</a></pre>
+				<pre>func NewStateStoreFixture(state <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/state/">state</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/state/#IStateStore">IStateStore</a>) *<a href="index.html#StateStoreFixture">StateStoreFixture</a></pre>
 				
 				
 				
@@ -190,36 +204,24 @@
 
 			
 				
-				<h3 id="LoggerFixture.TestErrorLogging">func (*LoggerFixture) <a href="http://localhost:6060/src/test/log/LoggerFixture.go?s=796:850#L27">TestErrorLogging</a>
-					<a class="permalink" href="index.html#LoggerFixture.TestErrorLogging">&#xb6;</a>
+				<h3 id="StateStoreFixture.TestDelete">func (*StateStoreFixture) <a href="http://localhost:6060/src/test/state/StateStoreFixture.go?s=814:866#L30">TestDelete</a>
+					<a class="permalink" href="index.html#StateStoreFixture.TestDelete">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#LoggerFixture">LoggerFixture</a>) TestErrorLogging(t *<a href="http://localhost:6060/pkg/testing/">testing</a>.<a href="http://localhost:6060/pkg/testing/#T">T</a>)</pre>
+				<pre>func (c *<a href="index.html#StateStoreFixture">StateStoreFixture</a>) TestDelete(t *<a href="http://localhost:6060/pkg/testing/">testing</a>.<a href="http://localhost:6060/pkg/testing/#T">T</a>)</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="LoggerFixture.TestLogLevel">func (*LoggerFixture) <a href="http://localhost:6060/src/test/log/LoggerFixture.go?s=311:361#L11">TestLogLevel</a>
-					<a class="permalink" href="index.html#LoggerFixture.TestLogLevel">&#xb6;</a>
+				<h3 id="StateStoreFixture.TestSaveAndLoad">func (*StateStoreFixture) <a href="http://localhost:6060/src/test/state/StateStoreFixture.go?s=439:496#L16">TestSaveAndLoad</a>
+					<a class="permalink" href="index.html#StateStoreFixture.TestSaveAndLoad">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#LoggerFixture">LoggerFixture</a>) TestLogLevel(t *<a href="http://localhost:6060/pkg/testing/">testing</a>.<a href="http://localhost:6060/pkg/testing/#T">T</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="LoggerFixture.TestSimpleLogging">func (*LoggerFixture) <a href="http://localhost:6060/src/test/log/LoggerFixture.go?s=460:515#L16">TestSimpleLogging</a>
-					<a class="permalink" href="index.html#LoggerFixture.TestSimpleLogging">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#LoggerFixture">LoggerFixture</a>) TestSimpleLogging(t *<a href="http://localhost:6060/pkg/testing/">testing</a>.<a href="http://localhost:6060/pkg/testing/#T">T</a>)</pre>
+				<pre>func (c *<a href="index.html#StateStoreFixture">StateStoreFixture</a>) TestSaveAndLoad(t *<a href="http://localhost:6060/pkg/testing/">testing</a>.<a href="http://localhost:6060/pkg/testing/#T">T</a>)</pre>
 				
 				
 				

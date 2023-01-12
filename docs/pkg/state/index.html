@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>state - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.16.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package state
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "state"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="index.html#NewDefaultStateStoreFactory">func NewDefaultStateStoreFactory() *build.Factory</a></dd>
+			
+			
+				
+				<dd><a href="index.html#IStateStore">type IStateStore</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#MemoryStateStore">type MemoryStateStore</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyMemoryStateStore">func NewEmptyMemoryStateStore() *MemoryStateStore</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryStateStore.Configure">func (c *MemoryStateStore) Configure(config *cconf.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryStateStore.Delete">func (c *MemoryStateStore) Delete(correlationId string, key string) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryStateStore.Load">func (c *MemoryStateStore) Load(correlationId string, key string) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryStateStore.LoadBulk">func (c *MemoryStateStore) LoadBulk(correlationId string, keys []string) []*StateValue</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#MemoryStateStore.Save">func (c *MemoryStateStore) Save(correlationId string, key string, value interface{}) interface{}</a></dd>
+				
+			
+				
+				<dd><a href="index.html#NullStateStore">type NullStateStore</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewEmptyNullStateStore">func NewEmptyNullStateStore() *NullStateStore</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NullStateStore.Delete">func (c *NullStateStore) Delete(correlationId string, key string) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NullStateStore.Load">func (c *NullStateStore) Load(correlationId string, key string) interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NullStateStore.LoadBulk">func (c *NullStateStore) LoadBulk(correlationId string, keys []string) []*StateValue</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NullStateStore.Save">func (c *NullStateStore) Save(correlationId string, key string, value interface{}) interface{}</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StateEntry">type StateEntry</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewStateEntry">func NewStateEntry(key string, value interface{}) *StateEntry</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateEntry.GetKey">func (c *StateEntry) GetKey() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateEntry.GetLastUpdateTime">func (c *StateEntry) GetLastUpdateTime() int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateEntry.GetValue">func (c *StateEntry) GetValue() interface{}</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#StateEntry.SetValue">func (c *StateEntry) SetValue(value interface{})</a></dd>
+				
+			
+				
+				<dd><a href="index.html#StateValue">type StateValue</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/state/DefaultStateStoreFactory.go">DefaultStateStoreFactory.go</a>
+			
+				<a href="http://localhost:6060/src/state/IStateStore.go">IStateStore.go</a>
+			
+				<a href="http://localhost:6060/src/state/MemoryStateStore.go">MemoryStateStore.go</a>
+			
+				<a href="http://localhost:6060/src/state/NullStateStore.go">NullStateStore.go</a>
+			
+				<a href="http://localhost:6060/src/state/StateEntry.go">StateEntry.go</a>
+			
+				<a href="http://localhost:6060/src/state/StateValue.go">StateValue.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="NewDefaultStateStoreFactory">func <a href="http://localhost:6060/src/state/DefaultStateStoreFactory.go?s=302:351#L3">NewDefaultStateStoreFactory</a>
+				<a class="permalink" href="index.html#NewDefaultStateStoreFactory">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewDefaultStateStoreFactory() *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/build/">build</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/build/#Factory">Factory</a></pre>
+			<p>
+Creates IStateStore components by their descriptors.
+See Factory
+See IStateStore
+See MemoryStateStore
+See NullStateStore
+</p>
+
+			
+			
+
+		
+		
+			
+			
+			<h2 id="IStateStore">type <a href="http://localhost:6060/src/state/IStateStore.go?s=106:1453#L1">IStateStore</a>
+				<a class="permalink" href="index.html#IStateStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Interface for state storages that are used to store and retrieve transaction states.
+</p>
+
+			<pre>type IStateStore interface {
+
+    <span class="comment">// Loads state from the store using its key.</span>
+    <span class="comment">// If value is missing in the store it returns nil.</span>
+    <span class="comment">//</span>
+    <span class="comment">// - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">// - key               a unique state key.</span>
+    <span class="comment">// Returns             the state value or nil if value wasn&#39;t found.</span>
+    Load(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) interface{}
+
+    <span class="comment">// Loads an array of states from the store using their keys.</span>
+    <span class="comment">//</span>
+    <span class="comment">// - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">// - keys              unique state keys.</span>
+    <span class="comment">// Returns                 an array with state values and their corresponding keys.</span>
+    LoadBulk(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, keys []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) []*<a href="index.html#StateValue">StateValue</a>
+
+    <span class="comment">// Saves state into the store.</span>
+    <span class="comment">//</span>
+    <span class="comment">// - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">// - key               a unique state key.</span>
+    <span class="comment">// - value             a state value.</span>
+    <span class="comment">// Returns             The state that was stored in the store.</span>
+    Save(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value interface{}) interface{}
+
+    <span class="comment">// Deletes a state from the store by its key.</span>
+    <span class="comment">//</span>
+    <span class="comment">// - correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">// - key               a unique value key.</span>
+    Delete(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) interface{}
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="MemoryStateStore">type <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=652:734#L16">MemoryStateStore</a>
+				<a class="permalink" href="index.html#MemoryStateStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+State store that keeps states in the process memory.
+</p>
+<p>
+Remember: This implementation is not suitable for synchronization of distributed processes.
+</p>
+<p>
+### Configuration parameters ###
+</p>
+<pre>options:
+</pre>
+<p>
+- timeout:               default caching timeout in milliseconds (default: disabled)
+</p>
+<p>
+### Example ###
+</p>
+<pre>store := NewMemoryStateStore();
+value := store.Load(&#34;123&#34;, &#34;key1&#34;);
+...
+store.Save(&#34;123&#34;, &#34;key1&#34;, &#34;ABC&#34;);
+</pre>
+
+			<pre>type MemoryStateStore struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEmptyMemoryStateStore">func <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=787:836#L23">NewEmptyMemoryStateStore</a>
+					<a class="permalink" href="index.html#NewEmptyMemoryStateStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyMemoryStateStore() *<a href="index.html#MemoryStateStore">MemoryStateStore</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="MemoryStateStore.Configure">func (*MemoryStateStore) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=1048:1112#L32">Configure</a>
+					<a class="permalink" href="index.html#MemoryStateStore.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryStateStore">MemoryStateStore</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configures component by passing configuration parameters.
+- config    configuration parameters to be set.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryStateStore.Delete">func (*MemoryStateStore) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=3932:4011#L129">Delete</a>
+					<a class="permalink" href="index.html#MemoryStateStore.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryStateStore">MemoryStateStore</a>) Delete(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) interface{}</pre>
+				<p>
+Deletes a state from the store by its key.
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- key               a unique state key.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryStateStore.Load">func (*MemoryStateStore) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=1911:1988#L58">Load</a>
+					<a class="permalink" href="index.html#MemoryStateStore.Load">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryStateStore">MemoryStateStore</a>) Load(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) interface{}</pre>
+				<p>
+Loads stored value from the store using its key.
+If value is missing in the store it returns nil.
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- key               a unique state key.
+Returns                 the state value or &lt;code&gt;nil&lt;/code&gt; if value wasn&#39;t found.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryStateStore.LoadBulk">func (*MemoryStateStore) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=2539:2625#L79">LoadBulk</a>
+					<a class="permalink" href="index.html#MemoryStateStore.LoadBulk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryStateStore">MemoryStateStore</a>) LoadBulk(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, keys []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) []*<a href="index.html#StateValue">StateValue</a></pre>
+				<p>
+Loads an array of states from the store using their keys.
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- keys              unique state keys.
+Returns                 an array with state values.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="MemoryStateStore.Save">func (*MemoryStateStore) <a href="http://localhost:6060/src/state/MemoryStateStore.go?s=3152:3248#L97">Save</a>
+					<a class="permalink" href="index.html#MemoryStateStore.Save">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#MemoryStateStore">MemoryStateStore</a>) Save(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value interface{}) interface{}</pre>
+				<p>
+Saves state into the store
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- key               a unique state key.
+- value             a state value to store.
+Returns                 The value that was stored in the cache.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullStateStore">type <a href="http://localhost:6060/src/state/NullStateStore.go?s=196:227#L1">NullStateStore</a>
+				<a class="permalink" href="index.html#NullStateStore">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Dummy state store implementation that doesn&#39;t do anything.
+</p>
+<p>
+It can be used in testing or in situations when state management is not required
+but shall be disabled.
+</p>
+
+			<pre>type NullStateStore struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewEmptyNullStateStore">func <a href="http://localhost:6060/src/state/NullStateStore.go?s=231:276#L1">NewEmptyNullStateStore</a>
+					<a class="permalink" href="index.html#NewEmptyNullStateStore">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewEmptyNullStateStore() *<a href="index.html#NullStateStore">NullStateStore</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="NullStateStore.Delete">func (*NullStateStore) <a href="http://localhost:6060/src/state/NullStateStore.go?s=1699:1776#L37">Delete</a>
+					<a class="permalink" href="index.html#NullStateStore.Delete">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#NullStateStore">NullStateStore</a>) Delete(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) interface{}</pre>
+				<p>
+Deletes a state from the store by its key.
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- key               a unique value key.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NullStateStore.Load">func (*NullStateStore) <a href="http://localhost:6060/src/state/NullStateStore.go?s=623:698#L10">Load</a>
+					<a class="permalink" href="index.html#NullStateStore.Load">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#NullStateStore">NullStateStore</a>) Load(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>) interface{}</pre>
+				<p>
+Loads state from the store using its key.
+If value is missing in the stored it returns nil.
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- key               a unique state key.
+Returns                 the state value or nil if value wasn&#39;t found.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NullStateStore.LoadBulk">func (*NullStateStore) <a href="http://localhost:6060/src/state/NullStateStore.go?s=1003:1087#L19">LoadBulk</a>
+					<a class="permalink" href="index.html#NullStateStore.LoadBulk">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#NullStateStore">NullStateStore</a>) LoadBulk(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, keys []<a href="http://localhost:6060/pkg/builtin/#string">string</a>) []*<a href="index.html#StateValue">StateValue</a></pre>
+				<p>
+Loads an array of states from the store using their keys.
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- keys              unique state keys.
+Returns                 an array with state values and their corresponding keys.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NullStateStore.Save">func (*NullStateStore) <a href="http://localhost:6060/src/state/NullStateStore.go?s=1397:1491#L29">Save</a>
+					<a class="permalink" href="index.html#NullStateStore.Save">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#NullStateStore">NullStateStore</a>) Save(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value interface{}) interface{}</pre>
+				<p>
+Saves state into the store.
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- key               a unique state key.
+- value             a state value.
+Returns                 The state that was stored in the store.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StateEntry">type <a href="http://localhost:6060/src/state/StateEntry.go?s=117:352#L1">StateEntry</a>
+				<a class="permalink" href="index.html#StateEntry">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Data object to store state values with their keys used by [[MemoryStateEntry]]
+</p>
+
+			<pre>type StateEntry struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewStateEntry">func <a href="http://localhost:6060/src/state/StateEntry.go?s=535:596#L5">NewStateEntry</a>
+					<a class="permalink" href="index.html#NewStateEntry">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewStateEntry(key <a href="http://localhost:6060/pkg/builtin/#string">string</a>, value interface{}) *<a href="index.html#StateEntry">StateEntry</a></pre>
+				<p>
+NewStateEntry method creates a new instance of the state entry and assigns its values.
+- key       a unique key to locate the value.
+- value     a value to be stored.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="StateEntry.GetKey">func (*StateEntry) <a href="http://localhost:6060/src/state/StateEntry.go?s=830:866#L15">GetKey</a>
+					<a class="permalink" href="index.html#StateEntry.GetKey">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StateEntry">StateEntry</a>) GetKey() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<p>
+GetKey method gets the key to locate the state value.
+Returns the value key.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StateEntry.GetLastUpdateTime">func (*StateEntry) <a href="http://localhost:6060/src/state/StateEntry.go?s=1142:1188#L27">GetLastUpdateTime</a>
+					<a class="permalink" href="index.html#StateEntry.GetLastUpdateTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StateEntry">StateEntry</a>) GetLastUpdateTime() <a href="http://localhost:6060/pkg/builtin/#int64">int64</a></pre>
+				<p>
+GetLastUpdateTime method gets the last update time.
+Returns the timestamp when the value ware stored.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StateEntry.GetValue">func (*StateEntry) <a href="http://localhost:6060/src/state/StateEntry.go?s=963:1006#L21">GetValue</a>
+					<a class="permalink" href="index.html#StateEntry.GetValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StateEntry">StateEntry</a>) GetValue() interface{}</pre>
+				<p>
+GetValue method gets the sstate value.
+Returns the value object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="StateEntry.SetValue">func (*StateEntry) <a href="http://localhost:6060/src/state/StateEntry.go?s=1303:1351#L33">SetValue</a>
+					<a class="permalink" href="index.html#StateEntry.SetValue">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#StateEntry">StateEntry</a>) SetValue(value interface{})</pre>
+				<p>
+SetValue method sets a new state value.
+- value     a new cached value.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="StateValue">type <a href="http://localhost:6060/src/state/StateValue.go?s=84:253#L1">StateValue</a>
+				<a class="permalink" href="index.html#StateValue">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+A data object that holds a retrieved state value with its key.
+</p>
+
+			<pre>type StateValue struct {
+<span id="StateValue.Key"></span>    Key   <a href="http://localhost:6060/pkg/builtin/#string">string</a>      `json:&#34;key&#34; bson:&#34;key&#34;`     <span class="comment">// A unique state key</span>
+<span id="StateValue.Value"></span>    Value interface{} `json:&#34;value&#34; bson:&#34;value&#34;` <span class="comment">// A stored state value</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.16.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>trace - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.16.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package trace
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "trace"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#CachedTracer">type CachedTracer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritCachedTracer">func InheritCachedTracer(saver ICachedTraceSaver) *CachedTracer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedTracer.BeginTrace">func (c *CachedTracer) BeginTrace(correlationId string, component string, operation string) *TraceTiming</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedTracer.Clear">func (c *CachedTracer) Clear()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedTracer.Configure">func (c *CachedTracer) Configure(config *cconf.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedTracer.Dump">func (c *CachedTracer) Dump()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedTracer.Failure">func (c *CachedTracer) Failure(correlationId string, component string, operation string, err error, duration int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedTracer.SetReferences">func (c *CachedTracer) SetReferences(references cref.IReferences)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedTracer.Trace">func (c *CachedTracer) Trace(correlationId string, component string, operation string, duration int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedTracer.Update">func (c *CachedTracer) Update()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CachedTracer.Write">func (c *CachedTracer) Write(correlationId string, component string, operation string, err error, duration int64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#CompositeTracer">type CompositeTracer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCompositeTracer">func NewCompositeTracer(references cref.IReferences) *CompositeTracer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeTracer.BeginTrace">func (c *CompositeTracer) BeginTrace(correlationId string, component string, operation string) *TraceTiming</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeTracer.Failure">func (c *CompositeTracer) Failure(correlationId string, component string, operation string, err error, duration int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeTracer.SetReferences">func (c *CompositeTracer) SetReferences(references cref.IReferences)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CompositeTracer.Trace">func (c *CompositeTracer) Trace(correlationId string, component string, operation string, duration int64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#DefaultTracerFactory">type DefaultTracerFactory</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewDefaultTracerFactory">func NewDefaultTracerFactory() *DefaultTracerFactory</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ICachedTraceSaver">type ICachedTraceSaver</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#ITracer">type ITracer</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#LogTracer">type LogTracer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewLogTracer">func NewLogTracer() *LogTracer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LogTracer.BeginTrace">func (c *LogTracer) BeginTrace(correlationId string, component string, operation string) *TraceTiming</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LogTracer.Configure">func (c *LogTracer) Configure(config *cconf.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LogTracer.Failure">func (c *LogTracer) Failure(correlationId string, component string, operation string, err error, duration int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LogTracer.SetReferences">func (c *LogTracer) SetReferences(references cref.IReferences)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#LogTracer.Trace">func (c *LogTracer) Trace(correlationId string, component string, operation string, duration int64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#NullTracer">type NullTracer</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewNullTracer">func NewNullTracer() *NullTracer</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NullTracer.BeginTrace">func (c *NullTracer) BeginTrace(correlationId string, component string, operation string) *TraceTiming</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NullTracer.Failure">func (c *NullTracer) Failure(correlationId string, component string, operation string, err error, duration int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NullTracer.Trace">func (c *NullTracer) Trace(correlationId string, component string, operation string, duration int64)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#OperationTrace">type OperationTrace</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#TraceTiming">type TraceTiming</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewTraceTiming">func NewTraceTiming(correlationId string, component string, operation string, tracer ITracer) *TraceTiming</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TraceTiming.EndFailure">func (c *TraceTiming) EndFailure(err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#TraceTiming.EndTrace">func (c *TraceTiming) EndTrace()</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/trace/CachedTracer.go">CachedTracer.go</a>
+			
+				<a href="http://localhost:6060/src/trace/CompositeTracer.go">CompositeTracer.go</a>
+			
+				<a href="http://localhost:6060/src/trace/DefaultTracerFactory.go">DefaultTracerFactory.go</a>
+			
+				<a href="http://localhost:6060/src/trace/ITracer.go">ITracer.go</a>
+			
+				<a href="http://localhost:6060/src/trace/LogTracer.go">LogTracer.go</a>
+			
+				<a href="http://localhost:6060/src/trace/NullTracer.go">NullTracer.go</a>
+			
+				<a href="http://localhost:6060/src/trace/OperationTrace.go">OperationTrace.go</a>
+			
+				<a href="http://localhost:6060/src/trace/TraceTiming.go">TraceTiming.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="CachedTracer">type <a href="http://localhost:6060/src/trace/CachedTracer.go?s=1060:1262#L23">CachedTracer</a>
+				<a class="permalink" href="index.html#CachedTracer">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type CachedTracer struct {
+<span id="CachedTracer.Cache"></span>    Cache []*<a href="index.html#OperationTrace">OperationTrace</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="InheritCachedTracer">func <a href="http://localhost:6060/src/trace/CachedTracer.go?s=1308:1371#L34">InheritCachedTracer</a>
+					<a class="permalink" href="index.html#InheritCachedTracer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func InheritCachedTracer(saver <a href="index.html#ICachedTraceSaver">ICachedTraceSaver</a>) *<a href="index.html#CachedTracer">CachedTracer</a></pre>
+				<p>
+Creates a new instance of the logger.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CachedTracer.BeginTrace">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=4723:4827#L123">BeginTrace</a>
+					<a class="permalink" href="index.html#CachedTracer.BeginTrace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedTracer">CachedTracer</a>) BeginTrace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#TraceTiming">TraceTiming</a></pre>
+				<p>
+Begings recording an operation trace
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+Returns                 a trace timing object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CachedTracer.Clear">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=4946:4976#L128">Clear</a>
+					<a class="permalink" href="index.html#CachedTracer.Clear">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedTracer">CachedTracer</a>) Clear()</pre>
+				<p>
+Clears (removes) all cached log messages.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CachedTracer.Configure">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=1700:1760#L48">Configure</a>
+					<a class="permalink" href="index.html#CachedTracer.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedTracer">CachedTracer</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configures component by passing configuration parameters.
+</p>
+<p>
+- config    configuration parameters to be set.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CachedTracer.Dump">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5116:5145#L135">Dump</a>
+					<a class="permalink" href="index.html#CachedTracer.Dump">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedTracer">CachedTracer</a>) Dump()</pre>
+				<p>
+Dumps (writes) the currently cached log messages.
+See [[Write]]
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CachedTracer.Failure">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=4243:4358#L113">Failure</a>
+					<a class="permalink" href="index.html#CachedTracer.Failure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedTracer">CachedTracer</a>) Failure(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+Records an operation failure with its name, duration and error
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+- error             an error object associated with this trace.
+- duration          execution duration in milliseconds.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CachedTracer.SetReferences">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=2114:2179#L57">SetReferences</a>
+					<a class="permalink" href="index.html#CachedTracer.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedTracer">CachedTracer</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+Sets references to dependent components.
+</p>
+<p>
+- references 	references to locate the component dependencies.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CachedTracer.Trace">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=3673:3775#L102">Trace</a>
+					<a class="permalink" href="index.html#CachedTracer.Trace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedTracer">CachedTracer</a>) Trace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+Records an operation trace with its name and duration
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+- duration          execution duration in milliseconds.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CachedTracer.Update">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=5713:5744#L165">Update</a>
+					<a class="permalink" href="index.html#CachedTracer.Update">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedTracer">CachedTracer</a>) Update()</pre>
+				<p>
+Makes trace cache as updated
+and dumps it when timeout expires.
+See [[Dump]]
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CachedTracer.Write">func (*CachedTracer) <a href="http://localhost:6060/src/trace/CachedTracer.go?s=2826:2939#L75">Write</a>
+					<a class="permalink" href="index.html#CachedTracer.Write">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CachedTracer">CachedTracer</a>) Write(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+Writes a log message to the logger destination.
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+- error             an error object associated with this trace.
+- duration          execution duration in milliseconds.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="CompositeTracer">type <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=1157:1209#L28">CompositeTracer</a>
+				<a class="permalink" href="index.html#CompositeTracer">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type CompositeTracer struct {
+<span id="CompositeTracer.Tracers"></span>    Tracers []<a href="index.html#ITracer">ITracer</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCompositeTracer">func <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=1322:1391#L35">NewCompositeTracer</a>
+					<a class="permalink" href="index.html#NewCompositeTracer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCompositeTracer(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>) *<a href="index.html#CompositeTracer">CompositeTracer</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="CompositeTracer.BeginTrace">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=3430:3537#L94">BeginTrace</a>
+					<a class="permalink" href="index.html#CompositeTracer.BeginTrace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeTracer">CompositeTracer</a>) BeginTrace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#TraceTiming">TraceTiming</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="CompositeTracer.Failure">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=2904:3022#L82">Failure</a>
+					<a class="permalink" href="index.html#CompositeTracer.Failure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeTracer">CompositeTracer</a>) Failure(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+Records an operation failure with its name, duration and error
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+- error             an error object associated with this trace.
+- duration          execution duration in milliseconds.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeTracer.SetReferences">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=1607:1675#L45">SetReferences</a>
+					<a class="permalink" href="index.html#CompositeTracer.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeTracer">CompositeTracer</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+Sets references to dependent components.
+- references 	references to locate the component dependencies.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="CompositeTracer.Trace">func (*CompositeTracer) <a href="http://localhost:6060/src/trace/CompositeTracer.go?s=2299:2404#L70">Trace</a>
+					<a class="permalink" href="index.html#CompositeTracer.Trace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CompositeTracer">CompositeTracer</a>) Trace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+Records an operation trace with its name and duration
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+- duration          execution duration in milliseconds.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="DefaultTracerFactory">type <a href="http://localhost:6060/src/trace/DefaultTracerFactory.go?s=324:513#L4">DefaultTracerFactory</a>
+				<a class="permalink" href="index.html#DefaultTracerFactory">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type DefaultTracerFactory struct {
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/build/">cbuild</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/build/#Factory">Factory</a>
+<span id="DefaultTracerFactory.NullTracerDescriptor"></span>    NullTracerDescriptor      *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#Descriptor">Descriptor</a>
+<span id="DefaultTracerFactory.LogTracerDescriptor"></span>    LogTracerDescriptor       *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#Descriptor">Descriptor</a>
+<span id="DefaultTracerFactory.CompositeTracerDescriptor"></span>    CompositeTracerDescriptor *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#Descriptor">Descriptor</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewDefaultTracerFactory">func <a href="http://localhost:6060/src/trace/DefaultTracerFactory.go?s=558:610#L12">NewDefaultTracerFactory</a>
+					<a class="permalink" href="index.html#NewDefaultTracerFactory">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewDefaultTracerFactory() *<a href="index.html#DefaultTracerFactory">DefaultTracerFactory</a></pre>
+				<p>
+Create a new instance of the factory.
+</p>
+
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="ICachedTraceSaver">type <a href="http://localhost:6060/src/trace/CachedTracer.go?s=976:1056#L19">ICachedTraceSaver</a>
+				<a class="permalink" href="index.html#ICachedTraceSaver">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ICachedTraceSaver interface {
+    Save(operations []*<a href="index.html#OperationTrace">OperationTrace</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ITracer">type <a href="http://localhost:6060/src/trace/ITracer.go?s=83:1381#L1">ITracer</a>
+				<a class="permalink" href="index.html#ITracer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+Interface for tracer components that capture operation traces.
+</p>
+
+			<pre>type ITracer interface {
+
+    <span class="comment">//Records an operation trace with its name and duration</span>
+    <span class="comment">//</span>
+    <span class="comment">//- correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//- component         a name of called component</span>
+    <span class="comment">//- operation         a name of the executed operation.</span>
+    <span class="comment">//- duration          execution duration in milliseconds.</span>
+    Trace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)
+
+    <span class="comment">//Records an operation failure with its name, duration and error</span>
+    <span class="comment">//- correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//- component         a name of called component</span>
+    <span class="comment">//- operation         a name of the executed operation.</span>
+    <span class="comment">//- error             an error object associated with this trace.</span>
+    <span class="comment">//- duration          execution duration in milliseconds.</span>
+    Failure(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)
+
+    <span class="comment">//Begings recording an operation trace</span>
+    <span class="comment">//- correlationId     (optional) transaction id to trace execution through call chain.</span>
+    <span class="comment">//- component         a name of called component</span>
+    <span class="comment">//- operation         a name of the executed operation.</span>
+    <span class="comment">//Returns                 a trace timing object.</span>
+    BeginTrace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#TraceTiming">TraceTiming</a>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="LogTracer">type <a href="http://localhost:6060/src/trace/LogTracer.go?s=1185:1258#L25">LogTracer</a>
+				<a class="permalink" href="index.html#LogTracer">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type LogTracer struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewLogTracer">func <a href="http://localhost:6060/src/trace/LogTracer.go?s=1303:1333#L31">NewLogTracer</a>
+					<a class="permalink" href="index.html#NewLogTracer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewLogTracer() *<a href="index.html#LogTracer">LogTracer</a></pre>
+				<p>
+Creates a new instance of the tracer.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="LogTracer.BeginTrace">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=3862:3963#L102">BeginTrace</a>
+					<a class="permalink" href="index.html#LogTracer.BeginTrace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LogTracer">LogTracer</a>) BeginTrace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#TraceTiming">TraceTiming</a></pre>
+				<p>
+Begings recording an operation trace
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+Returns                 a trace timing object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="LogTracer.Configure">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=1542:1599#L40">Configure</a>
+					<a class="permalink" href="index.html#LogTracer.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LogTracer">LogTracer</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configures component by passing configuration parameters.
+- config    configuration parameters to be set.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="LogTracer.Failure">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=3391:3503#L93">Failure</a>
+					<a class="permalink" href="index.html#LogTracer.Failure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LogTracer">LogTracer</a>) Failure(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+Records an operation failure with its name, duration and error
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+- error             an error object associated with this trace.
+- duration          execution duration in milliseconds.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="LogTracer.SetReferences">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=1874:1936#L50">SetReferences</a>
+					<a class="permalink" href="index.html#LogTracer.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LogTracer">LogTracer</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+Sets references to dependent components.
+- references 	references to locate the component dependencies.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="LogTracer.Trace">func (*LogTracer) <a href="http://localhost:6060/src/trace/LogTracer.go?s=2831:2930#L83">Trace</a>
+					<a class="permalink" href="index.html#LogTracer.Trace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#LogTracer">LogTracer</a>) Trace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+Records an operation trace with its name and duration
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+- duration          execution duration in milliseconds.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullTracer">type <a href="http://localhost:6060/src/trace/NullTracer.go?s=191:218#L1">NullTracer</a>
+				<a class="permalink" href="index.html#NullTracer">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type NullTracer struct {
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullTracer">func <a href="http://localhost:6060/src/trace/NullTracer.go?s=263:295#L2">NewNullTracer</a>
+					<a class="permalink" href="index.html#NewNullTracer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullTracer() *<a href="index.html#NullTracer">NullTracer</a></pre>
+				<p>
+Creates a new instance of the tracer.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullTracer.BeginTrace">func (*NullTracer) <a href="http://localhost:6060/src/trace/NullTracer.go?s=1583:1685#L32">BeginTrace</a>
+					<a class="permalink" href="index.html#NullTracer.BeginTrace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#NullTracer">NullTracer</a>) BeginTrace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#TraceTiming">TraceTiming</a></pre>
+				<p>
+Begings recording an operation trace
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+Returns                 a trace timing object.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="NullTracer.Failure">func (*NullTracer) <a href="http://localhost:6060/src/trace/NullTracer.go?s=1157:1270#L23">Failure</a>
+					<a class="permalink" href="index.html#NullTracer.Failure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#NullTracer">NullTracer</a>) Failure(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="NullTracer.Trace">func (*NullTracer) <a href="http://localhost:6060/src/trace/NullTracer.go?s=638:738#L11">Trace</a>
+					<a class="permalink" href="index.html#NullTracer.Trace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#NullTracer">NullTracer</a>) Trace(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>)</pre>
+				<p>
+Records an operation trace with its name and duration
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component         a name of called component
+- operation         a name of the executed operation.
+- duration          execution duration in milliseconds.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="OperationTrace">type <a href="http://localhost:6060/src/trace/OperationTrace.go?s=205:832#L2">OperationTrace</a>
+				<a class="permalink" href="index.html#OperationTrace">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type OperationTrace struct {
+    <span class="comment">// The time when operation was executed</span>
+<span id="OperationTrace.Time"></span>    Time <a href="http://localhost:6060/pkg/time/">time</a>.<a href="http://localhost:6060/pkg/time/#Time">Time</a>
+    <span class="comment">// The source (context name)</span>
+<span id="OperationTrace.Source"></span>    Source <a href="http://localhost:6060/pkg/builtin/#string">string</a> `json:&#34;source&#34;`
+    <span class="comment">// The name of component</span>
+<span id="OperationTrace.Component"></span>    Component <a href="http://localhost:6060/pkg/builtin/#string">string</a> `json:&#34;component&#34;`
+    <span class="comment">// The name of the executed operation</span>
+<span id="OperationTrace.Operation"></span>    Operation <a href="http://localhost:6060/pkg/builtin/#string">string</a> `json:&#34;operation&#34;`
+    <span class="comment">// The transaction id to trace execution through call chain.</span>
+<span id="OperationTrace.CorrelationId"></span>    CorrelationId <a href="http://localhost:6060/pkg/builtin/#string">string</a> `json:&#34;correlation_id&#34;`
+    <span class="comment">// The duration of the operation in milliseconds</span>
+<span id="OperationTrace.Duration"></span>    Duration <a href="http://localhost:6060/pkg/builtin/#int64">int64</a> `json:&#34;duration&#34;`
+
+    <span class="comment">//The description of the captured error</span>
+    <span class="comment">//ErrorDescription</span>
+    <span class="comment">//ApplicationException</span>
+<span id="OperationTrace.Error"></span>    Error <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/">cerr</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/errors/#ErrorDescription">ErrorDescription</a> `json:&#34;error&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="TraceTiming">type <a href="http://localhost:6060/src/trace/TraceTiming.go?s=363:506#L9">TraceTiming</a>
+				<a class="permalink" href="index.html#TraceTiming">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type TraceTiming struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewTraceTiming">func <a href="http://localhost:6060/src/trace/TraceTiming.go?s=823:929#L23">NewTraceTiming</a>
+					<a class="permalink" href="index.html#NewTraceTiming">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewTraceTiming(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, component <a href="http://localhost:6060/pkg/builtin/#string">string</a>, operation <a href="http://localhost:6060/pkg/builtin/#string">string</a>, tracer <a href="index.html#ITracer">ITracer</a>) *<a href="index.html#TraceTiming">TraceTiming</a></pre>
+				<p>
+Creates a new instance of the timing callback object.
+</p>
+<p>
+- correlationId     (optional) transaction id to trace execution through call chain.
+- component 	an associated component name
+- operation 	an associated operation name
+- callback 		a callback that shall be called when endTiming is called.
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="TraceTiming.EndFailure">func (*TraceTiming) <a href="http://localhost:6060/src/trace/TraceTiming.go?s=1604:1647#L45">EndFailure</a>
+					<a class="permalink" href="index.html#TraceTiming.EndFailure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TraceTiming">TraceTiming</a>) EndFailure(err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Ends timing of a failed block, calculates elapsed time
+and records the associated trace.
+- error             an error object associated with this trace.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="TraceTiming.EndTrace">func (*TraceTiming) <a href="http://localhost:6060/src/trace/TraceTiming.go?s=1228:1260#L35">EndTrace</a>
+					<a class="permalink" href="index.html#TraceTiming.EndTrace">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#TraceTiming">TraceTiming</a>) EndTrace()</pre>
+				<p>
+Ends timing of an execution block, calculates elapsed time
+and records the associated trace.
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.16.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

@@ -42,7 +42,7 @@ func TestConnectionUtilsIncludeKeys(t *testing.T) {
 	assert.Equal(t, 2, options.Len())
 	assert.Equal(t, "server1", *options.GetAsNullableString("host"))
 	assert.Equal(t, "8080", *options.GetAsNullableString("port"))
-	assert.Equal(t, "", *options.GetAsNullableString("param1"))
+	assert.Nil(t, options.GetAsNullableString("param1"))
 }
 
 func TestConnectionUtilsExcludeKeys(t *testing.T) {
@@ -55,8 +55,8 @@ func TestConnectionUtilsExcludeKeys(t *testing.T) {
 	var options = connect.ConnectionUtils.Exclude(options1, "host", "port")
 
 	assert.Equal(t, 1, options.Len())
-	assert.Equal(t, "", *options.GetAsNullableString("host"))
-	assert.Equal(t, "", *options.GetAsNullableString("port"))
+	assert.Nil(t, options.GetAsNullableString("host"))
+	assert.Nil(t, options.GetAsNullableString("port"))
 	assert.Equal(t, "ABC", *options.GetAsNullableString("param1"))
 }
 
